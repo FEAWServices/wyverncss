@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Wyvern "W" Wing Logo -->
+  <defs>
+    <linearGradient id="wingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left Wing -->
+  <path d="M12 28 L32 88 L48 48 L64 88"
+        fill="none"
+        stroke="url(#wingGradient)"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Right Wing -->
+  <path d="M64 88 L80 48 L96 88 L116 28"
+        fill="none"
+        stroke="url(#wingGradient)"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Wing Tips (feather accents) -->
+  <path d="M8 20 L12 28 M20 16 L24 26"
+        fill="none"
+        stroke="url(#wingGradient)"
+        stroke-width="4"
+        stroke-linecap="round"/>
+  <path d="M120 20 L116 28 M108 16 L104 26"
+        fill="none"
+        stroke="url(#wingGradient)"
+        stroke-width="4"
+        stroke-linecap="round"/>
+</svg>

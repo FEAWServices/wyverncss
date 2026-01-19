@@ -1,0 +1,58 @@
+/**
+ * WyvernPress Admin Styles
+ *
+ * Styles for settings page and general admin UI.
+ *
+ * @package WyvernPress
+ * @since 1.0.0
+ */
+
+/* Settings Page */
+.wyvernpress-settings .form-table th {
+	padding: 20px 10px 20px 0;
+	vertical-align: top;
+}
+
+.wyvernpress-settings .form-table td {
+	padding: 15px 10px;
+}
+
+.wyvernpress-settings .required {
+	color: #d63638;
+	margin-left: 4px;
+}
+
+.wyvernpress-settings .description {
+	margin-top: 8px;
+	color: #646970;
+}
+
+.wyvernpress-settings h2 {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dcdcde;
+}
+
+/* Settings Form Elements */
+.wyvernpress-settings input[type="password"],
+.wyvernpress-settings input[type="text"],
+.wyvernpress-settings input[type="number"],
+.wyvernpress-settings select {
+	padding: 8px 12px;
+	border-radius: 4px;
+}
+
+.wyvernpress-settings input[type="checkbox"] {
+	margin-right: 8px;
+}
+
+/* Quick Actions */
+.wyvernpress-settings .button-secondary {
+	margin-right: 10px;
+}
+
+/* Notice Styling */
+.wyvernpress-settings .notice {
+	margin-top: 20px;
+}

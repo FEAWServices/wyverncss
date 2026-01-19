@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-16",
+  "tiers": {
+    "free": {
+      "id": "free",
+      "name": "Free",
+      "slug": "free",
+      "description": "Full-featured CSS styling with local AI",
+      "limit": 20,
+      "period": "day",
+      "reset_time": "00:00 UTC",
+      "price": {
+        "monthly": 0,
+        "yearly": 0
+      },
+      "ai": {
+        "provider": "ollama",
+        "model": "qwen2.5:7b",
+        "description": "Local AI - good quality, privacy-focused"
+      },
+      "features": [
+        "pattern_library",
+        "basic_ai",
+        "gutenberg_sidebar",
+        "css_preview",
+        "undo_redo"
+      ],
+      "featureDescriptions": [
+        "Pattern library (100+ instant CSS patterns)",
+        "AI-powered CSS generation (Ollama)",
+        "Gutenberg sidebar integration",
+        "Live CSS preview",
+        "Undo/redo styling changes"
+      ]
+    },
+    "premium": {
+      "id": "premium",
+      "name": "Premium",
+      "slug": "premium",
+      "aliases": ["starter", "pro"],
+      "description": "Faster AI with premium models and unlimited requests",
+      "limit": -1,
+      "period": "unlimited",
+      "reset_time": null,
+      "price": {
+        "monthly": 5,
+        "yearly": 49,
+        "yearlyDiscount": "18%"
+      },
+      "ai": {
+        "provider": "openrouter",
+        "models": [
+          {
+            "id": "anthropic/claude-3.5-haiku",
+            "name": "Claude 3.5 Haiku",
+            "default": true
+          },
+          {
+            "id": "openai/gpt-4o-mini",
+            "name": "GPT-4o Mini",
+            "default": false
+          }
+        ],
+        "description": "Premium cloud AI - faster, smarter"
+      },
+      "features": [
+        "pattern_library",
+        "premium_ai",
+        "gutenberg_sidebar",
+        "css_preview",
+        "undo_redo",
+        "admin_ai_console",
+        "priority_support",
+        "custom_patterns",
+        "style_history",
+        "export_css"
+      ],
+      "featureDescriptions": [
+        "Everything in Free",
+        "Premium AI models (Claude 3.5 Haiku, GPT-4o Mini)",
+        "Unlimited AI requests",
+        "Faster response times",
+        "Admin AI console",
+        "Priority email support",
+        "Save custom patterns",
+        "Style change history",
+        "Export CSS files"
+      ]
+    }
+  },
+  "defaults": {
+    "fallback_tier": "free",
+    "fallback_limit": 20,
+    "cache_ttl_seconds": 300,
+    "rate_limit_window_seconds": 86400
+  },
+  "rateLimit": {
+    "free": {
+      "requestsPerMinute": 10,
+      "requestsPerDay": 20
+    },
+    "premium": {
+      "requestsPerMinute": 60,
+      "requestsPerDay": null
+    }
+  },
+  "upgrade_prompts": {
+    "free_threshold_percent": 80,
+    "show_upgrade_at_percent": 70,
+    "messages": {
+      "approaching_limit": "You're approaching your daily limit. Upgrade to Premium for unlimited requests at just $5/month.",
+      "at_limit": "You've reached your daily limit. Upgrade to Premium for unlimited AI requests.",
+      "low_confidence": "Want better results? Premium uses Claude 3.5 Haiku for higher accuracy styling."
+    }
+  },
+  "competitors": {
+    "elementorPro": {
+      "yearlyPrice": 59,
+      "ourAdvantage": "17% cheaper"
+    },
+    "diviAi": {
+      "yearlyPrice": 89,
+      "ourAdvantage": "45% cheaper"
+    }
+  }
+}

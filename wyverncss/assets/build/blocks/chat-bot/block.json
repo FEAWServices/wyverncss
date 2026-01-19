@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wyverncss/chat-bot",
+  "title": "WyvernCSS Chat Bot",
+  "category": "wyverncss",
+  "icon": "format-chat",
+  "description": "Embed an AI-powered chat bot on your page",
+  "keywords": [
+    "chat",
+    "bot",
+    "ai",
+    "assistant",
+    "wyverncss"
+  ],
+  "version": "1.0.0",
+  "textdomain": "wyverncss",
+  "attributes": {
+    "botId": {
+      "type": "string",
+      "default": ""
+    },
+    "position": {
+      "type": "string",
+      "default": "inline",
+      "enum": [
+        "inline",
+        "floating"
+      ]
+    },
+    "theme": {
+      "type": "string",
+      "default": "light",
+      "enum": [
+        "light",
+        "dark"
+      ]
+    },
+    "width": {
+      "type": "number",
+      "default": 400
+    },
+    "height": {
+      "type": "number",
+      "default": 500
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css"
+}
