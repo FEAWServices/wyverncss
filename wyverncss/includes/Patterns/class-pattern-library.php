@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Patterns;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Patterns;
 use WyvernCSS\Patterns\Patterns\BorderPatterns;
 use WyvernCSS\Patterns\Patterns\ButtonPatterns;
 use WyvernCSS\Patterns\Patterns\ColorPatterns;

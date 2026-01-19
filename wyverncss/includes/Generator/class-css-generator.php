@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Generator;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Generator;
 use WyvernCSS\AI\CostTracker;
 use WyvernCSS\AI\ModelSelector;
 use WyvernCSS\AI\PromptBuilder;

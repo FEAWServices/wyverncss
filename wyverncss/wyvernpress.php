@@ -3,7 +3,7 @@
  * Plugin Name: WyvernCSS
  * Plugin URI: https://github.com/FEAWServices/wyverncss
  * Description: AI-powered CSS styling for Gutenberg. Select a block, describe how you want it to look, done.
- * Version: 1.0.9
+ * Version: 1.0.10
  * Author: FEAW
  * Author URI: https://feaw.co.uk
  * License: GPL v2 or later

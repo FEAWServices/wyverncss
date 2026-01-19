@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Generator;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Generator;
 
 /**
  * Class ElementTransformer

@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\API;
 use WyvernCSS\API\REST\Controller_Helpers;
 use WyvernCSS\Settings\Settings_Service;
 use WP_REST_Request;

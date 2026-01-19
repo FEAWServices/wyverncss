@@ -11,12 +11,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\API\REST;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\API\REST;
 use WyvernCSS\MCP\ToolRegistry;
 use WP_REST_Controller;
 use WP_REST_Server;
@@ -216,7 +215,7 @@ class Debug_Controller extends WP_REST_Controller {
 
 		$wyverncss_routes = array();
 		foreach ( $routes as $route => $endpoints ) {
-			if ( strpos( $route, '/wyvernpress/' ) === 0 ) {
+			if ( strpos( $route, '/wyverncss/' ) === 0 ) {
 				$wyverncss_routes[] = $route;
 			}
 		}

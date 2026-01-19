@@ -12,12 +12,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\MCP\Security;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\MCP\Security;
 use WyvernCSS\Security\Rate_Limit_Config;
 use WP_Error;
 

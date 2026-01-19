@@ -11,12 +11,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\MCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\MCP;
 
 /**
  * MCP Circuit Breaker Class

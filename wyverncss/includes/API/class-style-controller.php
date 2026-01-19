@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\API;
 use WyvernCSS\Generator\CSSGenerator;
 use WyvernCSS\Generator\ContextExtractor;
 use WyvernCSS\Generator\ElementTransformer;

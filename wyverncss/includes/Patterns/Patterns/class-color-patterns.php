@@ -11,12 +11,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Patterns\Patterns;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Patterns\Patterns;
 
 /**
  * Color Patterns Class

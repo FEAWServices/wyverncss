@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Conversation;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Conversation;
 use WyvernCSS\Database\Migration_Conversations;
 use WyvernCSS\Database\Migration_Messages;
 use WP_Error;

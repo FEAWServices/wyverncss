@@ -7,12 +7,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Blocks;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Blocks;
 
 /**
  * Chat Bot Block

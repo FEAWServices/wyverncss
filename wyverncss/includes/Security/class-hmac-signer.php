@@ -12,12 +12,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Security;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Security;
 
 /**
  * HMAC Signer Class

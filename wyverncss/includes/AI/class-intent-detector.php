@@ -12,12 +12,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\AI;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\AI;
 
 /**
  * Class Intent_Detector

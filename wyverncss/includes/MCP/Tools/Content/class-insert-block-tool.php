@@ -10,12 +10,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\MCP\Tools\Content;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\MCP\Tools\Content;
 use WyvernCSS\MCP\Tools\MCP_Tool_Base;
 use WP_Error;
 

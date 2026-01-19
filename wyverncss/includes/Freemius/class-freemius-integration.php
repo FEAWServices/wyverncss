@@ -12,12 +12,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Freemius;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Freemius;
 use WyvernCSS\Config\Tier_Config;
 
 /**

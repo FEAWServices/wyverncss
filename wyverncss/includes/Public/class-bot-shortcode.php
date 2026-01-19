@@ -7,12 +7,11 @@
 
 declare(strict_types=1);
 
+namespace WyvernCSS\Public;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-namespace WyvernCSS\Public;
 
 /**
  * Bot Shortcode Handler
