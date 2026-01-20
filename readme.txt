@@ -3,7 +3,7 @@ Contributors: feaw
 Tags: css, gutenberg, ai, styling, blocks
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 Requires PHP: 8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,7 +115,7 @@ This plugin connects to external services for AI-powered CSS generation.
 
 This plugin connects to the WyvernCSS AI Service for AI-powered CSS generation.
 
-**Service URL**: https://wyverncss-proxy.feaw-account.workers.dev
+**Service URL**: https://wyvernpress-proxy.feaw-account.workers.dev
 **Purpose**: Process natural language design prompts using AI models (Claude, GPT-4) to generate CSS code.
 
 **Data Sent**:
