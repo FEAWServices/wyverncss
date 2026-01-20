@@ -82,15 +82,15 @@ class UsageAnalyzer {
 	public function get_monthly_total( int $user_id ): int {
 		global $wpdb;
 
-		$query = $wpdb->prepare(
-			'SELECT COUNT(*) FROM %i
-			 WHERE user_id = %d
-			 AND created_at >= DATE_FORMAT(NOW(), \'%%Y-%%m-01\')',
-			$this->table_name,
-			$user_id
+		$result = $wpdb->get_var(
+			$wpdb->prepare(
+				'SELECT COUNT(*) FROM %i
+				 WHERE user_id = %d
+				 AND created_at >= DATE_FORMAT(NOW(), \'%%Y-%%m-01\')',
+				$this->table_name,
+				$user_id
+			)
 		);
-
-		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		return (int) ( $result ?? 0 );
 	}
@@ -105,7 +105,7 @@ class UsageAnalyzer {
 	public function get_pattern_match_count( int $user_id, string $period ): int {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			"SELECT COUNT(*) FROM %i
 			 WHERE user_id = %d
 			 AND request_type = 'pattern_match'",
@@ -113,9 +113,12 @@ class UsageAnalyzer {
 			$period
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $query ) {
+			return 0;
+		}
 
-		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		return (int) ( $result ?? 0 );
 	}
@@ -130,7 +133,7 @@ class UsageAnalyzer {
 	public function get_ai_request_count( int $user_id, string $period ): int {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			"SELECT COUNT(*) FROM %i
 			 WHERE user_id = %d
 			 AND request_type IN ('ai_request', 'css_generation')",
@@ -138,9 +141,12 @@ class UsageAnalyzer {
 			$period
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $query ) {
+			return 0;
+		}
 
-		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		return (int) ( $result ?? 0 );
 	}
@@ -155,16 +161,19 @@ class UsageAnalyzer {
 	public function get_total_cost( int $user_id, string $period ): float {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			'SELECT SUM(cost_estimate) FROM %i
 			 WHERE user_id = %d',
 			array( $this->table_name, $user_id ),
 			$period
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $query ) {
+			return 0.0;
+		}
 
-		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		return (float) ( $result ?? 0.0 );
 	}
@@ -194,16 +203,19 @@ class UsageAnalyzer {
 	public function get_cache_hit_rate( int $user_id, string $period ): int {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$total_query = $this->build_and_prepare_query(
 			'SELECT COUNT(*) FROM %i
 			 WHERE user_id = %d',
 			array( $this->table_name, $user_id ),
 			$period
 		);
 
-		$total_query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $total_query ) {
+			return 0;
+		}
 
-		$total = (int) $wpdb->get_var( $total_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$total = (int) $wpdb->get_var( $total_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		if ( 0 === $total ) {
 			return 0;
@@ -234,20 +246,21 @@ class UsageAnalyzer {
 	public function get_top_prompts( int $user_id, int $limit = 10 ): array {
 		global $wpdb;
 
-		$query = $wpdb->prepare(
-			'SELECT prompt_hash, COUNT(*) as count, MAX(created_at) as last_used
-			 FROM %i
-			 WHERE user_id = %d
-			 AND prompt_hash IS NOT NULL
-			 GROUP BY prompt_hash
-			 ORDER BY count DESC
-			 LIMIT %d',
-			$this->table_name,
-			$user_id,
-			$limit
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT prompt_hash, COUNT(*) as count, MAX(created_at) as last_used
+				 FROM %i
+				 WHERE user_id = %d
+				 AND prompt_hash IS NOT NULL
+				 GROUP BY prompt_hash
+				 ORDER BY count DESC
+				 LIMIT %d',
+				$this->table_name,
+				$user_id,
+				$limit
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		return $results ?? array();
 	}
@@ -262,7 +275,7 @@ class UsageAnalyzer {
 	public function get_model_breakdown( int $user_id, string $period ): array {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			'SELECT
 				model_used,
 				COUNT(*) as request_count,
@@ -276,9 +289,12 @@ class UsageAnalyzer {
 			'GROUP BY model_used ORDER BY total_cost DESC'
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $query ) {
+			return array();
+		}
 
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		// Add model display names.
 		$formatted = array();
@@ -306,7 +322,7 @@ class UsageAnalyzer {
 
 		$user_id = get_current_user_id();
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			'SELECT * FROM %i
 			 WHERE user_id = %d',
 			array( $this->table_name, $user_id ),
@@ -314,12 +330,15 @@ class UsageAnalyzer {
 			'ORDER BY created_at DESC'
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-
-		// Build CSV.
+		// Build CSV header.
 		$csv = "ID,User ID,Request Type,Model,Tokens,Cost,Created At\n";
+
+		if ( null === $query ) {
+			return $csv;
+		}
+
+		// Query is already prepared by build_and_prepare_query().
+		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		foreach ( $results as $row ) {
 			$csv .= sprintf(
@@ -338,17 +357,20 @@ class UsageAnalyzer {
 	}
 
 	/**
-	 * Build query with date filter
+	 * Build and prepare query with date filter
 	 *
-	 * Safely constructs a SQL query with date filtering without string interpolation.
+	 * Safely constructs and prepares a SQL query with date filtering.
+	 * Uses $wpdb->prepare() internally to ensure all values are properly escaped.
 	 *
 	 * @param string            $base_sql Base SQL query with placeholders.
 	 * @param array<int|string> $base_args Arguments for base SQL.
 	 * @param string            $period Period filter (daily, weekly, monthly, or empty).
 	 * @param string            $suffix Optional SQL suffix (GROUP BY, ORDER BY, etc).
-	 * @return array{sql: string, args: array<int|string>} Query parts.
+	 * @return string|null Prepared SQL query or null on error.
 	 */
-	private function build_query_with_date_filter( string $base_sql, array $base_args, string $period, string $suffix = '' ): array {
+	private function build_and_prepare_query( string $base_sql, array $base_args, string $period, string $suffix = '' ): ?string {
+		global $wpdb;
+
 		$sql  = $base_sql;
 		$args = $base_args;
 
@@ -373,9 +395,7 @@ class UsageAnalyzer {
 			$sql .= ' ' . $suffix;
 		}
 
-		return array(
-			'sql'  => $sql,
-			'args' => $args,
-		);
+		// Return prepared query - $wpdb->prepare handles all escaping.
+		return $wpdb->prepare( $sql, ...$args );
 	}
 }

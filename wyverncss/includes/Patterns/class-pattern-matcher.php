@@ -258,12 +258,14 @@ class PatternMatcher {
 		$normalized = strtolower( trim( $prompt ) );
 
 		// Remove punctuation (except hyphens which are used in CSS property names).
-		$normalized = preg_replace( '/[^\w\s-]/', '', $normalized );
+		$result = preg_replace( '/[^\w\s-]/', '', $normalized );
+		$normalized = is_string( $result ) ? $result : $normalized;
 
 		// Remove extra whitespace.
-		$normalized = preg_replace( '/\s+/', ' ', $normalized );
+		$result = preg_replace( '/\s+/', ' ', $normalized );
+		$normalized = is_string( $result ) ? $result : $normalized;
 
-		return $normalized ?? '';
+		return $normalized;
 	}
 
 	/**

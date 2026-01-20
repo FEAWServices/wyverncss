@@ -106,7 +106,7 @@ class CostTracker {
 	public function get_user_usage( int $user_id, string $period = 'all' ) {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			'SELECT
 				COUNT(*) as total_requests,
 				SUM(tokens_used) as total_tokens,
@@ -119,9 +119,15 @@ class CostTracker {
 			$period
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $query ) {
+			return new WP_Error(
+				'database_error',
+				__( 'Failed to build query', 'wyvern-ai-styling' )
+			);
+		}
 
-		$result = $wpdb->get_row( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$result = $wpdb->get_row( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		if ( $wpdb->last_error ) {
 			return new WP_Error(
@@ -152,7 +158,7 @@ class CostTracker {
 	public function get_usage_by_model( int $user_id, string $period = 'all' ) {
 		global $wpdb;
 
-		$query_parts = $this->build_query_with_date_filter(
+		$query = $this->build_and_prepare_query(
 			'SELECT
 				model_used,
 				COUNT(*) as request_count,
@@ -165,9 +171,15 @@ class CostTracker {
 			'GROUP BY model_used ORDER BY total_cost DESC'
 		);
 
-		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		if ( null === $query ) {
+			return new WP_Error(
+				'database_error',
+				__( 'Failed to build query', 'wyvern-ai-styling' )
+			);
+		}
 
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// Query is already prepared by build_and_prepare_query().
+		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query prepared via build_and_prepare_query().
 
 		if ( $wpdb->last_error ) {
 			return new WP_Error(
@@ -181,17 +193,20 @@ class CostTracker {
 	}
 
 	/**
-	 * Build query with date filter
+	 * Build and prepare query with date filter
 	 *
-	 * Safely constructs a SQL query with date filtering without string interpolation.
+	 * Safely constructs and prepares a SQL query with date filtering.
+	 * Uses $wpdb->prepare() internally to ensure all values are properly escaped.
 	 *
 	 * @param string            $base_sql Base SQL query with placeholders.
 	 * @param array<int|string> $base_args Arguments for base SQL.
 	 * @param string            $period Period filter (day, week, month, or empty).
 	 * @param string            $suffix Optional SQL suffix (GROUP BY, ORDER BY, etc).
-	 * @return array{sql: string, args: array<int|string>} Query parts.
+	 * @return string|null Prepared SQL query or null on error.
 	 */
-	private function build_query_with_date_filter( string $base_sql, array $base_args, string $period, string $suffix = '' ): array {
+	private function build_and_prepare_query( string $base_sql, array $base_args, string $period, string $suffix = '' ): ?string {
+		global $wpdb;
+
 		$sql  = $base_sql;
 		$args = $base_args;
 
@@ -216,10 +231,8 @@ class CostTracker {
 			$sql .= ' ' . $suffix;
 		}
 
-		return array(
-			'sql'  => $sql,
-			'args' => $args,
-		);
+		// Return prepared query - $wpdb->prepare handles all escaping.
+		return $wpdb->prepare( $sql, ...$args );
 	}
 
 	/**
@@ -261,17 +274,18 @@ class CostTracker {
 	public function get_recent_logs( int $user_id, int $limit = 10 ) {
 		global $wpdb;
 
-		$query = $wpdb->prepare(
-			'SELECT * FROM %i
-			WHERE user_id = %d
-			ORDER BY created_at DESC
-			LIMIT %d',
-			$this->table_name,
-			$user_id,
-			$limit
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT * FROM %i
+				WHERE user_id = %d
+				ORDER BY created_at DESC
+				LIMIT %d',
+				$this->table_name,
+				$user_id,
+				$limit
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		if ( $wpdb->last_error ) {
 			return new WP_Error(
@@ -307,14 +321,14 @@ class CostTracker {
 	public function clear_old_logs( int $days_to_keep = 90 ) {
 		global $wpdb;
 
-		$query = $wpdb->prepare(
-			'DELETE FROM %i
-			WHERE created_at < DATE_SUB(NOW(), INTERVAL %d DAY)',
-			$this->table_name,
-			$days_to_keep
+		$result = $wpdb->query(
+			$wpdb->prepare(
+				'DELETE FROM %i
+				WHERE created_at < DATE_SUB(NOW(), INTERVAL %d DAY)',
+				$this->table_name,
+				$days_to_keep
+			)
 		);
-
-		$result = $wpdb->query( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		if ( false === $result ) {
 			return new WP_Error(

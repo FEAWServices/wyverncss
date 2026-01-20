@@ -93,22 +93,23 @@ class ChartGenerator {
 		$user_id = get_current_user_id();
 
 		// Get last 7 days of data.
-		$query = $wpdb->prepare(
-			"SELECT
-				DATE(created_at) as date,
-				COUNT(*) as total,
-				SUM(CASE WHEN request_type = 'pattern_match' THEN 1 ELSE 0 END) as patterns,
-				SUM(CASE WHEN request_type IN ('ai_request', 'css_generation') THEN 1 ELSE 0 END) as ai_requests
-			 FROM %i
-			 WHERE user_id = %d
-			 AND created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)
-			 GROUP BY DATE(created_at)
-			 ORDER BY date ASC",
-			$this->table_name,
-			$user_id
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT
+					DATE(created_at) as date,
+					COUNT(*) as total,
+					SUM(CASE WHEN request_type = 'pattern_match' THEN 1 ELSE 0 END) as patterns,
+					SUM(CASE WHEN request_type IN ('ai_request', 'css_generation') THEN 1 ELSE 0 END) as ai_requests
+				 FROM %i
+				 WHERE user_id = %d
+				 AND created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+				 GROUP BY DATE(created_at)
+				 ORDER BY date ASC",
+				$this->table_name,
+				$user_id
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$labels       = array();
 		$pattern_data = array();
@@ -137,22 +138,23 @@ class ChartGenerator {
 		$user_id = get_current_user_id();
 
 		// Get last 4 weeks of data.
-		$query = $wpdb->prepare(
-			"SELECT
-				YEARWEEK(created_at) as week,
-				COUNT(*) as total,
-				SUM(CASE WHEN request_type = 'pattern_match' THEN 1 ELSE 0 END) as patterns,
-				SUM(CASE WHEN request_type IN ('ai_request', 'css_generation') THEN 1 ELSE 0 END) as ai_requests
-			 FROM %i
-			 WHERE user_id = %d
-			 AND created_at >= DATE_SUB(NOW(), INTERVAL 4 WEEK)
-			 GROUP BY YEARWEEK(created_at)
-			 ORDER BY week ASC",
-			$this->table_name,
-			$user_id
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT
+					YEARWEEK(created_at) as week,
+					COUNT(*) as total,
+					SUM(CASE WHEN request_type = 'pattern_match' THEN 1 ELSE 0 END) as patterns,
+					SUM(CASE WHEN request_type IN ('ai_request', 'css_generation') THEN 1 ELSE 0 END) as ai_requests
+				 FROM %i
+				 WHERE user_id = %d
+				 AND created_at >= DATE_SUB(NOW(), INTERVAL 4 WEEK)
+				 GROUP BY YEARWEEK(created_at)
+				 ORDER BY week ASC",
+				$this->table_name,
+				$user_id
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$labels       = array();
 		$pattern_data = array();
@@ -181,22 +183,23 @@ class ChartGenerator {
 		$user_id = get_current_user_id();
 
 		// Get last 6 months of data.
-		$query = $wpdb->prepare(
-			"SELECT
-				DATE_FORMAT(created_at, '%%Y-%%m') as month,
-				COUNT(*) as total,
-				SUM(CASE WHEN request_type = 'pattern_match' THEN 1 ELSE 0 END) as patterns,
-				SUM(CASE WHEN request_type IN ('ai_request', 'css_generation') THEN 1 ELSE 0 END) as ai_requests
-			 FROM %i
-			 WHERE user_id = %d
-			 AND created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
-			 GROUP BY DATE_FORMAT(created_at, '%%Y-%%m')
-			 ORDER BY month ASC",
-			$this->table_name,
-			$user_id
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT
+					DATE_FORMAT(created_at, '%%Y-%%m') as month,
+					COUNT(*) as total,
+					SUM(CASE WHEN request_type = 'pattern_match' THEN 1 ELSE 0 END) as patterns,
+					SUM(CASE WHEN request_type IN ('ai_request', 'css_generation') THEN 1 ELSE 0 END) as ai_requests
+				 FROM %i
+				 WHERE user_id = %d
+				 AND created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
+				 GROUP BY DATE_FORMAT(created_at, '%%Y-%%m')
+				 ORDER BY month ASC",
+				$this->table_name,
+				$user_id
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$labels       = array();
 		$pattern_data = array();
@@ -225,21 +228,22 @@ class ChartGenerator {
 
 		$user_id = get_current_user_id();
 
-		$query = $wpdb->prepare(
-			'SELECT
-				model_used,
-				COUNT(*) as count
-			 FROM %i
-			 WHERE user_id = %d
-			 AND model_used IS NOT NULL
-			 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-			 GROUP BY model_used
-			 ORDER BY count DESC',
-			$this->table_name,
-			$user_id
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT
+					model_used,
+					COUNT(*) as count
+				 FROM %i
+				 WHERE user_id = %d
+				 AND model_used IS NOT NULL
+				 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+				 GROUP BY model_used
+				 ORDER BY count DESC',
+				$this->table_name,
+				$user_id
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$labels = array();
 		$data   = array();
@@ -280,21 +284,22 @@ class ChartGenerator {
 
 		$user_id = get_current_user_id();
 
-		$query = $wpdb->prepare(
-			'SELECT
-				model_used,
-				SUM(cost_estimate) as total_cost
-			 FROM %i
-			 WHERE user_id = %d
-			 AND model_used IS NOT NULL
-			 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-			 GROUP BY model_used
-			 ORDER BY total_cost DESC',
-			$this->table_name,
-			$user_id
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT
+					model_used,
+					SUM(cost_estimate) as total_cost
+				 FROM %i
+				 WHERE user_id = %d
+				 AND model_used IS NOT NULL
+				 AND created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+				 GROUP BY model_used
+				 ORDER BY total_cost DESC',
+				$this->table_name,
+				$user_id
+			),
+			ARRAY_A
 		);
-
-		$results = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$labels = array();
 		$data   = array();

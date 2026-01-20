@@ -10,7 +10,9 @@ phpcs.xml
 
 # Hidden files (not permitted on WordPress.org)
 .*
-!.wordpress-org
+
+# WordPress.org SVN assets (should not be in plugin ZIP)
+.wordpress-org/
 
 # CI/CD configuration
 .circleci/
@@ -44,6 +46,8 @@ CONTRIBUTING.md
 
 # Freemius (not permitted on WordPress.org - they handle updates)
 freemius/
+includes/Freemius/example-usage.php
+includes/Freemius/README.md
 
 # Build artifacts and caches
 *.log

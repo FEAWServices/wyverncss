@@ -446,7 +446,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		}
 
 		// Delete conversation.
-		$deleted = $this->conversation_service->delete_conversation( $conversation_id );
+		$deleted = $this->conversation_service->delete_conversation( $conversation_id, get_current_user_id() );
 
 		if ( ! $deleted ) {
 			return new WP_Error(

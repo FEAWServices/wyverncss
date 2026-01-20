@@ -352,7 +352,7 @@ class Tier_Config {
 		$normalized_tier = $this->normalize_tier( $tier );
 		$rate_limits     = $this->config['rateLimit'] ?? array();
 
-		$limit = $rate_limits[ $normalized_tier ]['requestsPerDay'] ?? 20;
+		$limit = $rate_limits[ $normalized_tier ]['requestsPerDay'] ?? null;
 		return null === $limit ? null : (int) $limit;
 	}
 

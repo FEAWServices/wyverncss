@@ -194,6 +194,26 @@ class Conversation_Service {
 	}
 
 	/**
+	 * Get message count for a conversation
+	 *
+	 * @param int $conversation_id Conversation ID.
+	 * @return int Number of messages in the conversation.
+	 */
+	public function get_message_count( int $conversation_id ): int {
+		global $wpdb;
+
+		$count = $wpdb->get_var(
+			$wpdb->prepare(
+				'SELECT COUNT(*) FROM %i WHERE conversation_id = %d',
+				$this->messages_table,
+				$conversation_id
+			)
+		);
+
+		return (int) $count;
+	}
+
+	/**
 	 * Get conversation history
 	 *
 	 * @param int $conversation_id Conversation ID.
