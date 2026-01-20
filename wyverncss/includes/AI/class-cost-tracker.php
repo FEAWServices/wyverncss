@@ -232,6 +232,7 @@ class CostTracker {
 		}
 
 		// Return prepared query - $wpdb->prepare handles all escaping.
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $sql built with placeholders, values passed to prepare().
 		return $wpdb->prepare( $sql, ...$args );
 	}
 

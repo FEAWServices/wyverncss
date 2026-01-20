@@ -173,6 +173,7 @@ class UsageTracker {
 			$period
 		);
 
+		// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Placeholders in $query_parts['sql'], args passed separately.
 		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
@@ -196,6 +197,7 @@ class UsageTracker {
 			$period
 		);
 
+		// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Placeholders in $query_parts['sql'], args passed separately.
 		$query = $wpdb->prepare( $query_parts['sql'], ...$query_parts['args'] ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		$result = $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
