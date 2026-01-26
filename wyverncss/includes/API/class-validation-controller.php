@@ -23,7 +23,7 @@ use WP_Error;
 /**
  * Validation Controller Class
  *
- * Handles POST /wyverncss/v1/validate endpoint.
+ * Handles POST /wyvernpress/v1/validate endpoint.
  *
  * Features:
  * - CSS property whitelist validation

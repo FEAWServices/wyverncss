@@ -232,7 +232,7 @@ class Chat_Bot_Block {
 			'wyvernpress-chat-widget',
 			'wyvernPressBotConfig',
 			array(
-				'apiUrl'  => rest_url( 'wyverncss/v1/chat' ),
+				'apiUrl'  => rest_url( 'wyvernpress/v1/chat' ),
 				'nonce'   => wp_create_nonce( 'wp_rest' ),
 				'siteUrl' => site_url(),
 			)

@@ -1,23 +1,39 @@
 {
-  "version": "1.0.0",
-  "lastUpdated": "2025-12-16",
+  "version": "1.1.0",
+  "lastUpdated": "2026-01-20",
   "tiers": {
     "free": {
       "id": "free",
       "name": "Free",
       "slug": "free",
-      "description": "Full-featured CSS styling with local AI",
+      "description": "Full-featured CSS styling with efficient AI models",
       "limit": 20,
       "period": "day",
       "reset_time": "00:00 UTC",
+      "prompt_max_length": 500,
       "price": {
         "monthly": 0,
         "yearly": 0
       },
       "ai": {
-        "provider": "ollama",
-        "model": "qwen2.5:7b",
-        "description": "Local AI - good quality, privacy-focused"
+        "provider": "openrouter",
+        "models": [
+          {
+            "id": "openai/gpt-4o-mini",
+            "name": "GPT-4o Mini",
+            "default": true,
+            "quality_score": 7,
+            "speed_score": 9
+          },
+          {
+            "id": "meta-llama/llama-3.1-70b-instruct",
+            "name": "Llama 3.1 70B",
+            "default": false,
+            "quality_score": 7,
+            "speed_score": 8
+          }
+        ],
+        "description": "Fast, efficient AI models"
       },
       "features": [
         "pattern_library",
@@ -28,7 +44,7 @@
       ],
       "featureDescriptions": [
         "Pattern library (100+ instant CSS patterns)",
-        "AI-powered CSS generation (Ollama)",
+        "AI-powered CSS generation (GPT-4o Mini)",
         "Gutenberg sidebar integration",
         "Live CSS preview",
         "Undo/redo styling changes"
@@ -39,10 +55,11 @@
       "name": "Premium",
       "slug": "premium",
       "aliases": ["starter", "pro"],
-      "description": "Faster AI with premium models and unlimited requests",
+      "description": "Best AI models with unlimited requests",
       "limit": -1,
       "period": "unlimited",
       "reset_time": null,
+      "prompt_max_length": 2000,
       "price": {
         "monthly": 5,
         "yearly": 49,
@@ -52,17 +69,35 @@
         "provider": "openrouter",
         "models": [
           {
-            "id": "anthropic/claude-3.5-haiku",
+            "id": "anthropic/claude-sonnet-4-20250514",
+            "name": "Claude Sonnet 4",
+            "default": true,
+            "quality_score": 10,
+            "speed_score": 8
+          },
+          {
+            "id": "openai/gpt-4o",
+            "name": "GPT-4o",
+            "default": false,
+            "quality_score": 9,
+            "speed_score": 8
+          },
+          {
+            "id": "anthropic/claude-3-5-haiku-20241022",
             "name": "Claude 3.5 Haiku",
-            "default": true
+            "default": false,
+            "quality_score": 8,
+            "speed_score": 10
           },
           {
             "id": "openai/gpt-4o-mini",
             "name": "GPT-4o Mini",
-            "default": false
+            "default": false,
+            "quality_score": 7,
+            "speed_score": 9
           }
         ],
-        "description": "Premium cloud AI - faster, smarter"
+        "description": "Best AI models - Claude Sonnet 4, GPT-4o, and more"
       },
       "features": [
         "pattern_library",
@@ -70,6 +105,7 @@
         "gutenberg_sidebar",
         "css_preview",
         "undo_redo",
+        "model_selection",
         "admin_ai_console",
         "priority_support",
         "custom_patterns",
@@ -78,7 +114,8 @@
       ],
       "featureDescriptions": [
         "Everything in Free",
-        "Premium AI models (Claude 3.5 Haiku, GPT-4o Mini)",
+        "Best AI models (Claude Sonnet 4, GPT-4o)",
+        "Choose your preferred model",
         "Unlimited AI requests",
         "Faster response times",
         "Admin AI console",
@@ -111,7 +148,7 @@
     "messages": {
       "approaching_limit": "You're approaching your daily limit. Upgrade to Premium for unlimited requests at just $5/month.",
       "at_limit": "You've reached your daily limit. Upgrade to Premium for unlimited AI requests.",
-      "low_confidence": "Want better results? Premium uses Claude 3.5 Haiku for higher accuracy styling."
+      "low_confidence": "Want better results? Premium uses Claude Sonnet 4 for the highest accuracy styling."
     }
   },
   "competitors": {

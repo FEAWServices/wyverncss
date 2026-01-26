@@ -60,7 +60,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		 * @return string
 		 */
 		function wyverncss_get_upgrade_url(): string {
-			return 'https://wordpress.org/plugins/wyvernpress/';
+			return 'https://checkout.freemius.com/mode/dialog/plugin/22259/plan/37228/';
 		}
 	}
 
@@ -176,14 +176,20 @@ function wyverncss_get_plan(): string {
 /**
  * Get the upgrade URL for premium features.
  *
- * For 1.0.0 release, returns WordPress.org plugin page.
- * Premium plans will be available in a future release.
+ * Uses Freemius SDK to generate the checkout URL.
+ * Falls back to direct Freemius checkout URL if SDK unavailable.
  *
  * @return string The upgrade URL.
  */
 function wyverncss_get_upgrade_url(): string {
-	// For 1.0.0 release, premium is "coming soon" - link to plugin page.
-	return 'https://wordpress.org/plugins/wyvernpress/';
+	$fs = wyverncss_fs();
+	if ( null !== $fs ) {
+		// @phpstan-ignore-next-line - get_upgrade_url() is provided by Freemius SDK.
+		return $fs->get_upgrade_url();
+	}
+
+	// Fallback to direct Freemius checkout URL.
+	return 'https://checkout.freemius.com/mode/dialog/plugin/22259/plan/37228/';
 }
 
 /**

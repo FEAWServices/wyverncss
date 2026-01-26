@@ -31,63 +31,54 @@ class ModelSelector {
 	 * @var array<string, array<string, mixed>>
 	 */
 	public const AVAILABLE_MODELS = array(
-		// Claude models.
-		'claude-opus'   => array(
-			'id'            => 'anthropic/claude-3-opus',
-			'name'          => 'Claude 3 Opus',
-			'cost_per_1k'   => 0.015,
-			'tier'          => 'pro',
-			'max_tokens'    => 4096,
-			'quality_score' => 10,
-			'speed_score'   => 6,
-		),
+		// Claude models - Premium tier gets the best.
 		'claude-sonnet' => array(
-			'id'            => 'anthropic/claude-3.5-sonnet',
-			'name'          => 'Claude 3.5 Sonnet',
+			'id'            => 'anthropic/claude-sonnet-4-20250514',
+			'name'          => 'Claude Sonnet 4',
 			'cost_per_1k'   => 0.003,
-			'tier'          => 'starter',
+			'tier'          => 'premium',
+			'max_tokens'    => 8192,
+			'quality_score' => 10,
+			'speed_score'   => 8,
+		),
+		'claude-haiku'  => array(
+			'id'            => 'anthropic/claude-3-5-haiku-20241022',
+			'name'          => 'Claude 3.5 Haiku',
+			'cost_per_1k'   => 0.0008,
+			'tier'          => 'premium',
+			'max_tokens'    => 8192,
+			'quality_score' => 8,
+			'speed_score'   => 10,
+		),
+
+		// GPT models - GPT-4o for premium, GPT-4o-mini for all.
+		'gpt-4o'        => array(
+			'id'            => 'openai/gpt-4o',
+			'name'          => 'GPT-4o',
+			'cost_per_1k'   => 0.005,
+			'tier'          => 'premium',
 			'max_tokens'    => 4096,
 			'quality_score' => 9,
 			'speed_score'   => 8,
 		),
-		'claude-haiku'  => array(
-			'id'            => 'anthropic/claude-3-haiku',
-			'name'          => 'Claude 3 Haiku',
-			'cost_per_1k'   => 0.00025,
+		'gpt-4o-mini'   => array(
+			'id'            => 'openai/gpt-4o-mini',
+			'name'          => 'GPT-4o Mini',
+			'cost_per_1k'   => 0.00015,
 			'tier'          => 'free',
 			'max_tokens'    => 4096,
 			'quality_score' => 7,
-			'speed_score'   => 10,
-		),
-
-		// GPT models.
-		'gpt-4'         => array(
-			'id'            => 'openai/gpt-4-turbo',
-			'name'          => 'GPT-4 Turbo',
-			'cost_per_1k'   => 0.01,
-			'tier'          => 'pro',
-			'max_tokens'    => 4096,
-			'quality_score' => 9,
-			'speed_score'   => 7,
-		),
-		'gpt-3.5'       => array(
-			'id'            => 'openai/gpt-3.5-turbo',
-			'name'          => 'GPT-3.5 Turbo',
-			'cost_per_1k'   => 0.0005,
-			'tier'          => 'free',
-			'max_tokens'    => 4096,
-			'quality_score' => 6,
 			'speed_score'   => 9,
 		),
 
-		// Open source models.
+		// Open source models - Available to all tiers.
 		'llama-3'       => array(
-			'id'            => 'meta-llama/llama-3-70b-instruct',
-			'name'          => 'Llama 3 70B',
+			'id'            => 'meta-llama/llama-3.1-70b-instruct',
+			'name'          => 'Llama 3.1 70B',
 			'cost_per_1k'   => 0.0004,
 			'tier'          => 'free',
 			'max_tokens'    => 8192,
-			'quality_score' => 6,
+			'quality_score' => 7,
 			'speed_score'   => 8,
 		),
 	);
@@ -106,12 +97,14 @@ class ModelSelector {
 	/**
 	 * User tier model access
 	 *
+	 * Free tier: Fast, efficient models (GPT-4o Mini, Llama 3.1)
+	 * Premium tier: Best models (Claude Sonnet 4, GPT-4o) + all free tier models
+	 *
 	 * @var array<string, array<string>>
 	 */
 	private const TIER_MODELS = array(
-		'free'    => array( 'claude-haiku', 'gpt-3.5', 'llama-3' ),
-		'starter' => array( 'claude-haiku', 'claude-sonnet', 'gpt-3.5', 'llama-3' ),
-		'pro'     => array( 'claude-haiku', 'claude-sonnet', 'claude-opus', 'gpt-4', 'gpt-3.5', 'llama-3' ),
+		'free'    => array( 'gpt-4o-mini', 'llama-3' ),
+		'premium' => array( 'claude-sonnet', 'claude-haiku', 'gpt-4o', 'gpt-4o-mini', 'llama-3' ),
 	);
 
 	/**

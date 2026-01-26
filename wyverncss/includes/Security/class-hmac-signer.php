@@ -89,11 +89,11 @@ class HMAC_Signer {
 	 */
 	public function prepare_headers( string $signature, int $timestamp, string $site_url, string $version = '2.0.0' ): array {
 		return array(
-			'Content-Type'            => 'application/json',
+			'Content-Type'          => 'application/json',
 			'X-WyvernCSS-Signature' => 'sha256=' . $signature,
 			'X-WyvernCSS-Timestamp' => (string) $timestamp,
 			'X-WyvernCSS-Site'      => $site_url,
-			'User-Agent'              => 'WyvernCSS-WordPress/' . $version,
+			'User-Agent'            => 'WyvernCSS-WordPress/' . $version,
 		);
 	}
 

@@ -117,7 +117,7 @@ class UpdatePostMetaTool extends MCP_Tool_Base {
 
 		return array(
 			'post_id'   => $post_id,
-			'meta_key'  => $meta_key,
+			'meta_key'  => $meta_key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Response array key, not a database query.
 			'old_value' => $old_value,
 			'new_value' => $meta_value,
 			'updated'   => (bool) $result,

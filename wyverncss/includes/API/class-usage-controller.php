@@ -24,7 +24,7 @@ use WyvernCSS\Config\Tier_Config;
 /**
  * Usage Controller Class
  *
- * Handles GET /wyverncss/v1/usage endpoint.
+ * Handles GET /wyvernpress/v1/usage endpoint.
  *
  * Features:
  * - Current usage statistics per user

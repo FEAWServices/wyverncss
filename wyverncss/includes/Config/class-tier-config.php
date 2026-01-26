@@ -310,7 +310,15 @@ class Tier_Config {
 		if ( null === $tier_config || ! isset( $tier_config['ai'] ) ) {
 			return array(
 				'provider' => 'ollama',
-				'model'    => 'qwen2.5:7b',
+				'models'   => array(
+					array(
+						'id'            => 'qwen2.5:7b',
+						'name'          => 'Qwen 2.5 7B',
+						'default'       => true,
+						'quality_score' => 6,
+						'speed_score'   => 7,
+					),
+				),
 			);
 		}
 
@@ -354,6 +362,23 @@ class Tier_Config {
 
 		$limit = $rate_limits[ $normalized_tier ]['requestsPerDay'] ?? null;
 		return null === $limit ? null : (int) $limit;
+	}
+
+	/**
+	 * Get maximum prompt length for a tier.
+	 *
+	 * @param string $tier Tier name.
+	 * @return int Maximum prompt length in characters.
+	 */
+	public function get_prompt_max_length( string $tier ): int {
+		$normalized_tier = $this->normalize_tier( $tier );
+		$tier_config     = $this->config['tiers'][ $normalized_tier ] ?? null;
+
+		if ( null === $tier_config ) {
+			return 500; // Default for free tier.
+		}
+
+		return (int) ( $tier_config['prompt_max_length'] ?? 500 );
 	}
 
 	/**

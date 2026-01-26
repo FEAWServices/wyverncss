@@ -76,8 +76,10 @@ class AssetLoader {
 			self::EDITOR_SCRIPT_HANDLE,
 			'wyverncssApiSettings',
 			array(
-				'root'  => esc_url_raw( rest_url() ),
-				'nonce' => wp_create_nonce( 'wp_rest' ),
+				'root'       => esc_url_raw( rest_url() ),
+				'nonce'      => wp_create_nonce( 'wp_rest' ),
+				'upgradeUrl' => esc_url( wyverncss_get_upgrade_url() ),
+				'isPremium'  => wyverncss_is_premium(),
 			)
 		);
 

@@ -109,7 +109,7 @@ class Bot_Shortcode {
 			'wyvernpress-chat-widget',
 			'wyvernPressBotConfig',
 			array(
-				'apiUrl'  => rest_url( 'wyverncss/v1/public/chat' ),
+				'apiUrl'  => rest_url( 'wyvernpress/v1/public/chat' ),
 				'nonce'   => wp_create_nonce( 'wp_rest' ),
 				'siteUrl' => site_url(),
 			)

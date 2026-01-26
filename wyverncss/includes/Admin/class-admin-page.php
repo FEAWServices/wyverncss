@@ -152,7 +152,7 @@ class Admin_Page {
 			'wyvernpress-ai-console',
 			'wyvernPressAI',
 			array(
-				'apiUrl'        => esc_url_raw( rest_url( 'wyverncss/v1' ) ),
+				'apiUrl'        => esc_url_raw( rest_url( 'wyvernpress/v1' ) ),
 				'nonce'         => wp_create_nonce( 'wp_rest' ),
 				'userId'        => $user_id,
 				'userCan'       => array(

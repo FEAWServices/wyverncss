@@ -128,7 +128,7 @@ class Transport {
 	public function register_routes(): void {
 		// Tools list endpoint.
 		register_rest_route(
-			'wyverncss/v1',
+			'wyvernpress/v1',
 			'/mcp/tools/list',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -139,7 +139,7 @@ class Transport {
 
 		// Tool execution endpoint.
 		register_rest_route(
-			'wyverncss/v1',
+			'wyvernpress/v1',
 			'/mcp/tools/call',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -150,7 +150,7 @@ class Transport {
 
 		// Session management endpoint.
 		register_rest_route(
-			'wyverncss/v1',
+			'wyvernpress/v1',
 			'/mcp/session',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -161,7 +161,7 @@ class Transport {
 
 		// SSE endpoint.
 		register_rest_route(
-			'wyverncss/v1',
+			'wyvernpress/v1',
 			'/mcp/sse',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -728,7 +728,7 @@ class Transport {
 	public function convert_json_errors( $response, $handler, WP_REST_Request $request ) {
 		// Only handle our MCP endpoints.
 		$route = $request->get_route();
-		if ( strpos( $route, '/wyverncss/v1/mcp/' ) !== 0 ) {
+		if ( strpos( $route, '/wyvernpress/v1/mcp/' ) !== 0 ) {
 			return $response;
 		}
 

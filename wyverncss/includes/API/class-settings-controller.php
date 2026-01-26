@@ -26,9 +26,9 @@ use WP_Error;
  * Settings Controller Class
  *
  * Handles:
- * - GET /wyverncss/v1/settings - Retrieve settings
- * - POST /wyverncss/v1/settings - Update settings
- * - POST /wyverncss/v1/settings/export - Export settings
+ * - GET /wyvernpress/v1/settings - Retrieve settings
+ * - POST /wyvernpress/v1/settings - Update settings
+ * - POST /wyvernpress/v1/settings/export - Export settings
  *
  * Settings include:
  * - API key for cloud services

@@ -262,7 +262,8 @@ class UsageTracker {
 			$days_to_keep
 		);
 
-		$result = $wpdb->query( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Delete operation, query prepared above.
+		$result = $wpdb->query( $query );
 
 		if ( false === $result ) {
 			return new WP_Error(

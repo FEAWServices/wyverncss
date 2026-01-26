@@ -14,7 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Manually require traits that don't follow the _Trait naming convention.
+// Load traits manually since they use 'trait-' prefix which the PSR-4 autoloader doesn't handle.
+// These are required by REST controllers throughout the plugin.
 require_once __DIR__ . '/API/REST/trait-controller-helpers.php';
 require_once __DIR__ . '/API/REST/trait-rest-controller-helpers.php';
 require_once __DIR__ . '/API/REST/Traits/trait-cloud-service-proxy.php';

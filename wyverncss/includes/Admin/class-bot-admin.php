@@ -111,7 +111,7 @@ class Bot_Admin {
 			'wyvernpress-bot-admin',
 			'wyvernPressBotAdmin',
 			array(
-				'restUrl'         => esc_url_raw( rest_url( 'wyverncss/v1/bots' ) ),
+				'restUrl'         => esc_url_raw( rest_url( 'wyvernpress/v1/bots' ) ),
 				'nonce'           => wp_create_nonce( 'wp_rest' ),
 				'licenseKey'      => get_option( 'wyverncss_license_key', '' ),
 				'cloudServiceUrl' => get_option( 'wyverncss_cloud_service_url', '' ),

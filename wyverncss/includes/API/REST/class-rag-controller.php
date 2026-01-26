@@ -37,7 +37,7 @@ class RAG_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace.
 	 */
-	private const NAMESPACE = 'wyverncss/v1';
+	private const NAMESPACE = 'wyvernpress/v1';
 
 	/**
 	 * REST base path.

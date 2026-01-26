@@ -37,7 +37,7 @@ class Conversations_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace.
 	 */
-	private const NAMESPACE = 'wyverncss/v1';
+	private const NAMESPACE = 'wyvernpress/v1';
 
 	/**
 	 * REST base path.
@@ -405,7 +405,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		}
 
 		// Use relevant history endpoint to get optimized context.
-		$history_request = new WP_REST_Request( 'GET', sprintf( '/wyverncss/v1/conversations/%d/relevant-history', $conversation_id ) );
+		$history_request = new WP_REST_Request( 'GET', sprintf( '/wyvernpress/v1/conversations/%d/relevant-history', $conversation_id ) );
 		$history_request->set_param( 'id', $conversation_id );
 		$history_request->set_param( 'query', $current_query );
 		$history_request->set_param( 'max_messages', $max_messages );

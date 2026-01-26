@@ -39,7 +39,7 @@ abstract class RESTController extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyverncss/v1';
+	protected $namespace = 'wyvernpress/v1';
 
 	/**
 	 * Get tier configuration instance.
@@ -334,6 +334,9 @@ abstract class RESTController extends WP_REST_Controller {
 	/**
 	 * Validate prompt parameter.
 	 *
+	 * Basic validation - length is checked against tier limits in the controller.
+	 * Uses 2000 as max (premium limit) to allow the request through for tier check.
+	 *
 	 * @since 1.0.0
 	 * @param mixed $param The parameter value.
 	 * @return bool True if valid.
@@ -345,9 +348,9 @@ abstract class RESTController extends WP_REST_Controller {
 
 		$sanitized = $this->sanitize_prompt( $param );
 
-		// Prompt must be between 3 and 500 characters.
+		// Prompt must be between 3 and 2000 characters (tier-specific limits checked in controller).
 		$length = strlen( $sanitized );
-		return $length >= 3 && $length <= 500;
+		return $length >= 3 && $length <= 2000;
 	}
 
 	/**

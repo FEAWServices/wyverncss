@@ -177,6 +177,34 @@ class Plugin {
 				$usage_controller = new \WyvernCSS\API\UsageController();
 				$usage_controller->register_routes();
 
+				// Register Style Memory Controller for user preferences (PREMIUM).
+				$style_memory_controller = new \WyvernCSS\API\REST\Style_Memory_Controller();
+				$style_memory_controller->register_routes();
+
+				// Register Bulk Style Controller for batch operations (PREMIUM).
+				$bulk_style_controller = new \WyvernCSS\API\REST\Bulk_Style_Controller();
+				$bulk_style_controller->register_routes();
+
+				// Register CSS Debug Controller for analyzing and fixing CSS (PREMIUM).
+				$css_debug_controller = new \WyvernCSS\API\REST\CSS_Debug_Controller();
+				$css_debug_controller->register_routes();
+
+				// Register Accessibility Controller for WCAG compliance checking (PREMIUM).
+				$accessibility_controller = new \WyvernCSS\API\REST\Accessibility_Controller();
+				$accessibility_controller->register_routes();
+
+				// Register Style Extractor Controller for "match this site" feature (PREMIUM).
+				$style_extractor_controller = new \WyvernCSS\API\REST\Style_Extractor_Controller();
+				$style_extractor_controller->register_routes();
+
+				// Register Admin AI Controller for natural language admin operations (PREMIUM).
+				$admin_ai_controller = new \WyvernCSS\Admin\Admin_AI_Controller();
+				$admin_ai_controller->register_routes();
+
+				// Register License Controller for license management and validation (CORE).
+				$license_controller = new \WyvernCSS\API\REST\License_Controller();
+				$license_controller->register_routes();
+
 				// =============================================================
 				// DISABLED FOR LAUNCH - Out of scope endpoints
 				// =============================================================

@@ -21,6 +21,8 @@ use WyvernCSS\Generator\ElementTransformer;
 use WyvernCSS\Generator\ContentDetector;
 use WyvernCSS\Generator\BlockGenerator;
 use WyvernCSS\Freemius\Freemius_Integration;
+use WyvernCSS\Config\Tier_Config;
+use WyvernCSS\Styles\Style_Memory;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
@@ -29,7 +31,7 @@ use WP_Error;
 /**
  * Style Controller Class
  *
- * Handles POST /wyverncss/v1/style endpoint.
+ * Handles POST /wyvernpress/v1/style endpoint.
  *
  * Features:
  * - Pattern matching against library (60% of requests, instant, free)
@@ -84,6 +86,13 @@ class StyleController extends RESTController {
 	private Freemius_Integration $freemius;
 
 	/**
+	 * Style Memory instance.
+	 *
+	 * @var Style_Memory
+	 */
+	private Style_Memory $style_memory;
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 1.0.0
@@ -94,6 +103,7 @@ class StyleController extends RESTController {
 		$this->content_detector    = new ContentDetector();
 		$this->block_generator     = new BlockGenerator();
 		$this->freemius            = Freemius_Integration::get_instance();
+		$this->style_memory        = new Style_Memory();
 
 		// Initialize CSS Generator - uses cloud proxy for AI.
 		$this->css_generator = new CSSGenerator();
@@ -206,6 +216,24 @@ class StyleController extends RESTController {
 			return $this->error_response(
 				'invalid_prompt',
 				esc_html__( 'Prompt cannot be empty.', 'wyvern-ai-styling' ),
+				400
+			);
+		}
+
+		// Check prompt length against tier limit.
+		$tier_config     = Tier_Config::get_instance();
+		$max_length      = $tier_config->get_prompt_max_length( $tier );
+		$prompt_length   = strlen( $prompt );
+
+		if ( $prompt_length > $max_length ) {
+			return $this->error_response(
+				'prompt_too_long',
+				sprintf(
+					/* translators: 1: Current prompt length, 2: Maximum allowed length */
+					esc_html__( 'Prompt is too long (%1$d characters). Maximum allowed for your tier is %2$d characters.', 'wyvern-ai-styling' ),
+					$prompt_length,
+					$max_length
+				),
 				400
 			);
 		}
@@ -350,6 +378,11 @@ class StyleController extends RESTController {
 
 		$response_data = $this->add_upgrade_prompt_if_needed( $response_data, $quota, $tier );
 		$response_data = $this->add_transformation_data( $response_data, $transformation, $custom_class_name, $stylesheet );
+
+		// Learn from successful style generation (for premium users).
+		if ( ! empty( $css ) && $user_id > 0 ) {
+			$this->style_memory->learn( $user_id, $prompt, $css );
+		}
 
 		// Create response and add rate limit headers.
 		$response = $this->success_response( $response_data );

@@ -39,7 +39,7 @@ class Health_Controller extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyverncss/v1';
+	protected $namespace = 'wyvernpress/v1';
 
 	/**
 	 * REST API base route.

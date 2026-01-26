@@ -39,7 +39,7 @@ class Debug_Controller extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyverncss/v1';
+	protected $namespace = 'wyvernpress/v1';
 
 	/**
 	 * REST API base route.
@@ -213,16 +213,16 @@ class Debug_Controller extends WP_REST_Controller {
 		$rest_server = rest_get_server();
 		$routes      = $rest_server->get_routes();
 
-		$wyverncss_routes = array();
+		$wyvernpress_routes = array();
 		foreach ( $routes as $route => $endpoints ) {
-			if ( strpos( $route, '/wyverncss/' ) === 0 ) {
-				$wyverncss_routes[] = $route;
+			if ( strpos( $route, '/wyvernpress/' ) === 0 ) {
+				$wyvernpress_routes[] = $route;
 			}
 		}
 
 		return array(
-			'routes' => $wyverncss_routes,
-			'count'  => count( $wyverncss_routes ),
+			'routes' => $wyvernpress_routes,
+			'count'  => count( $wyvernpress_routes ),
 		);
 	}
 

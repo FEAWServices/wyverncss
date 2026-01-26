@@ -37,7 +37,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace.
 	 */
-	private const NAMESPACE = 'wyverncss/v1';
+	private const NAMESPACE = 'wyvernpress/v1';
 
 	/**
 	 * REST base path.
@@ -336,7 +336,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		$format = $request->get_param( 'format' ) ?? 'json';
 
 		// Get analytics data.
-		$analytics_request = new WP_REST_Request( 'GET', '/wyverncss/v1/patterns/analytics' );
+		$analytics_request = new WP_REST_Request( 'GET', '/wyvernpress/v1/patterns/analytics' );
 		$analytics_request->set_param( 'period', $period );
 		$analytics_response = $this->get_analytics( $analytics_request );
 

@@ -44,7 +44,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyverncss/v1';
+	protected $namespace = 'wyvernpress/v1';
 
 	/**
 	 * REST API base path.
