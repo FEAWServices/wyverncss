@@ -162,14 +162,14 @@ class Activator {
 		$role = get_role( 'administrator' );
 
 		if ( $role instanceof \WP_Role ) {
-			$role->add_cap( 'manage_wyvernpress' );
-			$role->add_cap( 'use_wyvernpress' );
+			$role->add_cap( 'manage_wyverncss' );
+			$role->add_cap( 'use_wyverncss' );
 		}
 
 		// Add capabilities to editors as well.
 		$editor = get_role( 'editor' );
 		if ( $editor instanceof \WP_Role ) {
-			$editor->add_cap( 'use_wyvernpress' );
+			$editor->add_cap( 'use_wyverncss' );
 		}
 	}
 }

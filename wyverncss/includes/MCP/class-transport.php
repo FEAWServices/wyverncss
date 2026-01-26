@@ -128,7 +128,7 @@ class Transport {
 	public function register_routes(): void {
 		// Tools list endpoint.
 		register_rest_route(
-			'wyvernpress/v1',
+			'wyverncss/v1',
 			'/mcp/tools/list',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -139,7 +139,7 @@ class Transport {
 
 		// Tool execution endpoint.
 		register_rest_route(
-			'wyvernpress/v1',
+			'wyverncss/v1',
 			'/mcp/tools/call',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -150,7 +150,7 @@ class Transport {
 
 		// Session management endpoint.
 		register_rest_route(
-			'wyvernpress/v1',
+			'wyverncss/v1',
 			'/mcp/session',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -161,7 +161,7 @@ class Transport {
 
 		// SSE endpoint.
 		register_rest_route(
-			'wyvernpress/v1',
+			'wyverncss/v1',
 			'/mcp/sse',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -181,7 +181,7 @@ class Transport {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'authentication_failed',
-				__( 'You must be logged in to access this endpoint.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to access this endpoint.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -190,7 +190,7 @@ class Transport {
 		if ( ! current_user_can( 'read' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You do not have permission to access this endpoint.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to access this endpoint.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -271,7 +271,7 @@ class Transport {
 			return new WP_REST_Response(
 				$this->formatter->format_error(
 					-32002,
-					__( 'Invalid security token.', 'wyvern-ai-styling' ),
+					__( 'Invalid security token.', 'wyverncss' ),
 					null,
 					$request_id
 				),
@@ -310,7 +310,7 @@ class Transport {
 		if ( empty( $tool_name ) ) {
 			return new WP_Error(
 				'invalid_params',
-				__( 'Tool name is required.', 'wyvern-ai-styling' ),
+				__( 'Tool name is required.', 'wyverncss' ),
 				array(
 					'code' => -32602,
 				)
@@ -337,7 +337,7 @@ class Transport {
 			'tool_not_found',
 			sprintf(
 				/* translators: %s: tool name */
-				__( 'Tool "%s" not found. Tool is not available locally and no external service is configured.', 'wyvern-ai-styling' ),
+				__( 'Tool "%s" not found. Tool is not available locally and no external service is configured.', 'wyverncss' ),
 				$tool_name
 			),
 			array(
@@ -398,7 +398,7 @@ class Transport {
 				'service_unavailable',
 				sprintf(
 					/* translators: %d: minutes until retry */
-					__( 'MCP service is temporarily unavailable. Please try again in %d minutes.', 'wyvern-ai-styling' ),
+					__( 'MCP service is temporarily unavailable. Please try again in %d minutes.', 'wyverncss' ),
 					(int) ceil( $this->circuit_breaker->get_retry_after() / 60 )
 				),
 				array(
@@ -426,7 +426,7 @@ class Transport {
 		if ( null === $this->mcp_client ) {
 			return new WP_Error(
 				'mcp_client_not_configured',
-				__( 'MCP client not configured. External service required.', 'wyvern-ai-styling' ),
+				__( 'MCP client not configured. External service required.', 'wyverncss' ),
 				array(
 					'code' => -32001,
 				)
@@ -555,7 +555,7 @@ class Transport {
 				if ( ! current_user_can( 'publish_posts' ) ) {
 					return new WP_Error(
 						'permission_denied',
-						__( 'You do not have permission to create posts.', 'wyvern-ai-styling' ),
+						__( 'You do not have permission to create posts.', 'wyverncss' ),
 						array( 'code' => -32002 )
 					);
 				}
@@ -564,7 +564,7 @@ class Transport {
 				if ( '' === $title ) {
 					return new WP_Error(
 						'invalid_params',
-						__( 'Post title is required.', 'wyvern-ai-styling' ),
+						__( 'Post title is required.', 'wyverncss' ),
 						array( 'code' => -32602 )
 					);
 				}
@@ -580,7 +580,7 @@ class Transport {
 				if ( is_wp_error( $post_id ) ) {
 					return new WP_Error(
 						'internal_error',
-						__( 'Failed to create post.', 'wyvern-ai-styling' ),
+						__( 'Failed to create post.', 'wyverncss' ),
 						array(
 							'code'    => -32603,
 							'details' => $post_id->get_error_message(),
@@ -598,7 +598,7 @@ class Transport {
 					'method_not_found',
 					sprintf(
 						/* translators: %s: tool name */
-						__( 'Method "%s" not found.', 'wyvern-ai-styling' ),
+						__( 'Method "%s" not found.', 'wyverncss' ),
 						$tool_name
 					),
 					array( 'code' => -32601 )
@@ -652,7 +652,7 @@ class Transport {
 		if ( $hourly_count >= $tier_limits['hourly'] ) {
 			return new WP_Error(
 				'rate_limit_exceeded',
-				__( 'Hourly rate limit exceeded.', 'wyvern-ai-styling' ),
+				__( 'Hourly rate limit exceeded.', 'wyverncss' ),
 				array(
 					'code'        => -32003,
 					'retry_after' => 3600,
@@ -667,7 +667,7 @@ class Transport {
 		if ( $burst_count >= $tier_limits['burst'] ) {
 			return new WP_Error(
 				'rate_limit_exceeded',
-				__( 'Burst rate limit exceeded.', 'wyvern-ai-styling' ),
+				__( 'Burst rate limit exceeded.', 'wyverncss' ),
 				array(
 					'code'        => -32003,
 					'retry_after' => 60,
@@ -728,7 +728,7 @@ class Transport {
 	public function convert_json_errors( $response, $handler, WP_REST_Request $request ) {
 		// Only handle our MCP endpoints.
 		$route = $request->get_route();
-		if ( strpos( $route, '/wyvernpress/v1/mcp/' ) !== 0 ) {
+		if ( strpos( $route, '/wyverncss/v1/mcp/' ) !== 0 ) {
 			return $response;
 		}
 
@@ -737,7 +737,7 @@ class Transport {
 			// Convert to JSON-RPC error format.
 			$jsonrpc_error = $this->formatter->format_error(
 				-32700,
-				__( 'Parse error: Invalid JSON was received', 'wyvern-ai-styling' ),
+				__( 'Parse error: Invalid JSON was received', 'wyverncss' ),
 				null,
 				null
 			);

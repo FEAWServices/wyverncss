@@ -30,7 +30,7 @@ class GetPostsTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_get_posts';
-		$this->description = __( 'Query WordPress posts with filters. Returns a list of posts matching the specified criteria.', 'wyvern-ai-styling' );
+		$this->description = __( 'Query WordPress posts with filters. Returns a list of posts matching the specified criteria.', 'wyverncss' );
 		$this->cache_ttl   = 300; // 5 minutes cache for read operations.
 
 		$this->required_capabilities = array( 'read' );
@@ -40,43 +40,43 @@ class GetPostsTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_type'      => array(
 					'type'        => 'string',
-					'description' => __( 'Post type to query (post, page, or custom post type)', 'wyvern-ai-styling' ),
+					'description' => __( 'Post type to query (post, page, or custom post type)', 'wyverncss' ),
 					'default'     => 'post',
 				),
 				'post_status'    => array(
 					'type'        => 'string',
-					'description' => __( 'Post status (publish, draft, pending, private, etc.)', 'wyvern-ai-styling' ),
+					'description' => __( 'Post status (publish, draft, pending, private, etc.)', 'wyverncss' ),
 					'default'     => 'publish',
 					'enum'        => array( 'publish', 'draft', 'pending', 'private', 'trash', 'any' ),
 				),
 				'posts_per_page' => array(
 					'type'        => 'integer',
-					'description' => __( 'Number of posts to return per page', 'wyvern-ai-styling' ),
+					'description' => __( 'Number of posts to return per page', 'wyverncss' ),
 					'default'     => 10,
 					'minimum'     => 1,
 					'maximum'     => 100,
 				),
 				'paged'          => array(
 					'type'        => 'integer',
-					'description' => __( 'Page number for pagination', 'wyvern-ai-styling' ),
+					'description' => __( 'Page number for pagination', 'wyverncss' ),
 					'default'     => 1,
 					'minimum'     => 1,
 				),
 				'orderby'        => array(
 					'type'        => 'string',
-					'description' => __( 'Field to order results by', 'wyvern-ai-styling' ),
+					'description' => __( 'Field to order results by', 'wyverncss' ),
 					'default'     => 'date',
 					'enum'        => array( 'date', 'title', 'modified', 'ID', 'author', 'comment_count' ),
 				),
 				'order'          => array(
 					'type'        => 'string',
-					'description' => __( 'Sort order (ascending or descending)', 'wyvern-ai-styling' ),
+					'description' => __( 'Sort order (ascending or descending)', 'wyverncss' ),
 					'default'     => 'DESC',
 					'enum'        => array( 'ASC', 'DESC' ),
 				),
 				's'              => array(
 					'type'        => 'string',
-					'description' => __( 'Search query string', 'wyvern-ai-styling' ),
+					'description' => __( 'Search query string', 'wyverncss' ),
 				),
 			),
 			'required'   => array(),

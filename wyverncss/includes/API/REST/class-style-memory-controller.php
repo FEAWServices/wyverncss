@@ -483,7 +483,7 @@ class Style_Memory_Controller extends RESTController {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_not_logged_in',
-				__( 'You must be logged in to access this endpoint.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to access this endpoint.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -493,7 +493,7 @@ class Style_Memory_Controller extends RESTController {
 		if ( 'free' === $tier ) {
 			return new WP_Error(
 				'rest_premium_required',
-				__( 'Custom patterns are a premium feature. Please upgrade to save patterns.', 'wyvern-ai-styling' ),
+				__( 'Custom patterns are a premium feature. Please upgrade to save patterns.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}

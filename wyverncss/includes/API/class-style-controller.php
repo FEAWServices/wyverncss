@@ -31,7 +31,7 @@ use WP_Error;
 /**
  * Style Controller Class
  *
- * Handles POST /wyvernpress/v1/style endpoint.
+ * Handles POST /wyverncss/v1/style endpoint.
  *
  * Features:
  * - Pattern matching against library (60% of requests, instant, free)
@@ -215,7 +215,7 @@ class StyleController extends RESTController {
 		if ( empty( $prompt ) ) {
 			return $this->error_response(
 				'invalid_prompt',
-				esc_html__( 'Prompt cannot be empty.', 'wyvern-ai-styling' ),
+				esc_html__( 'Prompt cannot be empty.', 'wyverncss' ),
 				400
 			);
 		}
@@ -230,7 +230,7 @@ class StyleController extends RESTController {
 				'prompt_too_long',
 				sprintf(
 					/* translators: 1: Current prompt length, 2: Maximum allowed length */
-					esc_html__( 'Prompt is too long (%1$d characters). Maximum allowed for your tier is %2$d characters.', 'wyvern-ai-styling' ),
+					esc_html__( 'Prompt is too long (%1$d characters). Maximum allowed for your tier is %2$d characters.', 'wyverncss' ),
 					$prompt_length,
 					$max_length
 				),
@@ -313,7 +313,7 @@ class StyleController extends RESTController {
 				$quota = $this->check_quota( $user_id, $tier );
 				return new WP_Error(
 					'quota_exceeded',
-					esc_html__( 'You\'ve used all your free AI requests for today. Try again tomorrow! Premium plans with unlimited requests coming soon.', 'wyvern-ai-styling' ),
+					esc_html__( 'You\'ve used all your free AI requests for today. Try again tomorrow! Premium plans with unlimited requests coming soon.', 'wyverncss' ),
 					array(
 						'status' => 429,
 						'usage'  => $this->build_usage_info( $tier, $quota['used'], $quota['limit'], $quota['reset_at'] ),
@@ -334,7 +334,7 @@ class StyleController extends RESTController {
 						'quota_exceeded',
 						sprintf(
 							/* translators: %d: Number of requests allowed per day */
-							esc_html__( 'You\'ve used all %d free AI requests for today. Try again tomorrow! Premium plans coming soon.', 'wyvern-ai-styling' ),
+							esc_html__( 'You\'ve used all %d free AI requests for today. Try again tomorrow! Premium plans coming soon.', 'wyverncss' ),
 							$quota['limit']
 						),
 						array(
@@ -590,7 +590,7 @@ class StyleController extends RESTController {
 			$response_data['show_upgrade_prompt'] = true;
 			$response_data['upgrade_message']     = sprintf(
 				/* translators: 1: Remaining requests, 2: Total limit */
-				esc_html__( 'You have %1$d of %2$d free AI requests remaining today. Premium plans with unlimited requests coming soon!', 'wyvern-ai-styling' ),
+				esc_html__( 'You have %1$d of %2$d free AI requests remaining today. Premium plans with unlimited requests coming soon!', 'wyverncss' ),
 				$quota['remaining'],
 				$quota['limit']
 			);
@@ -695,26 +695,26 @@ class StyleController extends RESTController {
 	private function get_endpoint_args(): array {
 		return array(
 			'prompt'          => array(
-				'description'       => __( 'Natural language style description.', 'wyvern-ai-styling' ),
+				'description'       => __( 'Natural language style description.', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => array( $this, 'sanitize_prompt' ),
 				'validate_callback' => array( $this, 'validate_prompt' ),
 			),
 			'element_context' => array(
-				'description' => __( 'Element context data (tag, classes, current styles, etc.).', 'wyvern-ai-styling' ),
+				'description' => __( 'Element context data (tag, classes, current styles, etc.).', 'wyverncss' ),
 				'type'        => 'object',
 				'required'    => false,
 				'default'     => array(),
 			),
 			'prefer_speed'    => array(
-				'description' => __( 'Prefer faster models over higher quality.', 'wyvern-ai-styling' ),
+				'description' => __( 'Prefer faster models over higher quality.', 'wyverncss' ),
 				'type'        => 'boolean',
 				'required'    => false,
 				'default'     => false,
 			),
 			'block_context'   => array(
-				'description' => __( 'Block context data for Gutenberg integration.', 'wyvern-ai-styling' ),
+				'description' => __( 'Block context data for Gutenberg integration.', 'wyverncss' ),
 				'type'        => 'object',
 				'required'    => false,
 				'default'     => array(),
@@ -745,44 +745,44 @@ class StyleController extends RESTController {
 			'type'       => 'object',
 			'properties' => array(
 				'requires_ai'      => array(
-					'description' => __( 'Whether AI processing is required.', 'wyvern-ai-styling' ),
+					'description' => __( 'Whether AI processing is required.', 'wyverncss' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'css'              => array(
-					'description' => __( 'Generated CSS properties.', 'wyvern-ai-styling' ),
+					'description' => __( 'Generated CSS properties.', 'wyverncss' ),
 					'type'        => 'object',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'confidence'       => array(
-					'description' => __( 'Match confidence score (0-100).', 'wyvern-ai-styling' ),
+					'description' => __( 'Match confidence score (0-100).', 'wyverncss' ),
 					'type'        => 'integer',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'matched_patterns' => array(
-					'description' => __( 'List of matched pattern keys.', 'wyvern-ai-styling' ),
+					'description' => __( 'List of matched pattern keys.', 'wyverncss' ),
 					'type'        => 'array',
 					'items'       => array( 'type' => 'string' ),
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'source'           => array(
-					'description' => __( 'Source of the CSS (pattern, ai, cache).', 'wyvern-ai-styling' ),
+					'description' => __( 'Source of the CSS (pattern, ai, cache).', 'wyverncss' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'usage'            => array(
-					'description' => __( 'Current usage statistics.', 'wyvern-ai-styling' ),
+					'description' => __( 'Current usage statistics.', 'wyverncss' ),
 					'type'        => 'object',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'ai_error'         => array(
-					'description' => __( 'AI error message if AI generation failed.', 'wyvern-ai-styling' ),
+					'description' => __( 'AI error message if AI generation failed.', 'wyverncss' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 					'readonly'    => true,

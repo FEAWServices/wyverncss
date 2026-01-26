@@ -15,8 +15,8 @@
  * - Post meta (_wyverncss_*)
  * - Custom database tables (5 tables)
  * - Scheduled cron jobs
- * - User capabilities (manage_wyvernpress, use_wyvernpress)
- * - Uploaded files in wp-content/uploads/wyvernpress/
+ * - User capabilities (manage_wyverncss, use_wyverncss)
+ * - Uploaded files in wp-content/uploads/wyverncss/
  * - Multisite network options
  *
  * @package WyvernCSS
@@ -138,7 +138,7 @@ function wyverncss_delete_options(): void {
 function wyverncss_delete_transients(): void {
 	global $wpdb;
 
-	// Delete all transients with wyvernpress prefix (covers all the specific prefixes above).
+	// Delete all transients with wyverncss prefix (covers all the specific prefixes above).
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 	$wpdb->query(
 		$wpdb->prepare(
@@ -210,8 +210,8 @@ function wyverncss_delete_post_meta(): void {
  * Remove custom capabilities
  *
  * Capabilities removed:
- * - manage_wyvernpress (administrator only)
- * - use_wyvernpress (administrator and editor)
+ * - manage_wyverncss (administrator only)
+ * - use_wyverncss (administrator and editor)
  *
  * @since 1.0.0
  * @return void
@@ -223,8 +223,8 @@ function wyverncss_remove_capabilities(): void {
 		$role = get_role( $role_name );
 
 		if ( $role instanceof WP_Role ) {
-			$role->remove_cap( 'manage_wyvernpress' );
-			$role->remove_cap( 'use_wyvernpress' );
+			$role->remove_cap( 'manage_wyverncss' );
+			$role->remove_cap( 'use_wyverncss' );
 		}
 	}
 }
@@ -237,7 +237,7 @@ function wyverncss_remove_capabilities(): void {
  */
 function wyverncss_delete_uploaded_files(): void {
 	$upload_dir      = wp_upload_dir();
-	$wyverncss_dir = $upload_dir['basedir'] . '/wyvernpress';
+	$wyverncss_dir = $upload_dir['basedir'] . '/wyverncss';
 
 	if ( file_exists( $wyverncss_dir ) && is_dir( $wyverncss_dir ) ) {
 		// Recursively delete directory and its contents.

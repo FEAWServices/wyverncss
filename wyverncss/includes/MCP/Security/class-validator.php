@@ -218,7 +218,7 @@ class Validator {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You must be logged in to perform this action.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to perform this action.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -226,7 +226,7 @@ class Validator {
 		if ( ! current_user_can( $capability ) ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You do not have permission to perform this action.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to perform this action.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -245,7 +245,7 @@ class Validator {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You must be logged in to perform this action.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to perform this action.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -253,7 +253,7 @@ class Validator {
 		if ( ! current_user_can( $capability, $post_id ) ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You do not have permission to perform this action on this post.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to perform this action on this post.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -279,7 +279,7 @@ class Validator {
 			if ( null === $nonce || '' === trim( $nonce ) ) {
 				return new WP_Error(
 					'invalid_nonce',
-					__( 'Security token is required for this action.', 'wyvern-ai-styling' ),
+					__( 'Security token is required for this action.', 'wyverncss' ),
 					array( 'status' => 403 )
 				);
 			}
@@ -288,7 +288,7 @@ class Validator {
 			if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 				return new WP_Error(
 					'invalid_nonce',
-					__( 'Security token is invalid or expired.', 'wyvern-ai-styling' ),
+					__( 'Security token is invalid or expired.', 'wyverncss' ),
 					array( 'status' => 403 )
 				);
 			}
@@ -308,7 +308,7 @@ class Validator {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You must be logged in to perform this action.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to perform this action.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -323,7 +323,7 @@ class Validator {
 			if ( $destructive_count >= self::DESTRUCTIVE_LIMIT ) {
 				return new WP_Error(
 					'rate_limit_exceeded',
-					__( 'Rate limit exceeded for destructive actions. Please try again later.', 'wyvern-ai-styling' ),
+					__( 'Rate limit exceeded for destructive actions. Please try again later.', 'wyverncss' ),
 					array(
 						'status'      => 429,
 						'retry_after' => 3600,
@@ -346,7 +346,7 @@ class Validator {
 		if ( $burst_count >= $limits['burst'] ) {
 			return new WP_Error(
 				'rate_limit_exceeded',
-				__( 'Rate limit exceeded. Please try again later.', 'wyvern-ai-styling' ),
+				__( 'Rate limit exceeded. Please try again later.', 'wyverncss' ),
 				array(
 					'status'      => 429,
 					'retry_after' => 60,
@@ -361,7 +361,7 @@ class Validator {
 		if ( $hourly_count >= $limits['hourly'] ) {
 			return new WP_Error(
 				'rate_limit_exceeded',
-				__( 'Hourly rate limit exceeded. Please try again later.', 'wyvern-ai-styling' ),
+				__( 'Hourly rate limit exceeded. Please try again later.', 'wyverncss' ),
 				array(
 					'status'      => 429,
 					'retry_after' => 3600,
@@ -556,7 +556,7 @@ class Validator {
 			if ( 'invalid:credentials' === $credentials ) {
 				return new WP_Error(
 					'authentication_failed',
-					__( 'Invalid credentials.', 'wyvern-ai-styling' ),
+					__( 'Invalid credentials.', 'wyverncss' ),
 					array( 'status' => 401 )
 				);
 			}
@@ -573,7 +573,7 @@ class Validator {
 
 		return new WP_Error(
 			'authentication_failed',
-			__( 'Authentication required.', 'wyvern-ai-styling' ),
+			__( 'Authentication required.', 'wyverncss' ),
 			array( 'status' => 401 )
 		);
 	}
@@ -592,7 +592,7 @@ class Validator {
 		if ( ! str_contains( $query, '%s' ) && ! str_contains( $query, '%d' ) && ! str_contains( $query, '%f' ) ) {
 			return new WP_Error(
 				'unsafe_query',
-				__( 'Direct SQL queries must use prepared statements.', 'wyvern-ai-styling' ),
+				__( 'Direct SQL queries must use prepared statements.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -665,7 +665,7 @@ class Validator {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You must be logged in to perform this action.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to perform this action.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}

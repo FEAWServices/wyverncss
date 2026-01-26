@@ -117,7 +117,7 @@ class StylePreset {
 		if ( 0 === $this->user_id ) {
 			return new WP_Error(
 				'not_logged_in',
-				__( 'You must be logged in to create presets.', 'wyvern-ai-styling' )
+				__( 'You must be logged in to create presets.', 'wyverncss' )
 			);
 		}
 
@@ -126,7 +126,7 @@ class StylePreset {
 		if ( empty( $name ) ) {
 			return new WP_Error(
 				'invalid_name',
-				__( 'Preset name cannot be empty.', 'wyvern-ai-styling' )
+				__( 'Preset name cannot be empty.', 'wyverncss' )
 			);
 		}
 
@@ -135,7 +135,7 @@ class StylePreset {
 				'name_too_long',
 				sprintf(
 					/* translators: %d: maximum character count */
-					__( 'Preset name cannot exceed %d characters.', 'wyvern-ai-styling' ),
+					__( 'Preset name cannot exceed %d characters.', 'wyverncss' ),
 					self::MAX_NAME_LENGTH
 				)
 			);
@@ -154,7 +154,7 @@ class StylePreset {
 				'preset_limit_reached',
 				sprintf(
 					/* translators: %d: maximum preset count */
-					__( 'You have reached the maximum of %d presets.', 'wyvern-ai-styling' ),
+					__( 'You have reached the maximum of %d presets.', 'wyverncss' ),
 					self::MAX_PRESETS
 				)
 			);
@@ -180,7 +180,7 @@ class StylePreset {
 		if ( false === $result ) {
 			return new WP_Error(
 				'save_failed',
-				__( 'Failed to save preset.', 'wyvern-ai-styling' )
+				__( 'Failed to save preset.', 'wyverncss' )
 			);
 		}
 
@@ -198,7 +198,7 @@ class StylePreset {
 		if ( 0 === $this->user_id ) {
 			return new WP_Error(
 				'not_logged_in',
-				__( 'You must be logged in to update presets.', 'wyvern-ai-styling' )
+				__( 'You must be logged in to update presets.', 'wyverncss' )
 			);
 		}
 
@@ -207,7 +207,7 @@ class StylePreset {
 		if ( ! isset( $presets[ $preset_id ] ) ) {
 			return new WP_Error(
 				'preset_not_found',
-				__( 'Preset not found.', 'wyvern-ai-styling' )
+				__( 'Preset not found.', 'wyverncss' )
 			);
 		}
 
@@ -219,7 +219,7 @@ class StylePreset {
 			if ( empty( $name ) ) {
 				return new WP_Error(
 					'invalid_name',
-					__( 'Preset name cannot be empty.', 'wyvern-ai-styling' )
+					__( 'Preset name cannot be empty.', 'wyverncss' )
 				);
 			}
 			if ( strlen( $name ) > self::MAX_NAME_LENGTH ) {
@@ -227,7 +227,7 @@ class StylePreset {
 					'name_too_long',
 					sprintf(
 						/* translators: %d: maximum character count */
-						__( 'Preset name cannot exceed %d characters.', 'wyvern-ai-styling' ),
+						__( 'Preset name cannot exceed %d characters.', 'wyverncss' ),
 						self::MAX_NAME_LENGTH
 					)
 				);
@@ -258,7 +258,7 @@ class StylePreset {
 		if ( false === $result ) {
 			return new WP_Error(
 				'save_failed',
-				__( 'Failed to update preset.', 'wyvern-ai-styling' )
+				__( 'Failed to update preset.', 'wyverncss' )
 			);
 		}
 
@@ -275,7 +275,7 @@ class StylePreset {
 		if ( 0 === $this->user_id ) {
 			return new WP_Error(
 				'not_logged_in',
-				__( 'You must be logged in to delete presets.', 'wyvern-ai-styling' )
+				__( 'You must be logged in to delete presets.', 'wyverncss' )
 			);
 		}
 
@@ -284,7 +284,7 @@ class StylePreset {
 		if ( ! isset( $presets[ $preset_id ] ) ) {
 			return new WP_Error(
 				'preset_not_found',
-				__( 'Preset not found.', 'wyvern-ai-styling' )
+				__( 'Preset not found.', 'wyverncss' )
 			);
 		}
 
@@ -294,7 +294,7 @@ class StylePreset {
 		if ( false === $result ) {
 			return new WP_Error(
 				'delete_failed',
-				__( 'Failed to delete preset.', 'wyvern-ai-styling' )
+				__( 'Failed to delete preset.', 'wyverncss' )
 			);
 		}
 
@@ -352,12 +352,12 @@ class StylePreset {
 		if ( null === $preset ) {
 			return new WP_Error(
 				'preset_not_found',
-				__( 'Preset not found.', 'wyvern-ai-styling' )
+				__( 'Preset not found.', 'wyverncss' )
 			);
 		}
 
 		/* translators: %s: original preset name */
-		$new_name = sprintf( __( '%s (Copy)', 'wyvern-ai-styling' ), $preset['name'] );
+		$new_name = sprintf( __( '%s (Copy)', 'wyverncss' ), $preset['name'] );
 
 		return $this->create(
 			$new_name,
@@ -391,7 +391,7 @@ class StylePreset {
 		if ( null === $data || ! is_array( $data ) ) {
 			return new WP_Error(
 				'invalid_json',
-				__( 'Invalid JSON data.', 'wyvern-ai-styling' )
+				__( 'Invalid JSON data.', 'wyverncss' )
 			);
 		}
 
@@ -423,7 +423,7 @@ class StylePreset {
 			if ( is_wp_error( $create_result ) ) {
 				$result['errors'][] = sprintf(
 					/* translators: 1: preset name, 2: error message */
-					__( 'Failed to import "%1$s": %2$s', 'wyvern-ai-styling' ),
+					__( 'Failed to import "%1$s": %2$s', 'wyverncss' ),
 					$preset['name'],
 					$create_result->get_error_message()
 				);
@@ -455,7 +455,7 @@ class StylePreset {
 		if ( empty( $css ) ) {
 			return new WP_Error(
 				'empty_css',
-				__( 'CSS properties cannot be empty.', 'wyvern-ai-styling' )
+				__( 'CSS properties cannot be empty.', 'wyverncss' )
 			);
 		}
 
@@ -464,7 +464,7 @@ class StylePreset {
 				'too_many_properties',
 				sprintf(
 					/* translators: %d: maximum property count */
-					__( 'CSS properties cannot exceed %d.', 'wyvern-ai-styling' ),
+					__( 'CSS properties cannot exceed %d.', 'wyverncss' ),
 					self::MAX_CSS_PROPERTIES
 				)
 			);
@@ -493,7 +493,7 @@ class StylePreset {
 		if ( empty( $validated ) ) {
 			return new WP_Error(
 				'no_valid_properties',
-				__( 'No valid CSS properties found.', 'wyvern-ai-styling' )
+				__( 'No valid CSS properties found.', 'wyverncss' )
 			);
 		}
 

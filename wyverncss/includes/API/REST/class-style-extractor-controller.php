@@ -165,7 +165,7 @@ class Style_Extractor_Controller extends RESTController {
 		if ( ! $this->freemius->is_premium() && ! $this->freemius->is_trial() ) {
 			return new WP_Error(
 				'premium_required',
-				esc_html__( 'Style extraction is a premium feature. Upgrade to access this functionality.', 'wyvern-ai-styling' ),
+				esc_html__( 'Style extraction is a premium feature. Upgrade to access this functionality.', 'wyverncss' ),
 				array(
 					'status'      => 403,
 					'upgrade_url' => $this->freemius->get_upgrade_url(),

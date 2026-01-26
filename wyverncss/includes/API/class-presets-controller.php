@@ -39,7 +39,7 @@ class PresetsController extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyvernpress/v1';
+	protected $namespace = 'wyverncss/v1';
 
 	/**
 	 * Rest base.
@@ -65,7 +65,7 @@ class PresetsController extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'get_items_permissions_check' ),
 					'args'                => array(
 						'category' => array(
-							'description'       => __( 'Filter by category.', 'wyvern-ai-styling' ),
+							'description'       => __( 'Filter by category.', 'wyverncss' ),
 							'type'              => 'string',
 							'sanitize_callback' => 'sanitize_key',
 						),
@@ -92,7 +92,7 @@ class PresetsController extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'get_item_permissions_check' ),
 					'args'                => array(
 						'id' => array(
-							'description' => __( 'Unique identifier for the preset.', 'wyvern-ai-styling' ),
+							'description' => __( 'Unique identifier for the preset.', 'wyverncss' ),
 							'type'        => 'string',
 							'required'    => true,
 						),
@@ -110,7 +110,7 @@ class PresetsController extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
 					'args'                => array(
 						'id' => array(
-							'description' => __( 'Unique identifier for the preset.', 'wyvern-ai-styling' ),
+							'description' => __( 'Unique identifier for the preset.', 'wyverncss' ),
 							'type'        => 'string',
 							'required'    => true,
 						),
@@ -131,7 +131,7 @@ class PresetsController extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'create_item_permissions_check' ),
 					'args'                => array(
 						'id' => array(
-							'description' => __( 'Unique identifier for the preset to duplicate.', 'wyvern-ai-styling' ),
+							'description' => __( 'Unique identifier for the preset to duplicate.', 'wyverncss' ),
 							'type'        => 'string',
 							'required'    => true,
 						),
@@ -164,12 +164,12 @@ class PresetsController extends WP_REST_Controller {
 					'permission_callback' => array( $this, 'create_item_permissions_check' ),
 					'args'                => array(
 						'data'    => array(
-							'description' => __( 'JSON data to import.', 'wyvern-ai-styling' ),
+							'description' => __( 'JSON data to import.', 'wyverncss' ),
 							'type'        => 'string',
 							'required'    => true,
 						),
 						'replace' => array(
-							'description' => __( 'Replace existing presets.', 'wyvern-ai-styling' ),
+							'description' => __( 'Replace existing presets.', 'wyverncss' ),
 							'type'        => 'boolean',
 							'default'     => false,
 						),
@@ -202,7 +202,7 @@ class PresetsController extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You must be logged in to access presets.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to access presets.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -230,7 +230,7 @@ class PresetsController extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You must be logged in to create presets.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to create presets.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -296,7 +296,7 @@ class PresetsController extends WP_REST_Controller {
 		if ( null === $preset ) {
 			return new WP_Error(
 				'preset_not_found',
-				__( 'Preset not found.', 'wyvern-ai-styling' ),
+				__( 'Preset not found.', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -387,7 +387,7 @@ class PresetsController extends WP_REST_Controller {
 		if ( null === $preset ) {
 			return new WP_Error(
 				'preset_not_found',
-				__( 'Preset not found.', 'wyvern-ai-styling' ),
+				__( 'Preset not found.', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -538,33 +538,33 @@ class PresetsController extends WP_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'id'         => array(
-					'description' => __( 'Unique identifier for the preset.', 'wyvern-ai-styling' ),
+					'description' => __( 'Unique identifier for the preset.', 'wyverncss' ),
 					'type'        => 'string',
 					'readonly'    => true,
 				),
 				'name'       => array(
-					'description' => __( 'Display name for the preset.', 'wyvern-ai-styling' ),
+					'description' => __( 'Display name for the preset.', 'wyverncss' ),
 					'type'        => 'string',
 					'required'    => true,
 				),
 				'css'        => array(
-					'description' => __( 'CSS properties for the preset.', 'wyvern-ai-styling' ),
+					'description' => __( 'CSS properties for the preset.', 'wyverncss' ),
 					'type'        => 'object',
 					'required'    => true,
 				),
 				'category'   => array(
-					'description' => __( 'Category for organization.', 'wyvern-ai-styling' ),
+					'description' => __( 'Category for organization.', 'wyverncss' ),
 					'type'        => 'string',
 					'default'     => 'custom',
 				),
 				'created_at' => array(
-					'description' => __( 'Creation timestamp.', 'wyvern-ai-styling' ),
+					'description' => __( 'Creation timestamp.', 'wyverncss' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'readonly'    => true,
 				),
 				'updated_at' => array(
-					'description' => __( 'Last update timestamp.', 'wyvern-ai-styling' ),
+					'description' => __( 'Last update timestamp.', 'wyverncss' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'readonly'    => true,

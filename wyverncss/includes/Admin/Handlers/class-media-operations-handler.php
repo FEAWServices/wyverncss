@@ -43,7 +43,7 @@ class Media_Operations_Handler {
 		if ( ! current_user_can( 'upload_files' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to manage media.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to manage media.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -83,7 +83,7 @@ class Media_Operations_Handler {
 			'action'         => 'find_unused_media',
 			'message'        => sprintf(
 				/* translators: %d: number of unused media items found */
-				esc_html( _n( 'Found %d unused media item.', 'Found %d unused media items.', count( $unused_media ), 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Found %d unused media item.', 'Found %d unused media items.', count( $unused_media ), 'wyverncss' ) ),
 				count( $unused_media )
 			),
 		);
@@ -127,7 +127,7 @@ class Media_Operations_Handler {
 		if ( ! current_user_can( 'upload_files' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to manage media.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to manage media.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -138,7 +138,7 @@ class Media_Operations_Handler {
 		if ( ! $uploads_use_yearmonth_folders ) {
 			return array(
 				'success' => false,
-				'message' => esc_html__( 'Year/month organization is disabled. Enable it in Settings > Media to use this feature.', 'wyvern-ai-styling' ),
+				'message' => esc_html__( 'Year/month organization is disabled. Enable it in Settings > Media to use this feature.', 'wyverncss' ),
 				'data'    => array(
 					'setting_enabled' => false,
 				),
@@ -148,7 +148,7 @@ class Media_Operations_Handler {
 		// For now, just return information about the current organization setting.
 		return array(
 			'success' => true,
-			'message' => esc_html__( 'Media organization by date is already enabled. New uploads will be organized automatically.', 'wyvern-ai-styling' ),
+			'message' => esc_html__( 'Media organization by date is already enabled. New uploads will be organized automatically.', 'wyverncss' ),
 			'data'    => array(
 				'setting_enabled' => true,
 				'action'          => 'organize_media_by_date',
@@ -166,7 +166,7 @@ class Media_Operations_Handler {
 		if ( ! current_user_can( 'upload_files' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to manage media.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to manage media.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -174,7 +174,7 @@ class Media_Operations_Handler {
 		if ( empty( $attachment_ids ) ) {
 			return new WP_Error(
 				'invalid_params',
-				esc_html__( 'Attachment IDs are required.', 'wyvern-ai-styling' ),
+				esc_html__( 'Attachment IDs are required.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -225,10 +225,10 @@ class Media_Operations_Handler {
 			'action'         => 'bulk_generate_alt_text',
 			'message'        => sprintf(
 				/* translators: %d: number of media items updated */
-				esc_html( _n( 'Generated alt text for %d image.', 'Generated alt text for %d images.', $affected_count, 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Generated alt text for %d image.', 'Generated alt text for %d images.', $affected_count, 'wyverncss' ) ),
 				$affected_count
 			),
-			'note'           => esc_html__( 'Alt text generated from filenames. AI-powered alt text generation coming soon.', 'wyvern-ai-styling' ),
+			'note'           => esc_html__( 'Alt text generated from filenames. AI-powered alt text generation coming soon.', 'wyverncss' ),
 		);
 	}
 

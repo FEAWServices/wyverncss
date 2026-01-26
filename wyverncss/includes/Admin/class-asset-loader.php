@@ -26,12 +26,12 @@ class AssetLoader {
 	/**
 	 * Script handle for the editor
 	 */
-	private const EDITOR_SCRIPT_HANDLE = 'wyvernpress-editor';
+	private const EDITOR_SCRIPT_HANDLE = 'wyverncss-editor';
 
 	/**
 	 * Style handle for the editor
 	 */
-	private const EDITOR_STYLE_HANDLE = 'wyvernpress-editor-style';
+	private const EDITOR_STYLE_HANDLE = 'wyverncss-editor-style';
 
 	/**
 	 * Initialize the asset loader
@@ -86,7 +86,7 @@ class AssetLoader {
 		// Localize script with pricing configuration.
 		wp_localize_script(
 			self::EDITOR_SCRIPT_HANDLE,
-			'wyvernpressPricing',
+			'wyverncss_pricing',
 			$this->get_pricing_config()
 		);
 
@@ -102,7 +102,7 @@ class AssetLoader {
 		// Set script translations.
 		wp_set_script_translations(
 			self::EDITOR_SCRIPT_HANDLE,
-			'wyvern-ai-styling',
+			'wyverncss',
 			WYVERNCSS_PLUGIN_DIR . 'languages'
 		);
 	}
@@ -178,12 +178,12 @@ class AssetLoader {
 					?>
 					<div class="notice notice-warning">
 						<p>
-							<strong><?php esc_html_e( 'WyvernCSS:', 'wyvern-ai-styling' ); ?></strong>
+							<strong><?php esc_html_e( 'WyvernCSS:', 'wyverncss' ); ?></strong>
 							<?php
 							echo wp_kses_post(
 								sprintf(
 									/* translators: %s: build command */
-									__( 'Editor assets need to be built. Run %s in the plugin directory.', 'wyvern-ai-styling' ),
+									__( 'Editor assets need to be built. Run %s in the plugin directory.', 'wyverncss' ),
 									'<code>cd assets && npm install && npm run build</code>'
 								)
 							);

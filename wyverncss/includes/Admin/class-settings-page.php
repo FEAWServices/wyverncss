@@ -50,7 +50,7 @@ class SettingsPage {
 	/**
 	 * Settings page slug
 	 */
-	private const PAGE_SLUG = 'wyvernpress-settings';
+	private const PAGE_SLUG = 'wyverncss-settings';
 
 	/**
 	 * Settings group name
@@ -98,8 +98,8 @@ class SettingsPage {
 	 * @return void */
 	public function register_menu(): void {
 		add_menu_page(
-			__( 'WyvernCSS', 'wyvern-ai-styling' ),
-			__( 'WyvernCSS', 'wyvern-ai-styling' ),
+			__( 'WyvernCSS', 'wyverncss' ),
+			__( 'WyvernCSS', 'wyverncss' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
@@ -215,14 +215,14 @@ class SettingsPage {
 	public function handle_settings_save(): void {
 		// Verify nonce.
 		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), self::NONCE_ACTION ) ) {
-			$this->notice_manager->add_error( __( 'Security check failed.', 'wyvern-ai-styling' ) );
+			$this->notice_manager->add_error( __( 'Security check failed.', 'wyverncss' ) );
 			$this->redirect_to_settings();
 			return;
 		}
 
 		// Verify capability.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			$this->notice_manager->add_error( __( 'You do not have permission to access this page.', 'wyvern-ai-styling' ) );
+			$this->notice_manager->add_error( __( 'You do not have permission to access this page.', 'wyverncss' ) );
 			$this->redirect_to_settings();
 			return;
 		}
@@ -252,7 +252,7 @@ class SettingsPage {
 		);
 		update_option( self::OPTION_SETTINGS, $settings );
 
-		$this->notice_manager->add_success( __( 'Settings saved successfully.', 'wyvern-ai-styling' ) );
+		$this->notice_manager->add_success( __( 'Settings saved successfully.', 'wyverncss' ) );
 		$this->redirect_to_settings();
 	}
 
@@ -276,7 +276,7 @@ class SettingsPage {
 		}
 
 		wp_enqueue_style(
-			'wyvernpress-admin',
+			'wyverncss-admin',
 			WYVERNCSS_PLUGIN_URL . 'assets/css/admin.css',
 			array(),
 			WYVERNCSS_VERSION
@@ -289,7 +289,7 @@ class SettingsPage {
 	 * @return void */
 	public function render_page(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'wyvern-ai-styling' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'wyverncss' ) );
 		}
 
 		$api_key     = $this->get_api_key();

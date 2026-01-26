@@ -111,7 +111,7 @@ class Admin_AI_Controller extends RESTController {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_forbidden',
-				esc_html__( 'You must be logged in to access this endpoint.', 'wyvern-ai-styling' ),
+				esc_html__( 'You must be logged in to access this endpoint.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -120,7 +120,7 @@ class Admin_AI_Controller extends RESTController {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				esc_html__( 'You do not have permission to execute admin AI commands.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to execute admin AI commands.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -129,7 +129,7 @@ class Admin_AI_Controller extends RESTController {
 		if ( ! $this->freemius->is_premium() ) {
 			return new WP_Error(
 				'premium_required',
-				esc_html__( 'Admin AI is a premium feature. Upgrade to access administrative automation.', 'wyvern-ai-styling' ),
+				esc_html__( 'Admin AI is a premium feature. Upgrade to access administrative automation.', 'wyverncss' ),
 				array(
 					'status'      => 403,
 					'upgrade_url' => $this->freemius->get_upgrade_url(),
@@ -142,7 +142,7 @@ class Admin_AI_Controller extends RESTController {
 		if ( ! $this->freemius->has_feature( 'admin_ai_console' ) ) {
 			return new WP_Error(
 				'feature_not_available',
-				esc_html__( 'Admin AI console is not available in your plan.', 'wyvern-ai-styling' ),
+				esc_html__( 'Admin AI console is not available in your plan.', 'wyverncss' ),
 				array(
 					'status'       => 403,
 					'current_plan' => $plan,
@@ -192,7 +192,7 @@ class Admin_AI_Controller extends RESTController {
 				array(
 					'success'               => false,
 					'requires_confirmation' => true,
-					'message'               => $result['message'] ?? esc_html__( 'This action requires confirmation.', 'wyvern-ai-styling' ),
+					'message'               => $result['message'] ?? esc_html__( 'This action requires confirmation.', 'wyverncss' ),
 					'data'                  => $result['data'] ?? array(),
 					'confirmation_prompt'   => $result['confirmation_prompt'] ?? '',
 				)
@@ -203,7 +203,7 @@ class Admin_AI_Controller extends RESTController {
 		return $this->success_response(
 			array(
 				'success' => $result['success'] ?? true,
-				'message' => $result['message'] ?? esc_html__( 'Command executed successfully.', 'wyvern-ai-styling' ),
+				'message' => $result['message'] ?? esc_html__( 'Command executed successfully.', 'wyverncss' ),
 				'data'    => $result['data'] ?? array(),
 			)
 		);

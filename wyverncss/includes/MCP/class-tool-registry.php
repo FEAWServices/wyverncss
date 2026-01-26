@@ -70,7 +70,7 @@ class ToolRegistry {
 		if ( ! $tool instanceof MCP_Tool_Interface ) {
 			return new WP_Error(
 				'invalid_tool_interface',
-				__( 'Tool must implement MCP_Tool_Interface', 'wyvern-ai-styling' ),
+				__( 'Tool must implement MCP_Tool_Interface', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -84,7 +84,7 @@ class ToolRegistry {
 		if ( empty( $name ) ) {
 			return new WP_Error(
 				'invalid_tool_name',
-				__( 'Tool name cannot be empty', 'wyvern-ai-styling' ),
+				__( 'Tool name cannot be empty', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -95,7 +95,7 @@ class ToolRegistry {
 				'invalid_tool_name_pattern',
 				sprintf(
 					/* translators: %s: tool name pattern */
-					__( 'Tool name must follow the pattern: %s', 'wyvern-ai-styling' ),
+					__( 'Tool name must follow the pattern: %s', 'wyverncss' ),
 					'wp_[a-z_]+'
 				),
 				array( 'status' => 400 )
@@ -106,7 +106,7 @@ class ToolRegistry {
 		if ( empty( $description ) ) {
 			return new WP_Error(
 				'missing_tool_description',
-				__( 'Tool must have a description', 'wyvern-ai-styling' ),
+				__( 'Tool must have a description', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -115,7 +115,7 @@ class ToolRegistry {
 		if ( empty( $schema ) || ! is_array( $schema ) ) {
 			return new WP_Error(
 				'invalid_tool_schema',
-				__( 'Tool must have a valid input schema', 'wyvern-ai-styling' ),
+				__( 'Tool must have a valid input schema', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -126,7 +126,7 @@ class ToolRegistry {
 				'tool_already_registered',
 				sprintf(
 					/* translators: %s: tool name */
-					__( 'Tool "%s" is already registered', 'wyvern-ai-styling' ),
+					__( 'Tool "%s" is already registered', 'wyverncss' ),
 					$name
 				),
 				array( 'status' => 400 )
@@ -333,7 +333,7 @@ class ToolRegistry {
 				'tool_not_found',
 				sprintf(
 					/* translators: %s: tool name */
-					__( 'Tool "%s" not found', 'wyvern-ai-styling' ),
+					__( 'Tool "%s" not found', 'wyverncss' ),
 					$name
 				)
 			);
@@ -424,7 +424,7 @@ class ToolRegistry {
 				'tool_not_found',
 				sprintf(
 					/* translators: %s: tool name */
-					__( 'Tool "%s" not found', 'wyvern-ai-styling' ),
+					__( 'Tool "%s" not found', 'wyverncss' ),
 					$name
 				)
 			);
@@ -446,7 +446,7 @@ class ToolRegistry {
 					'insufficient_permissions',
 					sprintf(
 						/* translators: %s: required capability */
-						__( 'You do not have permission to perform this action. Required capability: %s', 'wyvern-ai-styling' ),
+						__( 'You do not have permission to perform this action. Required capability: %s', 'wyverncss' ),
 						$capability
 					),
 					array( 'required_capability' => $capability )

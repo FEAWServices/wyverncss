@@ -17,24 +17,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div class="wrap wyvernpress-settings">
+<div class="wrap wyverncss-settings">
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 	<p class="description">
-		<?php esc_html_e( 'Configure your WyvernCSS settings.', 'wyvern-ai-styling' ); ?>
+		<?php esc_html_e( 'Configure your WyvernCSS settings.', 'wyverncss' ); ?>
 	</p>
 
 	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 		<?php wp_nonce_field( 'wyverncss_save_settings' ); ?>
 		<input type="hidden" name="action" value="wyverncss_save_settings">
 
-		<h2><?php esc_html_e( 'Analytics Settings', 'wyvern-ai-styling' ); ?></h2>
+		<h2><?php esc_html_e( 'Analytics Settings', 'wyverncss' ); ?></h2>
 
 		<table class="form-table" role="presentation">
 			<tbody>
 				<tr>
 					<th scope="row">
-						<?php esc_html_e( 'Enable Analytics', 'wyvern-ai-styling' ); ?>
+						<?php esc_html_e( 'Enable Analytics', 'wyverncss' ); ?>
 					</th>
 					<td>
 						<label for="wyverncss_enable_analytics">
@@ -43,10 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 									name="wyverncss_enable_analytics"
 									value="1"
 									<?php checked( $settings['enable_analytics'] ?? true ); ?>>
-							<?php esc_html_e( 'Track usage statistics and analytics', 'wyvern-ai-styling' ); ?>
+							<?php esc_html_e( 'Track usage statistics and analytics', 'wyverncss' ); ?>
 						</label>
 						<p class="description">
-							<?php esc_html_e( 'Disable this to stop tracking usage data. Existing data will be retained.', 'wyvern-ai-styling' ); ?>
+							<?php esc_html_e( 'Disable this to stop tracking usage data. Existing data will be retained.', 'wyverncss' ); ?>
 						</p>
 					</td>
 				</tr>
@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<tr>
 					<th scope="row">
 						<label for="wyverncss_retention_days">
-							<?php esc_html_e( 'Data Retention', 'wyvern-ai-styling' ); ?>
+							<?php esc_html_e( 'Data Retention', 'wyverncss' ); ?>
 						</label>
 					</th>
 					<td>
@@ -65,16 +65,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 								min="30"
 								max="365"
 								value="<?php echo esc_attr( (string) ( $settings['retention_days'] ?? 90 ) ); ?>">
-						<span><?php esc_html_e( 'days', 'wyvern-ai-styling' ); ?></span>
+						<span><?php esc_html_e( 'days', 'wyverncss' ); ?></span>
 						<p class="description">
-							<?php esc_html_e( 'How long to keep usage data before automatic cleanup (30-365 days).', 'wyvern-ai-styling' ); ?>
+							<?php esc_html_e( 'How long to keep usage data before automatic cleanup (30-365 days).', 'wyverncss' ); ?>
 						</p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<?php submit_button( __( 'Save Settings', 'wyvern-ai-styling' ) ); ?>
+		<?php submit_button( __( 'Save Settings', 'wyverncss' ) ); ?>
 	</form>
 
 </div>

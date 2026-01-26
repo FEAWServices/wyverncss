@@ -188,7 +188,7 @@ class OpenRouter_Client {
 		if ( false === $encoded_body ) {
 			return new WP_Error(
 				'json_encode_error',
-				__( 'Failed to encode request payload', 'wyvern-ai-styling' )
+				__( 'Failed to encode request payload', 'wyverncss' )
 			);
 		}
 
@@ -229,7 +229,7 @@ class OpenRouter_Client {
 		if ( JSON_ERROR_NONE !== json_last_error() ) {
 			return new WP_Error(
 				'json_decode_error',
-				__( 'Failed to decode OpenRouter response', 'wyvern-ai-styling' ),
+				__( 'Failed to decode OpenRouter response', 'wyverncss' ),
 				array(
 					'body'       => $body,
 					'json_error' => json_last_error_msg(),
@@ -250,7 +250,7 @@ class OpenRouter_Client {
 	private function handle_error_response( int $status_code, string $body ): WP_Error {
 		$error_data = json_decode( $body, true );
 
-		$error_message = $error_data['error']['message'] ?? __( 'OpenRouter API error', 'wyvern-ai-styling' );
+		$error_message = $error_data['error']['message'] ?? __( 'OpenRouter API error', 'wyverncss' );
 		$error_code    = $error_data['error']['code'] ?? 'api_error';
 
 		$wp_error_code = match ( $status_code ) {
@@ -365,7 +365,7 @@ class OpenRouter_Client {
 		if ( JSON_ERROR_NONE !== json_last_error() ) {
 			return new WP_Error(
 				'invalid_tool_arguments',
-				__( 'Failed to parse tool arguments', 'wyvern-ai-styling' ),
+				__( 'Failed to parse tool arguments', 'wyverncss' ),
 				array(
 					'tool'       => $tool_name,
 					'json_error' => json_last_error_msg(),
@@ -377,7 +377,7 @@ class OpenRouter_Client {
 		if ( null === $this->tool_registry ) {
 			return new WP_Error(
 				'no_tool_registry',
-				__( 'Tool execution not available in CSS styling mode', 'wyvern-ai-styling' ),
+				__( 'Tool execution not available in CSS styling mode', 'wyverncss' ),
 				array( 'tool' => $tool_name )
 			);
 		}
@@ -458,7 +458,7 @@ class OpenRouter_Client {
 		if ( 200 !== $status ) {
 			return new WP_Error(
 				'invalid_api_key',
-				__( 'Invalid OpenRouter API key', 'wyvern-ai-styling' ),
+				__( 'Invalid OpenRouter API key', 'wyverncss' ),
 				array( 'status' => $status )
 			);
 		}
@@ -492,7 +492,7 @@ class OpenRouter_Client {
 		if ( ! isset( $data['data'] ) ) {
 			return new WP_Error(
 				'invalid_response',
-				__( 'Invalid models response from OpenRouter', 'wyvern-ai-styling' )
+				__( 'Invalid models response from OpenRouter', 'wyverncss' )
 			);
 		}
 
@@ -578,13 +578,13 @@ class OpenRouter_Client {
 	public function build_system_prompt(): string {
 		// No tools in CSS styling mode.
 		if ( null === $this->tool_registry ) {
-			return __( 'You are WyvernCSS AI, a CSS styling assistant for WordPress Gutenberg blocks. Generate clean, valid CSS based on user descriptions.', 'wyvern-ai-styling' );
+			return __( 'You are WyvernCSS AI, a CSS styling assistant for WordPress Gutenberg blocks. Generate clean, valid CSS based on user descriptions.', 'wyverncss' );
 		}
 
 		$tools_list = $this->tool_registry->get_tools_list();
 
 		if ( empty( $tools_list ) ) {
-			return __( 'You are WyvernCSS AI, a helpful WordPress assistant.', 'wyvern-ai-styling' );
+			return __( 'You are WyvernCSS AI, a helpful WordPress assistant.', 'wyverncss' );
 		}
 
 		$tool_descriptions = array_map(

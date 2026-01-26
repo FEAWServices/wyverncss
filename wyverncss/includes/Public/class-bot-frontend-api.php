@@ -44,7 +44,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyvernpress/v1';
+	protected $namespace = 'wyverncss/v1';
 
 	/**
 	 * REST API base path.
@@ -130,7 +130,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 				'permission_callback' => '__return_true', // Intentionally public - see class docblock for security measures.
 				'args'                => array(
 					'id' => array(
-						'description'       => __( 'Bot ID or slug', 'wyvern-ai-styling' ),
+						'description'       => __( 'Bot ID or slug', 'wyverncss' ),
 						'type'              => 'string',
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_text_field',
@@ -159,7 +159,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 				'permission_callback' => '__return_true', // Intentionally public - see class docblock for security measures.
 				'args'                => array(
 					'bot_id'     => array(
-						'description'       => __( 'Bot ID or slug', 'wyvern-ai-styling' ),
+						'description'       => __( 'Bot ID or slug', 'wyverncss' ),
 						'type'              => 'string',
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_text_field',
@@ -168,7 +168,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 						},
 					),
 					'message'    => array(
-						'description'       => __( 'Chat message', 'wyvern-ai-styling' ),
+						'description'       => __( 'Chat message', 'wyverncss' ),
 						'type'              => 'string',
 						'required'          => true,
 						'sanitize_callback' => array( $this, 'sanitize_message' ),
@@ -177,7 +177,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 						},
 					),
 					'session_id' => array(
-						'description'       => __( 'Session ID for conversation tracking', 'wyvern-ai-styling' ),
+						'description'       => __( 'Session ID for conversation tracking', 'wyverncss' ),
 						'type'              => 'string',
 						'required'          => false,
 						'sanitize_callback' => 'sanitize_text_field',
@@ -249,7 +249,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 				'message_too_long',
 				sprintf(
 					/* translators: %d: Maximum message length */
-					__( 'Message is too long. Maximum length is %d characters.', 'wyvern-ai-styling' ),
+					__( 'Message is too long. Maximum length is %d characters.', 'wyverncss' ),
 					self::MAX_MESSAGE_LENGTH
 				),
 				array( 'status' => 400 )
@@ -342,7 +342,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 				'rate_limit_exceeded',
 				sprintf(
 					/* translators: %d: Rate limit per minute */
-					__( 'Rate limit exceeded. Maximum %d requests per minute allowed.', 'wyvern-ai-styling' ),
+					__( 'Rate limit exceeded. Maximum %d requests per minute allowed.', 'wyverncss' ),
 					self::RATE_LIMIT_PER_MINUTE
 				),
 				array( 'status' => 429 )
@@ -358,7 +358,7 @@ class Bot_Frontend_API extends WP_REST_Controller {
 				'rate_limit_exceeded',
 				sprintf(
 					/* translators: %d: Rate limit per hour */
-					__( 'Rate limit exceeded. Maximum %d requests per hour allowed.', 'wyvern-ai-styling' ),
+					__( 'Rate limit exceeded. Maximum %d requests per hour allowed.', 'wyverncss' ),
 					self::RATE_LIMIT_PER_HOUR
 				),
 				array( 'status' => 429 )

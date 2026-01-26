@@ -22,22 +22,22 @@
     }
 
     // Ensure we have data.
-    if ( typeof wyvernpressData === 'undefined' ) {
+    if ( typeof wyverncssData === 'undefined' ) {
       console.error( 'Dashboard data is not available' );
       return;
     }
 
     // Initialize Requests Chart (Line Chart).
-    const requestsCanvas = document.getElementById( 'wyvernpress-requests-chart' );
+    const requestsCanvas = document.getElementById( 'wyverncss-requests-chart' );
     if ( requestsCanvas ) {
       const requestsCtx = requestsCanvas.getContext( '2d' );
 
       // Determine which chart to show based on active tab.
-      let chartData = wyvernpressData.dailyChart;
+      let chartData = wyverncssData.dailyChart;
       if ( window.location.href.includes( 'period=weekly' ) ) {
-        chartData = wyvernpressData.weeklyChart;
+        chartData = wyverncssData.weeklyChart;
       } else if ( window.location.href.includes( 'period=monthly' ) ) {
-        chartData = wyvernpressData.monthlyChart;
+        chartData = wyverncssData.monthlyChart;
       }
 
       new Chart( requestsCtx, {
@@ -75,13 +75,13 @@
     }
 
     // Initialize Model Usage Chart (Pie Chart).
-    const modelCanvas = document.getElementById( 'wyvernpress-model-chart' );
+    const modelCanvas = document.getElementById( 'wyverncss-model-chart' );
     if ( modelCanvas ) {
       const modelCtx = modelCanvas.getContext( '2d' );
 
       new Chart( modelCtx, {
           type: 'pie',
-          data: wyvernpressData.modelChart,
+          data: wyverncssData.modelChart,
           options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -110,7 +110,7 @@
   // Initialize when DOM is ready.
   $( document ).ready( function () {
     // Only run on dashboard page.
-    if ( $( '.wyvernpress-dashboard' ).length > 0 ) {
+    if ( $( '.wyverncss-dashboard' ).length > 0 ) {
         initDashboard();
       }
   } );

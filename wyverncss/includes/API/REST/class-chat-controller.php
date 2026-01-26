@@ -37,7 +37,7 @@ class Chat_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * Conversation service instance
@@ -169,7 +169,7 @@ class Chat_Controller extends WP_REST_Controller {
 		if ( null === $api_key ) {
 			return new WP_Error(
 				'missing_api_key',
-				__( 'Please configure your OpenRouter API key in settings', 'wyvern-ai-styling' ),
+				__( 'Please configure your OpenRouter API key in settings', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -314,7 +314,7 @@ class Chat_Controller extends WP_REST_Controller {
 	 */
 	public function create_conversation( WP_REST_Request $request ) {
 		$user_id = get_current_user_id();
-		$title   = $request->get_param( 'title' ) ?? __( 'New Conversation', 'wyvern-ai-styling' );
+		$title   = $request->get_param( 'title' ) ?? __( 'New Conversation', 'wyverncss' );
 		$model   = $request->get_param( 'model' ) ?? 'anthropic/claude-3.5-sonnet';
 
 		$conversation_id = $this->conversation_service->create_conversation(
@@ -369,7 +369,7 @@ class Chat_Controller extends WP_REST_Controller {
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'message' => __( 'Conversation deleted successfully', 'wyvern-ai-styling' ),
+				'message' => __( 'Conversation deleted successfully', 'wyverncss' ),
 			),
 			200
 		);
@@ -492,7 +492,7 @@ class Chat_Controller extends WP_REST_Controller {
 				'required'          => false,
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_text_field',
-				'default'           => __( 'New Conversation', 'wyvern-ai-styling' ),
+				'default'           => __( 'New Conversation', 'wyverncss' ),
 			),
 			'model' => array(
 				'required'          => false,
@@ -536,7 +536,7 @@ class Chat_Controller extends WP_REST_Controller {
 
 		// Ensure strtok returned a string.
 		if ( false === $title ) {
-			return __( 'New Conversation', 'wyvern-ai-styling' );
+			return __( 'New Conversation', 'wyverncss' );
 		}
 
 		$title = substr( $title, 0, 50 );
@@ -545,7 +545,7 @@ class Chat_Controller extends WP_REST_Controller {
 			$title .= '...';
 		}
 
-		return $title ? $title : __( 'New Conversation', 'wyvern-ai-styling' );
+		return $title ? $title : __( 'New Conversation', 'wyverncss' );
 	}
 
 	/**

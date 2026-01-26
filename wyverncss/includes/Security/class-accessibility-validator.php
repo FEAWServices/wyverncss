@@ -136,7 +136,7 @@ class Accessibility_Validator {
 		if ( ! empty( $this->errors ) || ( $strict && ! empty( $this->warnings ) ) ) {
 			return new WP_Error(
 				'accessibility_validation_failed',
-				__( 'Accessibility validation failed', 'wyvern-ai-styling' ),
+				__( 'Accessibility validation failed', 'wyverncss' ),
 				array(
 					'errors'          => $this->errors,
 					'warnings'        => $this->warnings,
@@ -166,7 +166,7 @@ class Accessibility_Validator {
 		$contrast_ratio = $this->calculate_contrast_ratio( $foreground, $background );
 
 		if ( false === $contrast_ratio ) {
-			$this->warnings[] = __( 'Could not calculate color contrast ratio', 'wyvern-ai-styling' );
+			$this->warnings[] = __( 'Could not calculate color contrast ratio', 'wyverncss' );
 			return;
 		}
 
@@ -179,7 +179,7 @@ class Accessibility_Validator {
 		if ( $contrast_ratio < $required_ratio ) {
 			$this->errors[] = sprintf(
 				/* translators: 1: calculated ratio, 2: required ratio, 3: text size */
-				__( 'Insufficient color contrast: %1$.2f:1 (required: %2$.1f:1 for %3$s text)', 'wyvern-ai-styling' ),
+				__( 'Insufficient color contrast: %1$.2f:1 (required: %2$.1f:1 for %3$s text)', 'wyverncss' ),
 				$contrast_ratio,
 				$required_ratio,
 				$is_large_text ? 'large' : 'normal'
@@ -188,7 +188,7 @@ class Accessibility_Validator {
 			// Recommend AAA level for better accessibility.
 			$this->recommendations[] = sprintf(
 				/* translators: 1: contrast ratio, 2: AAA level */
-				__( 'Consider increasing contrast ratio to %2$.1f:1 for AAA compliance (current: %1$.2f:1)', 'wyvern-ai-styling' ),
+				__( 'Consider increasing contrast ratio to %2$.1f:1 for AAA compliance (current: %1$.2f:1)', 'wyverncss' ),
 				$contrast_ratio,
 				$aaa_ratio
 			);
@@ -207,7 +207,7 @@ class Accessibility_Validator {
 		if ( false === $size_px ) {
 			$this->warnings[] = sprintf(
 				/* translators: %s: font size value */
-				__( 'Could not validate font size: %s', 'wyvern-ai-styling' ),
+				__( 'Could not validate font size: %s', 'wyverncss' ),
 				esc_html( $font_size )
 			);
 			return;
@@ -216,14 +216,14 @@ class Accessibility_Validator {
 		if ( $size_px < self::MIN_FONT_SIZE_PX ) {
 			$this->errors[] = sprintf(
 				/* translators: 1: provided font size, 2: minimum required size */
-				__( 'Font size too small: %1$dpx (minimum: %2$dpx)', 'wyvern-ai-styling' ),
+				__( 'Font size too small: %1$dpx (minimum: %2$dpx)', 'wyverncss' ),
 				(int) $size_px,
 				self::MIN_FONT_SIZE_PX
 			);
 		} elseif ( $size_px < 14 ) {
 			$this->warnings[] = sprintf(
 				/* translators: %s: font size in pixels */
-				__( 'Font size is small (%spx). Consider using at least 14px for better readability.', 'wyvern-ai-styling' ),
+				__( 'Font size is small (%spx). Consider using at least 14px for better readability.', 'wyverncss' ),
 				number_format( $size_px, 0 )
 			);
 		}
@@ -242,17 +242,17 @@ class Accessibility_Validator {
 		// Check for display: none or visibility: hidden on interactive elements.
 		if ( $is_interactive ) {
 			if ( isset( $css_properties['display'] ) && 'none' === $css_properties['display'] ) {
-				$this->errors[] = __( 'Interactive element hidden with display:none breaks keyboard navigation', 'wyvern-ai-styling' );
+				$this->errors[] = __( 'Interactive element hidden with display:none breaks keyboard navigation', 'wyverncss' );
 			}
 
 			if ( isset( $css_properties['visibility'] ) && 'hidden' === $css_properties['visibility'] ) {
-				$this->errors[] = __( 'Interactive element hidden with visibility:hidden breaks keyboard navigation', 'wyvern-ai-styling' );
+				$this->errors[] = __( 'Interactive element hidden with visibility:hidden breaks keyboard navigation', 'wyverncss' );
 			}
 		}
 
 		// Check for pointer-events: none on interactive elements.
 		if ( $is_interactive && isset( $css_properties['pointer-events'] ) && 'none' === $css_properties['pointer-events'] ) {
-			$this->warnings[] = __( 'pointer-events:none may affect keyboard navigation on interactive elements', 'wyvern-ai-styling' );
+			$this->warnings[] = __( 'pointer-events:none may affect keyboard navigation on interactive elements', 'wyverncss' );
 		}
 	}
 
@@ -274,9 +274,9 @@ class Accessibility_Validator {
 		if ( isset( $css_properties['outline'] ) && 'none' === $css_properties['outline'] ) {
 			// Only flag as error if there's no alternative focus indicator.
 			if ( ! isset( $css_properties['border'] ) && ! isset( $css_properties['box-shadow'] ) ) {
-				$this->errors[] = __( 'Outline removed without alternative focus indicator', 'wyvern-ai-styling' );
+				$this->errors[] = __( 'Outline removed without alternative focus indicator', 'wyverncss' );
 			} else {
-				$this->recommendations[] = __( 'Consider adding a visible focus indicator to replace outline', 'wyvern-ai-styling' );
+				$this->recommendations[] = __( 'Consider adding a visible focus indicator to replace outline', 'wyverncss' );
 			}
 		}
 	}
@@ -291,7 +291,7 @@ class Accessibility_Validator {
 		// Check if text-decoration is used to convey information.
 		if ( isset( $css_properties['text-decoration'] ) && 'none' === $css_properties['text-decoration'] ) {
 			// This is a recommendation rather than an error.
-			$this->recommendations[] = __( 'Ensure links are distinguishable by more than just color', 'wyvern-ai-styling' );
+			$this->recommendations[] = __( 'Ensure links are distinguishable by more than just color', 'wyverncss' );
 		}
 	}
 
@@ -308,7 +308,7 @@ class Accessibility_Validator {
 			if ( $opacity < 0.5 ) {
 				$this->warnings[] = sprintf(
 					/* translators: %s: opacity value */
-					__( 'Low opacity (%s) may affect text readability', 'wyvern-ai-styling' ),
+					__( 'Low opacity (%s) may affect text readability', 'wyverncss' ),
 					number_format( $opacity, 2 )
 				);
 			}
@@ -574,7 +574,7 @@ class Accessibility_Validator {
 			return array(
 				'valid' => false,
 				'ratio' => 0,
-				'error' => __( 'Could not calculate contrast ratio', 'wyvern-ai-styling' ),
+				'error' => __( 'Could not calculate contrast ratio', 'wyverncss' ),
 			);
 		}
 

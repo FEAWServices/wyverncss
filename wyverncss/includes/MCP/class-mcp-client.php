@@ -147,7 +147,7 @@ class MCP_Client {
 		if ( ! $this->circuit_breaker->is_available() ) {
 			return new WP_Error(
 				'mcp_service_unavailable',
-				__( 'MCP service is temporarily unavailable. Please try again later.', 'wyvern-ai-styling' ),
+				__( 'MCP service is temporarily unavailable. Please try again later.', 'wyverncss' ),
 				array(
 					'code'        => 'SERVICE_UNREACHABLE',
 					'retry_after' => $this->circuit_breaker->get_retry_after(),
@@ -225,7 +225,7 @@ class MCP_Client {
 		if ( false === $body_json ) {
 			return new WP_Error(
 				'mcp_json_encode_failed',
-				__( 'Failed to encode MCP request payload.', 'wyvern-ai-styling' )
+				__( 'Failed to encode MCP request payload.', 'wyverncss' )
 			);
 		}
 
@@ -245,7 +245,7 @@ class MCP_Client {
 				'mcp_network_error',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'MCP service network error: %s', 'wyvern-ai-styling' ),
+					__( 'MCP service network error: %s', 'wyverncss' ),
 					$response->get_error_message()
 				),
 				array( 'code' => 'SERVICE_UNREACHABLE' )
@@ -259,7 +259,7 @@ class MCP_Client {
 		if ( null === $data && '' !== $body ) {
 			return new WP_Error(
 				'mcp_invalid_response',
-				__( 'MCP service returned invalid JSON response.', 'wyvern-ai-styling' ),
+				__( 'MCP service returned invalid JSON response.', 'wyverncss' ),
 				array( 'code' => 'INVALID_RESPONSE' )
 			);
 		}
@@ -331,7 +331,7 @@ class MCP_Client {
 		// Should never reach here, but return generic error just in case.
 		return new WP_Error(
 			'mcp_max_retries_exceeded',
-			__( 'Maximum retry attempts exceeded for MCP service.', 'wyvern-ai-styling' )
+			__( 'Maximum retry attempts exceeded for MCP service.', 'wyverncss' )
 		);
 	}
 
@@ -349,7 +349,7 @@ class MCP_Client {
 		if ( false === $body_json ) {
 			return new WP_Error(
 				'mcp_json_encode_failed',
-				__( 'Failed to encode MCP request payload.', 'wyvern-ai-styling' )
+				__( 'Failed to encode MCP request payload.', 'wyverncss' )
 			);
 		}
 
@@ -374,7 +374,7 @@ class MCP_Client {
 				'mcp_network_error',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'MCP service network error: %s', 'wyvern-ai-styling' ),
+					__( 'MCP service network error: %s', 'wyverncss' ),
 					$response->get_error_message()
 				),
 				array( 'code' => 'SERVICE_UNREACHABLE' )
@@ -389,7 +389,7 @@ class MCP_Client {
 		if ( null === $data ) {
 			return new WP_Error(
 				'mcp_invalid_response',
-				__( 'MCP service returned invalid JSON response.', 'wyvern-ai-styling' ),
+				__( 'MCP service returned invalid JSON response.', 'wyverncss' ),
 				array( 'code' => 'INVALID_RESPONSE' )
 			);
 		}
@@ -403,7 +403,7 @@ class MCP_Client {
 		if ( ! isset( $data['jsonrpc'] ) || '2.0' !== $data['jsonrpc'] ) {
 			return new WP_Error(
 				'mcp_invalid_response',
-				__( 'Invalid JSON-RPC 2.0 response format.', 'wyvern-ai-styling' ),
+				__( 'Invalid JSON-RPC 2.0 response format.', 'wyverncss' ),
 				array( 'code' => 'INVALID_RESPONSE' )
 			);
 		}
@@ -412,7 +412,7 @@ class MCP_Client {
 		if ( isset( $data['error'] ) ) {
 			return new WP_Error(
 				'mcp_tool_error',
-				$data['error']['message'] ?? __( 'MCP tool execution failed.', 'wyvern-ai-styling' ),
+				$data['error']['message'] ?? __( 'MCP tool execution failed.', 'wyverncss' ),
 				array(
 					'code'    => $data['error']['code'] ?? -32603,
 					'details' => $data['error']['data'] ?? array(),
@@ -424,7 +424,7 @@ class MCP_Client {
 		if ( ! isset( $data['result'] ) ) {
 			return new WP_Error(
 				'mcp_invalid_response',
-				__( 'MCP response missing result field.', 'wyvern-ai-styling' ),
+				__( 'MCP response missing result field.', 'wyverncss' ),
 				array( 'code' => 'INVALID_RESPONSE' )
 			);
 		}
@@ -475,7 +475,7 @@ class MCP_Client {
 	private function handle_error_response( int $status_code, array $data ): WP_Error {
 		// Client errors (4xx) - don't retry.
 		if ( $status_code >= 400 && $status_code < 500 ) {
-			$message = $data['error']['message'] ?? __( 'MCP client error.', 'wyvern-ai-styling' );
+			$message = $data['error']['message'] ?? __( 'MCP client error.', 'wyverncss' );
 			return new WP_Error(
 				'mcp_client_error',
 				$message,
@@ -487,7 +487,7 @@ class MCP_Client {
 		}
 
 		// Server errors (5xx) - retryable.
-		$message = $data['error']['message'] ?? __( 'MCP server error.', 'wyvern-ai-styling' );
+		$message = $data['error']['message'] ?? __( 'MCP server error.', 'wyverncss' );
 		return new WP_Error(
 			'mcp_server_error',
 			$message,

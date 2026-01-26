@@ -37,7 +37,7 @@ class RAG_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace.
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * REST base path.
@@ -107,14 +107,14 @@ class RAG_Controller extends WP_REST_Controller {
 				'permission_callback' => array( $this, 'check_admin_permission' ),
 				'args'                => array(
 					'content_type' => array(
-						'description'       => __( 'Content type (post, page, custom)', 'wyvern-ai-styling' ),
+						'description'       => __( 'Content type (post, page, custom)', 'wyverncss' ),
 						'type'              => 'string',
 						'required'          => true,
 						'sanitize_callback' => 'sanitize_key',
 						'validate_callback' => 'rest_validate_request_arg',
 					),
 					'content_id'   => array(
-						'description'       => __( 'Content ID', 'wyvern-ai-styling' ),
+						'description'       => __( 'Content ID', 'wyverncss' ),
 						'type'              => 'integer',
 						'required'          => true,
 						'sanitize_callback' => 'absint',
@@ -150,7 +150,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -199,7 +199,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -250,7 +250,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -297,7 +297,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -335,7 +335,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -364,39 +364,39 @@ class RAG_Controller extends WP_REST_Controller {
 	private function get_generate_args(): array {
 		return array(
 			'bot_slug'             => array(
-				'description'       => __( 'Bot slug identifier', 'wyvern-ai-styling' ),
+				'description'       => __( 'Bot slug identifier', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'user_message'         => array(
-				'description'       => __( 'User message/question', 'wyvern-ai-styling' ),
+				'description'       => __( 'User message/question', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_textarea_field',
 			),
 			'enable_rag'           => array(
-				'description' => __( 'Enable RAG (Retrieval Augmented Generation)', 'wyvern-ai-styling' ),
+				'description' => __( 'Enable RAG (Retrieval Augmented Generation)', 'wyverncss' ),
 				'type'        => 'boolean',
 				'default'     => true,
 			),
 			'top_k'                => array(
-				'description' => __( 'Number of content pieces to retrieve (1-20)', 'wyvern-ai-styling' ),
+				'description' => __( 'Number of content pieces to retrieve (1-20)', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 5,
 				'minimum'     => 1,
 				'maximum'     => 20,
 			),
 			'min_similarity'       => array(
-				'description' => __( 'Minimum similarity threshold (0.0-1.0)', 'wyvern-ai-styling' ),
+				'description' => __( 'Minimum similarity threshold (0.0-1.0)', 'wyverncss' ),
 				'type'        => 'number',
 				'default'     => 0.7,
 				'minimum'     => 0.0,
 				'maximum'     => 1.0,
 			),
 			'conversation_history' => array(
-				'description' => __( 'Previous conversation messages for context', 'wyvern-ai-styling' ),
+				'description' => __( 'Previous conversation messages for context', 'wyverncss' ),
 				'type'        => 'array',
 				'items'       => array(
 					'type' => 'object',
@@ -413,37 +413,37 @@ class RAG_Controller extends WP_REST_Controller {
 	private function get_index_args(): array {
 		return array(
 			'content_type' => array(
-				'description'       => __( 'Content type (post, page, custom)', 'wyvern-ai-styling' ),
+				'description'       => __( 'Content type (post, page, custom)', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_key',
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'content_id'   => array(
-				'description'       => __( 'WordPress content ID', 'wyvern-ai-styling' ),
+				'description'       => __( 'WordPress content ID', 'wyverncss' ),
 				'type'              => 'integer',
 				'required'          => true,
 				'sanitize_callback' => 'absint',
 			),
 			'title'        => array(
-				'description'       => __( 'Content title', 'wyvern-ai-styling' ),
+				'description'       => __( 'Content title', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'content'      => array(
-				'description'       => __( 'Full content text', 'wyvern-ai-styling' ),
+				'description'       => __( 'Full content text', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'wp_kses_post',
 			),
 			'url'          => array(
-				'description'       => __( 'Content URL', 'wyvern-ai-styling' ),
+				'description'       => __( 'Content URL', 'wyverncss' ),
 				'type'              => 'string',
 				'sanitize_callback' => 'esc_url_raw',
 			),
 			'excerpt'      => array(
-				'description'       => __( 'Content excerpt/summary', 'wyvern-ai-styling' ),
+				'description'       => __( 'Content excerpt/summary', 'wyverncss' ),
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_textarea_field',
 			),
@@ -458,27 +458,27 @@ class RAG_Controller extends WP_REST_Controller {
 	private function get_search_args(): array {
 		return array(
 			'query'          => array(
-				'description'       => __( 'Search query text', 'wyvern-ai-styling' ),
+				'description'       => __( 'Search query text', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'limit'          => array(
-				'description' => __( 'Maximum number of results (1-50)', 'wyvern-ai-styling' ),
+				'description' => __( 'Maximum number of results (1-50)', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 10,
 				'minimum'     => 1,
 				'maximum'     => 50,
 			),
 			'min_similarity' => array(
-				'description' => __( 'Minimum similarity threshold (0.0-1.0)', 'wyvern-ai-styling' ),
+				'description' => __( 'Minimum similarity threshold (0.0-1.0)', 'wyverncss' ),
 				'type'        => 'number',
 				'default'     => 0.7,
 				'minimum'     => 0.0,
 				'maximum'     => 1.0,
 			),
 			'content_types'  => array(
-				'description' => __( 'Filter by content types', 'wyvern-ai-styling' ),
+				'description' => __( 'Filter by content types', 'wyverncss' ),
 				'type'        => 'array',
 				'items'       => array(
 					'type' => 'string',
@@ -497,7 +497,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You do not have permission to use RAG features.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to use RAG features.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -515,7 +515,7 @@ class RAG_Controller extends WP_REST_Controller {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You do not have permission to manage RAG settings.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to manage RAG settings.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}

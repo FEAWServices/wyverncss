@@ -69,7 +69,7 @@ class Conversation_Service {
 		if ( strlen( $title ) > 255 ) {
 			return new WP_Error(
 				'invalid_title',
-				__( 'Conversation title cannot exceed 255 characters', 'wyvern-ai-styling' ),
+				__( 'Conversation title cannot exceed 255 characters', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -88,7 +88,7 @@ class Conversation_Service {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to create conversation', 'wyvern-ai-styling' ),
+				__( 'Failed to create conversation', 'wyverncss' ),
 				array(
 					'status' => 500,
 					'error'  => $wpdb->last_error,
@@ -127,7 +127,7 @@ class Conversation_Service {
 				'invalid_role',
 				sprintf(
 					/* translators: %s: Valid role values */
-					__( 'Invalid role. Must be one of: %s', 'wyvern-ai-styling' ),
+					__( 'Invalid role. Must be one of: %s', 'wyverncss' ),
 					implode( ', ', $valid_roles )
 				),
 				array( 'status' => 400 )
@@ -138,7 +138,7 @@ class Conversation_Service {
 		if ( ! $this->conversation_exists( $conversation_id ) ) {
 			return new WP_Error(
 				'conversation_not_found',
-				__( 'Conversation not found', 'wyvern-ai-styling' ),
+				__( 'Conversation not found', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -150,7 +150,7 @@ class Conversation_Service {
 			if ( false === $tool_calls_json ) {
 				return new WP_Error(
 					'json_encode_error',
-					__( 'Failed to encode tool calls', 'wyvern-ai-styling' ),
+					__( 'Failed to encode tool calls', 'wyverncss' ),
 					array( 'status' => 500 )
 				);
 			}
@@ -173,7 +173,7 @@ class Conversation_Service {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to save message', 'wyvern-ai-styling' ),
+				__( 'Failed to save message', 'wyverncss' ),
 				array(
 					'status' => 500,
 					'error'  => $wpdb->last_error,
@@ -228,7 +228,7 @@ class Conversation_Service {
 		if ( ! $this->conversation_exists( $conversation_id ) ) {
 			return new WP_Error(
 				'conversation_not_found',
-				__( 'Conversation not found', 'wyvern-ai-styling' ),
+				__( 'Conversation not found', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -251,7 +251,7 @@ class Conversation_Service {
 		if ( null === $messages ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to retrieve conversation history', 'wyvern-ai-styling' ),
+				__( 'Failed to retrieve conversation history', 'wyverncss' ),
 				array(
 					'status' => 500,
 					'error'  => $wpdb->last_error,
@@ -326,7 +326,7 @@ class Conversation_Service {
 		if ( null === $conversations ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to retrieve conversations', 'wyvern-ai-styling' ),
+				__( 'Failed to retrieve conversations', 'wyverncss' ),
 				array(
 					'status' => 500,
 					'error'  => $wpdb->last_error,
@@ -378,7 +378,7 @@ class Conversation_Service {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to delete conversation', 'wyvern-ai-styling' ),
+				__( 'Failed to delete conversation', 'wyverncss' ),
 				array(
 					'status' => 500,
 					'error'  => $wpdb->last_error,
@@ -446,7 +446,7 @@ class Conversation_Service {
 	private function get_system_prompt(): string {
 		return apply_filters(
 			'wyverncss_ai_system_prompt',
-			__( 'You are WyvernCSS AI, a helpful WordPress assistant with access to WordPress management tools. Use the available tools to help users manage their WordPress site. Always confirm successful operations and explain any errors clearly.', 'wyvern-ai-styling' )
+			__( 'You are WyvernCSS AI, a helpful WordPress assistant with access to WordPress management tools. Use the available tools to help users manage their WordPress site. Always confirm successful operations and explain any errors clearly.', 'wyverncss' )
 		);
 	}
 
@@ -491,7 +491,7 @@ class Conversation_Service {
 		if ( null === $conversation ) {
 			return new WP_Error(
 				'conversation_not_found',
-				__( 'Conversation not found', 'wyvern-ai-styling' ),
+				__( 'Conversation not found', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -519,7 +519,7 @@ class Conversation_Service {
 		if ( strlen( $title ) > 255 ) {
 			return new WP_Error(
 				'invalid_title',
-				__( 'Title cannot exceed 255 characters', 'wyvern-ai-styling' ),
+				__( 'Title cannot exceed 255 characters', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -542,7 +542,7 @@ class Conversation_Service {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to update conversation title', 'wyvern-ai-styling' ),
+				__( 'Failed to update conversation title', 'wyverncss' ),
 				array(
 					'status' => 500,
 					'error'  => $wpdb->last_error,
@@ -597,7 +597,7 @@ class Conversation_Service {
 		if ( null === $owner ) {
 			return new WP_Error(
 				'conversation_not_found',
-				__( 'Conversation not found', 'wyvern-ai-styling' ),
+				__( 'Conversation not found', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -607,7 +607,7 @@ class Conversation_Service {
 				'permission_denied',
 				sprintf(
 					/* translators: %s: action name */
-					__( 'You do not have permission to %s this conversation', 'wyvern-ai-styling' ),
+					__( 'You do not have permission to %s this conversation', 'wyverncss' ),
 					$action
 				),
 				array( 'status' => 403 )

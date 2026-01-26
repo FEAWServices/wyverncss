@@ -47,7 +47,7 @@ class Post_Operations_Handler {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to edit posts.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to edit posts.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -55,7 +55,7 @@ class Post_Operations_Handler {
 		if ( empty( $post_ids ) ) {
 			return new WP_Error(
 				'invalid_params',
-				esc_html__( 'Post IDs are required.', 'wyvern-ai-styling' ),
+				esc_html__( 'Post IDs are required.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -63,7 +63,7 @@ class Post_Operations_Handler {
 		if ( empty( $categories ) ) {
 			return new WP_Error(
 				'invalid_params',
-				esc_html__( 'Categories are required.', 'wyvern-ai-styling' ),
+				esc_html__( 'Categories are required.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -83,7 +83,7 @@ class Post_Operations_Handler {
 		if ( empty( $category_ids ) ) {
 			return new WP_Error(
 				'invalid_categories',
-				esc_html__( 'No valid categories found.', 'wyvern-ai-styling' ),
+				esc_html__( 'No valid categories found.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -115,7 +115,7 @@ class Post_Operations_Handler {
 			'action'         => 'bulk_update_categories',
 			'message'        => sprintf(
 				/* translators: %d: number of posts updated */
-				esc_html( _n( 'Updated categories for %d post.', 'Updated categories for %d posts.', $affected_count, 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Updated categories for %d post.', 'Updated categories for %d posts.', $affected_count, 'wyverncss' ) ),
 				$affected_count
 			),
 		);
@@ -132,7 +132,7 @@ class Post_Operations_Handler {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to edit posts.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to edit posts.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -140,7 +140,7 @@ class Post_Operations_Handler {
 		if ( empty( $post_ids ) ) {
 			return new WP_Error(
 				'invalid_params',
-				esc_html__( 'Post IDs are required.', 'wyvern-ai-styling' ),
+				esc_html__( 'Post IDs are required.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -148,7 +148,7 @@ class Post_Operations_Handler {
 		if ( empty( $tags ) ) {
 			return new WP_Error(
 				'invalid_params',
-				esc_html__( 'Tags are required.', 'wyvern-ai-styling' ),
+				esc_html__( 'Tags are required.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -180,7 +180,7 @@ class Post_Operations_Handler {
 			'action'         => 'bulk_update_tags',
 			'message'        => sprintf(
 				/* translators: %d: number of posts updated */
-				esc_html( _n( 'Updated tags for %d post.', 'Updated tags for %d posts.', $affected_count, 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Updated tags for %d post.', 'Updated tags for %d posts.', $affected_count, 'wyverncss' ) ),
 				$affected_count
 			),
 		);
@@ -196,7 +196,7 @@ class Post_Operations_Handler {
 		if ( ! current_user_can( 'publish_posts' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to publish posts.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to publish posts.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -259,7 +259,7 @@ class Post_Operations_Handler {
 			'action'         => 'bulk_publish_posts',
 			'message'        => sprintf(
 				/* translators: %d: number of posts published */
-				esc_html( _n( 'Published %d post.', 'Published %d posts.', $affected_count, 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Published %d post.', 'Published %d posts.', $affected_count, 'wyverncss' ) ),
 				$affected_count
 			),
 		);
@@ -275,7 +275,7 @@ class Post_Operations_Handler {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to edit posts.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to edit posts.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -338,7 +338,7 @@ class Post_Operations_Handler {
 			'action'         => 'bulk_unpublish_posts',
 			'message'        => sprintf(
 				/* translators: %d: number of posts unpublished */
-				esc_html( _n( 'Unpublished %d post.', 'Unpublished %d posts.', $affected_count, 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Unpublished %d post.', 'Unpublished %d posts.', $affected_count, 'wyverncss' ) ),
 				$affected_count
 			),
 		);
@@ -354,7 +354,7 @@ class Post_Operations_Handler {
 		if ( ! current_user_can( 'delete_posts' ) ) {
 			return new WP_Error(
 				'permission_denied',
-				esc_html__( 'You do not have permission to delete posts.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to delete posts.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -362,7 +362,7 @@ class Post_Operations_Handler {
 		if ( $days_old < 1 ) {
 			return new WP_Error(
 				'invalid_params',
-				esc_html__( 'Days must be at least 1.', 'wyvern-ai-styling' ),
+				esc_html__( 'Days must be at least 1.', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -409,7 +409,7 @@ class Post_Operations_Handler {
 			'action'         => 'delete_old_drafts',
 			'message'        => sprintf(
 				/* translators: %1$d: number of posts deleted, %2$d: number of days */
-				esc_html( _n( 'Deleted %1$d draft older than %2$d days.', 'Deleted %1$d drafts older than %2$d days.', $affected_count, 'wyvern-ai-styling' ) ),
+				esc_html( _n( 'Deleted %1$d draft older than %2$d days.', 'Deleted %1$d drafts older than %2$d days.', $affected_count, 'wyverncss' ) ),
 				$affected_count,
 				$days_old
 			),

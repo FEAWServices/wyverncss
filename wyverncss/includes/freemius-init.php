@@ -96,8 +96,8 @@ if ( ! function_exists( 'wyverncss_fs' ) ) {
 			$wyverncss_fs = fs_dynamic_init(
 				array(
 					'id'                  => '22259',
-					'slug'                => 'wyvern-ai-styling',
-					'premium_slug'        => 'wyvernpress-premium',
+					'slug'                => 'wyverncss',
+					'premium_slug'        => 'wyverncss-premium',
 					'type'                => 'plugin',
 					'public_key'          => 'pk_5cad950fed79e06553e6b464645ed',
 					'is_premium'          => false,
@@ -108,7 +108,7 @@ if ( ! function_exists( 'wyverncss_fs' ) ) {
 					// NOTE: No trial period - WordPress.org prohibits time-limited features.
 					// Free tier has 20 requests/day, Premium is unlimited - both fully functional.
 					'menu'                => array(
-						'slug'    => 'wyvern-ai-styling',
+						'slug'    => 'wyverncss',
 						'parent'  => array(
 							'slug' => 'options-general.php',
 						),

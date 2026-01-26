@@ -32,7 +32,7 @@ class DeleteBlockTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_delete_block';
-		$this->description = __( 'Delete a Gutenberg block at a specific index (0-based) from a post. Useful for removing unwanted content sections.', 'wyvern-ai-styling' );
+		$this->description = __( 'Delete a Gutenberg block at a specific index (0-based) from a post. Useful for removing unwanted content sections.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -42,12 +42,12 @@ class DeleteBlockTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id' => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'index'   => array(
 					'type'        => 'integer',
-					'description' => __( 'Index of the block to delete (0-based)', 'wyvern-ai-styling' ),
+					'description' => __( 'Index of the block to delete (0-based)', 'wyverncss' ),
 					'minimum'     => 0,
 				),
 			),
@@ -102,7 +102,7 @@ class DeleteBlockTool extends MCP_Tool_Base {
 			'deleted_index'    => $index,
 			'deleted_block'    => $deleted_block['blockName'] ?? 'unknown',
 			'remaining_blocks' => count( $existing_blocks ),
-			'message'          => __( 'Block deleted successfully', 'wyvern-ai-styling' ),
+			'message'          => __( 'Block deleted successfully', 'wyverncss' ),
 		);
 	}
 }

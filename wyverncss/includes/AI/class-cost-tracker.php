@@ -87,7 +87,7 @@ class CostTracker {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to log usage', 'wyvern-ai-styling' ),
+				__( 'Failed to log usage', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}
@@ -122,7 +122,7 @@ class CostTracker {
 		if ( null === $query ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to build query', 'wyvern-ai-styling' )
+				__( 'Failed to build query', 'wyverncss' )
 			);
 		}
 
@@ -132,7 +132,7 @@ class CostTracker {
 		if ( $wpdb->last_error ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to retrieve usage', 'wyvern-ai-styling' ),
+				__( 'Failed to retrieve usage', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}
@@ -174,7 +174,7 @@ class CostTracker {
 		if ( null === $query ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to build query', 'wyvern-ai-styling' )
+				__( 'Failed to build query', 'wyverncss' )
 			);
 		}
 
@@ -184,7 +184,7 @@ class CostTracker {
 		if ( $wpdb->last_error ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to retrieve usage by model', 'wyvern-ai-styling' ),
+				__( 'Failed to retrieve usage by model', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}
@@ -291,7 +291,7 @@ class CostTracker {
 		if ( $wpdb->last_error ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to retrieve logs', 'wyvern-ai-styling' ),
+				__( 'Failed to retrieve logs', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}
@@ -334,7 +334,7 @@ class CostTracker {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to clear old logs', 'wyvern-ai-styling' ),
+				__( 'Failed to clear old logs', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}

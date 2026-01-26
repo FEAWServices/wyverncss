@@ -37,7 +37,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace.
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * REST base path.
@@ -136,7 +136,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -200,7 +200,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -244,7 +244,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 				'errors'  => $errors,
 				'message' => sprintf(
 					/* translators: %1$d: indexed count, %2$d: total count */
-					__( 'Indexed %1$d of %2$d patterns', 'wyvern-ai-styling' ),
+					__( 'Indexed %1$d of %2$d patterns', 'wyverncss' ),
 					$indexed,
 					count( $patterns )
 				),
@@ -268,7 +268,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -327,7 +327,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyvern-ai-styling' ),
+				__( 'License key not configured. Please configure your license key in WyvernCSS settings.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -336,7 +336,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		$format = $request->get_param( 'format' ) ?? 'json';
 
 		// Get analytics data.
-		$analytics_request = new WP_REST_Request( 'GET', '/wyvernpress/v1/patterns/analytics' );
+		$analytics_request = new WP_REST_Request( 'GET', '/wyverncss/v1/patterns/analytics' );
 		$analytics_request->set_param( 'period', $period );
 		$analytics_response = $this->get_analytics( $analytics_request );
 
@@ -400,7 +400,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 				'deleted_count' => $deleted,
 				'message'       => sprintf(
 					/* translators: %d: number of cache entries deleted */
-					__( 'Cleared %d pattern cache entries', 'wyvern-ai-styling' ),
+					__( 'Cleared %d pattern cache entries', 'wyverncss' ),
 					$deleted
 				),
 			),
@@ -482,20 +482,20 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 	private function get_match_args(): array {
 		return array(
 			'prompt'         => array(
-				'description'       => __( 'User prompt for pattern matching', 'wyvern-ai-styling' ),
+				'description'       => __( 'User prompt for pattern matching', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'max_results'    => array(
-				'description' => __( 'Maximum number of pattern matches', 'wyvern-ai-styling' ),
+				'description' => __( 'Maximum number of pattern matches', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 10,
 				'minimum'     => 1,
 				'maximum'     => 50,
 			),
 			'min_similarity' => array(
-				'description' => __( 'Minimum similarity threshold (0.0-1.0)', 'wyvern-ai-styling' ),
+				'description' => __( 'Minimum similarity threshold (0.0-1.0)', 'wyverncss' ),
 				'type'        => 'number',
 				'default'     => 0.7,
 				'minimum'     => 0.0,
@@ -512,7 +512,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 	private function get_index_args(): array {
 		return array(
 			'patterns' => array(
-				'description' => __( 'Array of pattern definitions to index', 'wyvern-ai-styling' ),
+				'description' => __( 'Array of pattern definitions to index', 'wyverncss' ),
 				'type'        => 'array',
 				'required'    => true,
 				'items'       => array(
@@ -536,7 +536,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 	private function get_analytics_args(): array {
 		return array(
 			'period' => array(
-				'description'       => __( 'Time period for analytics (1h, 24h, 7d, 30d, 90d)', 'wyvern-ai-styling' ),
+				'description'       => __( 'Time period for analytics (1h, 24h, 7d, 30d, 90d)', 'wyverncss' ),
 				'type'              => 'string',
 				'default'           => '24h',
 				'enum'              => array( '1h', '24h', '7d', '30d', '90d' ),
@@ -553,14 +553,14 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 	private function get_export_args(): array {
 		return array(
 			'period' => array(
-				'description'       => __( 'Time period for export (7d, 30d, 90d)', 'wyvern-ai-styling' ),
+				'description'       => __( 'Time period for export (7d, 30d, 90d)', 'wyverncss' ),
 				'type'              => 'string',
 				'default'           => '30d',
 				'enum'              => array( '7d', '30d', '90d' ),
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'format' => array(
-				'description'       => __( 'Export format (json, csv)', 'wyvern-ai-styling' ),
+				'description'       => __( 'Export format (json, csv)', 'wyverncss' ),
 				'type'              => 'string',
 				'default'           => 'json',
 				'enum'              => array( 'json', 'csv' ),
@@ -579,7 +579,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You do not have permission to use pattern features.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to use pattern features.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -597,7 +597,7 @@ class Pattern_Analytics_Controller extends WP_REST_Controller {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You do not have permission to manage pattern analytics.', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to manage pattern analytics.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}

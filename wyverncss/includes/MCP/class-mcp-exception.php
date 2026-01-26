@@ -99,14 +99,14 @@ class MCP_Exception extends Exception {
 	 * @return self Exception instance.
 	 */
 	public static function service_unreachable( string $reason = '', ?Exception $previous = null ): self {
-		$message = __( 'MCP service is currently unavailable. Please try again later.', 'wyvern-ai-styling' );
+		$message = __( 'MCP service is currently unavailable. Please try again later.', 'wyverncss' );
 
 		return new self(
 			$message,
 			'SERVICE_UNREACHABLE',
 			array(
 				'reason'    => $reason,
-				'user_hint' => __( 'Check your internet connection or contact support if this persists.', 'wyvern-ai-styling' ),
+				'user_hint' => __( 'Check your internet connection or contact support if this persists.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -124,7 +124,7 @@ class MCP_Exception extends Exception {
 	public static function timeout( int $timeout = 30, ?Exception $previous = null ): self {
 		$message = sprintf(
 			/* translators: %d: timeout in seconds */
-			__( 'MCP service request timed out after %d seconds.', 'wyvern-ai-styling' ),
+			__( 'MCP service request timed out after %d seconds.', 'wyverncss' ),
 			$timeout
 		);
 
@@ -133,7 +133,7 @@ class MCP_Exception extends Exception {
 			'TIMEOUT',
 			array(
 				'timeout'   => $timeout,
-				'user_hint' => __( 'The service is taking longer than expected. Please try again.', 'wyvern-ai-styling' ),
+				'user_hint' => __( 'The service is taking longer than expected. Please try again.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -149,14 +149,14 @@ class MCP_Exception extends Exception {
 	 * @return self Exception instance.
 	 */
 	public static function invalid_response( string $reason = '', ?Exception $previous = null ): self {
-		$message = __( 'MCP service returned an invalid response.', 'wyvern-ai-styling' );
+		$message = __( 'MCP service returned an invalid response.', 'wyverncss' );
 
 		return new self(
 			$message,
 			'INVALID_RESPONSE',
 			array(
 				'reason'    => $reason,
-				'user_hint' => __( 'There may be a service version mismatch. Contact support.', 'wyvern-ai-styling' ),
+				'user_hint' => __( 'There may be a service version mismatch. Contact support.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -174,7 +174,7 @@ class MCP_Exception extends Exception {
 	public static function tool_not_found( string $tool_name, ?Exception $previous = null ): self {
 		$message = sprintf(
 			/* translators: %s: tool name */
-			__( 'MCP tool "%s" was not found.', 'wyvern-ai-styling' ),
+			__( 'MCP tool "%s" was not found.', 'wyverncss' ),
 			$tool_name
 		);
 
@@ -183,7 +183,7 @@ class MCP_Exception extends Exception {
 			'TOOL_NOT_FOUND',
 			array(
 				'tool_name' => $tool_name,
-				'user_hint' => __( 'The requested feature may not be available in your plan.', 'wyvern-ai-styling' ),
+				'user_hint' => __( 'The requested feature may not be available in your plan.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -202,7 +202,7 @@ class MCP_Exception extends Exception {
 	public static function invalid_params( string $tool_name, array $errors = array(), ?Exception $previous = null ): self {
 		$message = sprintf(
 			/* translators: %s: tool name */
-			__( 'Invalid parameters provided for tool "%s".', 'wyvern-ai-styling' ),
+			__( 'Invalid parameters provided for tool "%s".', 'wyverncss' ),
 			$tool_name
 		);
 
@@ -212,7 +212,7 @@ class MCP_Exception extends Exception {
 			array(
 				'tool_name'         => $tool_name,
 				'validation_errors' => $errors,
-				'user_hint'         => __( 'Please check your input and try again.', 'wyvern-ai-styling' ),
+				'user_hint'         => __( 'Please check your input and try again.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -231,7 +231,7 @@ class MCP_Exception extends Exception {
 	public static function tool_execution_failed( string $tool_name, string $error_message = '', ?Exception $previous = null ): self {
 		$message = sprintf(
 			/* translators: %s: tool name */
-			__( 'Failed to execute tool "%s".', 'wyvern-ai-styling' ),
+			__( 'Failed to execute tool "%s".', 'wyverncss' ),
 			$tool_name
 		);
 
@@ -241,7 +241,7 @@ class MCP_Exception extends Exception {
 			array(
 				'tool_name'     => $tool_name,
 				'error_message' => $error_message,
-				'user_hint'     => __( 'An error occurred while processing your request. Please try again.', 'wyvern-ai-styling' ),
+				'user_hint'     => __( 'An error occurred while processing your request. Please try again.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -261,7 +261,7 @@ class MCP_Exception extends Exception {
 
 		$message = sprintf(
 			/* translators: %d: minutes until retry */
-			__( 'MCP service is temporarily disabled. Please try again in %d minutes.', 'wyvern-ai-styling' ),
+			__( 'MCP service is temporarily disabled. Please try again in %d minutes.', 'wyverncss' ),
 			$retry_minutes
 		);
 
@@ -271,7 +271,7 @@ class MCP_Exception extends Exception {
 			array(
 				'retry_after'   => $retry_after,
 				'retry_minutes' => $retry_minutes,
-				'user_hint'     => __( 'The service is experiencing issues. It will automatically recover.', 'wyvern-ai-styling' ),
+				'user_hint'     => __( 'The service is experiencing issues. It will automatically recover.', 'wyverncss' ),
 			),
 			$previous
 		);
@@ -287,14 +287,14 @@ class MCP_Exception extends Exception {
 	 * @return self Exception instance.
 	 */
 	public static function authentication_failed( string $reason = '', ?Exception $previous = null ): self {
-		$message = __( 'MCP service authentication failed.', 'wyvern-ai-styling' );
+		$message = __( 'MCP service authentication failed.', 'wyverncss' );
 
 		return new self(
 			$message,
 			'AUTHENTICATION_FAILED',
 			array(
 				'reason'    => $reason,
-				'user_hint' => __( 'Please check your license key and configuration.', 'wyvern-ai-styling' ),
+				'user_hint' => __( 'Please check your license key and configuration.', 'wyverncss' ),
 			),
 			$previous
 		);

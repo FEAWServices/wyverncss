@@ -26,9 +26,9 @@ use WP_Error;
  * Settings Controller Class
  *
  * Handles:
- * - GET /wyvernpress/v1/settings - Retrieve settings
- * - POST /wyvernpress/v1/settings - Update settings
- * - POST /wyvernpress/v1/settings/export - Export settings
+ * - GET /wyverncss/v1/settings - Retrieve settings
+ * - POST /wyverncss/v1/settings - Update settings
+ * - POST /wyverncss/v1/settings/export - Export settings
  *
  * Settings include:
  * - API key for cloud services
@@ -220,7 +220,7 @@ class Settings_Controller extends RESTController {
 		return $this->success_response(
 			array(
 				'settings' => $response_settings,
-				'message'  => esc_html__( 'Settings updated successfully.', 'wyvern-ai-styling' ),
+				'message'  => esc_html__( 'Settings updated successfully.', 'wyverncss' ),
 			)
 		);
 	}
@@ -251,7 +251,7 @@ class Settings_Controller extends RESTController {
 				if ( strlen( $sanitized ) > 0 && strlen( $sanitized ) < 10 ) {
 					return $this->error_response(
 						'invalid_api_key',
-						esc_html__( 'API key must be at least 10 characters.', 'wyvern-ai-styling' ),
+						esc_html__( 'API key must be at least 10 characters.', 'wyverncss' ),
 						400
 					);
 				}
@@ -264,7 +264,7 @@ class Settings_Controller extends RESTController {
 						'invalid_tier',
 						sprintf(
 							/* translators: %s: valid tier options */
-							esc_html__( 'Invalid tier. Must be one of: %s', 'wyvern-ai-styling' ),
+							esc_html__( 'Invalid tier. Must be one of: %s', 'wyverncss' ),
 							implode( ', ', self::VALID_TIERS )
 						),
 						400
@@ -279,7 +279,7 @@ class Settings_Controller extends RESTController {
 						'invalid_model',
 						sprintf(
 							/* translators: %s: valid model options */
-							esc_html__( 'Invalid AI model. Must be one of: %s', 'wyvern-ai-styling' ),
+							esc_html__( 'Invalid AI model. Must be one of: %s', 'wyverncss' ),
 							implode( ', ', self::VALID_MODELS )
 						),
 						400
@@ -292,7 +292,7 @@ class Settings_Controller extends RESTController {
 				if ( $duration < 0 || $duration > 604800 ) { // Max 7 days.
 					return $this->error_response(
 						'invalid_cache_duration',
-						esc_html__( 'Cache duration must be between 0 and 604800 seconds (7 days).', 'wyvern-ai-styling' ),
+						esc_html__( 'Cache duration must be between 0 and 604800 seconds (7 days).', 'wyverncss' ),
 						400
 					);
 				}
@@ -303,7 +303,7 @@ class Settings_Controller extends RESTController {
 				if ( $confidence < 0 || $confidence > 100 ) {
 					return $this->error_response(
 						'invalid_confidence',
-						esc_html__( 'Minimum confidence must be between 0 and 100.', 'wyvern-ai-styling' ),
+						esc_html__( 'Minimum confidence must be between 0 and 100.', 'wyverncss' ),
 						400
 					);
 				}
@@ -333,7 +333,7 @@ class Settings_Controller extends RESTController {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				esc_html__( 'You do not have permission to manage settings.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to manage settings.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -350,42 +350,42 @@ class Settings_Controller extends RESTController {
 	private function get_endpoint_args(): array {
 		return array(
 			'api_key'          => array(
-				'description'       => __( 'API key for cloud services.', 'wyvern-ai-styling' ),
+				'description'       => __( 'API key for cloud services.', 'wyverncss' ),
 				'type'              => 'string',
 				'sanitize_callback' => array( $this, 'sanitize_text' ),
 			),
 			'tier'             => array(
-				'description' => __( 'Subscription tier.', 'wyvern-ai-styling' ),
+				'description' => __( 'Subscription tier.', 'wyverncss' ),
 				'type'        => 'string',
 				'enum'        => self::VALID_TIERS,
 			),
 			'ai_model'         => array(
-				'description' => __( 'AI model preference.', 'wyvern-ai-styling' ),
+				'description' => __( 'AI model preference.', 'wyverncss' ),
 				'type'        => 'string',
 				'enum'        => self::VALID_MODELS,
 			),
 			'cache_enabled'    => array(
-				'description' => __( 'Enable pattern cache.', 'wyvern-ai-styling' ),
+				'description' => __( 'Enable pattern cache.', 'wyverncss' ),
 				'type'        => 'boolean',
 			),
 			'cache_duration'   => array(
-				'description' => __( 'Cache duration in seconds.', 'wyvern-ai-styling' ),
+				'description' => __( 'Cache duration in seconds.', 'wyverncss' ),
 				'type'        => 'integer',
 				'minimum'     => 0,
 				'maximum'     => 604800,
 			),
 			'min_confidence'   => array(
-				'description' => __( 'Minimum confidence threshold for pattern matching.', 'wyvern-ai-styling' ),
+				'description' => __( 'Minimum confidence threshold for pattern matching.', 'wyverncss' ),
 				'type'        => 'integer',
 				'minimum'     => 0,
 				'maximum'     => 100,
 			),
 			'enable_analytics' => array(
-				'description' => __( 'Enable usage analytics.', 'wyvern-ai-styling' ),
+				'description' => __( 'Enable usage analytics.', 'wyverncss' ),
 				'type'        => 'boolean',
 			),
 			'enable_telemetry' => array(
-				'description' => __( 'Enable telemetry data collection.', 'wyvern-ai-styling' ),
+				'description' => __( 'Enable telemetry data collection.', 'wyverncss' ),
 				'type'        => 'boolean',
 			),
 		);
@@ -408,44 +408,44 @@ class Settings_Controller extends RESTController {
 			'type'       => 'object',
 			'properties' => array(
 				'api_key'          => array(
-					'description' => __( 'API key for cloud services (masked).', 'wyvern-ai-styling' ),
+					'description' => __( 'API key for cloud services (masked).', 'wyverncss' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'tier'             => array(
-					'description' => __( 'Subscription tier.', 'wyvern-ai-styling' ),
+					'description' => __( 'Subscription tier.', 'wyverncss' ),
 					'type'        => 'string',
 					'enum'        => self::VALID_TIERS,
 					'context'     => array( 'view', 'edit' ),
 				),
 				'ai_model'         => array(
-					'description' => __( 'AI model preference.', 'wyvern-ai-styling' ),
+					'description' => __( 'AI model preference.', 'wyverncss' ),
 					'type'        => 'string',
 					'enum'        => self::VALID_MODELS,
 					'context'     => array( 'view', 'edit' ),
 				),
 				'cache_enabled'    => array(
-					'description' => __( 'Whether pattern cache is enabled.', 'wyvern-ai-styling' ),
+					'description' => __( 'Whether pattern cache is enabled.', 'wyverncss' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'cache_duration'   => array(
-					'description' => __( 'Cache duration in seconds.', 'wyvern-ai-styling' ),
+					'description' => __( 'Cache duration in seconds.', 'wyverncss' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'min_confidence'   => array(
-					'description' => __( 'Minimum confidence threshold.', 'wyvern-ai-styling' ),
+					'description' => __( 'Minimum confidence threshold.', 'wyverncss' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'enable_analytics' => array(
-					'description' => __( 'Whether analytics are enabled.', 'wyvern-ai-styling' ),
+					'description' => __( 'Whether analytics are enabled.', 'wyverncss' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view', 'edit' ),
 				),
 				'enable_telemetry' => array(
-					'description' => __( 'Whether telemetry is enabled.', 'wyvern-ai-styling' ),
+					'description' => __( 'Whether telemetry is enabled.', 'wyverncss' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view', 'edit' ),
 				),

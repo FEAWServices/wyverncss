@@ -429,7 +429,7 @@ class MCP_Circuit_Breaker {
 		// Prepare email.
 		$subject = sprintf(
 			/* translators: %s: service name */
-			__( 'WyvernCSS: %s is unavailable', 'wyvern-ai-styling' ),
+			__( 'WyvernCSS: %s is unavailable', 'wyverncss' ),
 			ucwords( str_replace( '_', ' ', $this->service_name ) )
 		);
 
@@ -447,7 +447,7 @@ Technical Details:
 - State: OPEN (disabled)
 - Cooldown: %3$d minutes
 - Timestamp: %4$s',
-				'wyvern-ai-styling'
+				'wyverncss'
 			),
 			ucwords( str_replace( '_', ' ', $this->service_name ) ),
 			self::FAILURE_THRESHOLD,

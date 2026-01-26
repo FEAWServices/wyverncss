@@ -3,7 +3,7 @@
  * Plugin Name: WyvernCSS
  * Plugin URI: https://github.com/FEAWServices/wyverncss
  * Description: AI-powered CSS styling for Gutenberg. Select a block, describe how you want it to look, done.
- * Version: 1.0.15
+ * Version: 1.0.16
  * Author: FEAW
  * Author URI: https://feaw.co.uk
  * License: GPL v2 or later
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Plugin version.
  */
 if ( ! defined( 'WYVERNCSS_VERSION' ) ) {
-	define( 'WYVERNCSS_VERSION', '1.0.0' );
+	define( 'WYVERNCSS_VERSION', '1.0.16' );
 }
 
 /**
@@ -70,7 +70,7 @@ function wyverncss_check_wordpress_version(): void {
 						echo wp_kses_post(
 							sprintf(
 								/* translators: %s: Required WordPress version */
-								__( 'WyvernCSS requires WordPress version %s or higher. Please update WordPress.', 'wyvern-ai-styling' ),
+								__( 'WyvernCSS requires WordPress version %s or higher. Please update WordPress.', 'wyverncss' ),
 								'6.4'
 							)
 						);
@@ -104,7 +104,7 @@ function wyverncss_check_php_version(): void {
 						echo wp_kses_post(
 							sprintf(
 								/* translators: %s: Required PHP version */
-								__( 'WyvernCSS requires PHP version %s or higher. Please update PHP.', 'wyvern-ai-styling' ),
+								__( 'WyvernCSS requires PHP version %s or higher. Please update PHP.', 'wyverncss' ),
 								'8.1'
 							)
 						);

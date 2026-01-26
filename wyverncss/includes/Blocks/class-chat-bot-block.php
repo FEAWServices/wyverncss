@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Chat Bot Block
  *
- * Handles registration and rendering of the wyvernpress/chat-bot block.
+ * Handles registration and rendering of the wyverncss/chat-bot block.
  * This block allows embedding AI-powered chat bots in pages and posts.
  *
  * @since 1.0.0
@@ -63,7 +63,7 @@ class Chat_Bot_Block {
 	public function register_block_category( array $categories, $block_editor_context ): array { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 		// Check if category already exists.
 		foreach ( $categories as $category ) {
-			if ( 'wyvern-ai-styling' === $category['slug'] ) {
+			if ( 'wyverncss' === $category['slug'] ) {
 				return $categories;
 			}
 		}
@@ -73,8 +73,8 @@ class Chat_Bot_Block {
 		return array_merge(
 			array(
 				array(
-					'slug'  => 'wyvern-ai-styling',
-					'title' => __( 'WyvernCSS', 'wyvern-ai-styling' ),
+					'slug'  => 'wyverncss',
+					'title' => __( 'WyvernCSS', 'wyverncss' ),
 				),
 			),
 			$categories
@@ -105,7 +105,7 @@ class Chat_Bot_Block {
 
 		// Render container div with data attributes.
 		return sprintf(
-			'<div class="wp-block-wyvernpress-chat-bot wyvernpress-bot-widget" data-bot-id="%s" data-position="%s" data-theme="%s" data-width="%d" data-height="%d"></div>',
+			'<div class="wp-block-wyverncss-chat-bot wyverncss-bot-widget" data-bot-id="%s" data-position="%s" data-theme="%s" data-width="%d" data-height="%d"></div>',
 			esc_attr( $bot_id ),
 			esc_attr( $position ),
 			esc_attr( $theme ),
@@ -213,7 +213,7 @@ class Chat_Bot_Block {
 		}
 
 		wp_enqueue_script(
-			'wyvernpress-chat-widget',
+			'wyverncss-chat-widget',
 			WYVERNCSS_PLUGIN_URL . 'assets/build/chat-widget.js',
 			array( 'wp-element', 'wp-i18n' ),
 			WYVERNCSS_VERSION,
@@ -221,7 +221,7 @@ class Chat_Bot_Block {
 		);
 
 		wp_enqueue_style(
-			'wyvernpress-chat-widget',
+			'wyverncss-chat-widget',
 			WYVERNCSS_PLUGIN_URL . 'assets/build/chat-widget.css',
 			array(),
 			WYVERNCSS_VERSION
@@ -229,10 +229,10 @@ class Chat_Bot_Block {
 
 		// Pass configuration to JavaScript.
 		wp_localize_script(
-			'wyvernpress-chat-widget',
+			'wyverncss-chat-widget',
 			'wyvernPressBotConfig',
 			array(
-				'apiUrl'  => rest_url( 'wyvernpress/v1/chat' ),
+				'apiUrl'  => rest_url( 'wyverncss/v1/chat' ),
 				'nonce'   => wp_create_nonce( 'wp_rest' ),
 				'siteUrl' => site_url(),
 			)

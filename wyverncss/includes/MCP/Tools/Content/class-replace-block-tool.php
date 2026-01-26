@@ -33,7 +33,7 @@ class ReplaceBlockTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_replace_block';
-		$this->description = __( 'Replace a Gutenberg block at a specific index with new content. Perfect for natural language editing like "replace the second paragraph with...".', 'wyvern-ai-styling' );
+		$this->description = __( 'Replace a Gutenberg block at a specific index with new content. Perfect for natural language editing like "replace the second paragraph with...".', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -43,17 +43,17 @@ class ReplaceBlockTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id'   => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'index'     => array(
 					'type'        => 'integer',
-					'description' => __( 'Index of the block to replace (0-based)', 'wyvern-ai-styling' ),
+					'description' => __( 'Index of the block to replace (0-based)', 'wyverncss' ),
 					'minimum'     => 0,
 				),
 				'new_block' => array(
 					'type'        => 'string',
-					'description' => __( 'Serialized block content to replace with', 'wyvern-ai-styling' ),
+					'description' => __( 'Serialized block content to replace with', 'wyverncss' ),
 				),
 			),
 			'required'   => array( 'post_id', 'index', 'new_block' ),
@@ -106,7 +106,7 @@ class ReplaceBlockTool extends MCP_Tool_Base {
 		if ( empty( $parsed_new_block ) ) {
 			return new WP_Error(
 				'invalid_block',
-				__( 'Invalid block content provided', 'wyvern-ai-styling' )
+				__( 'Invalid block content provided', 'wyverncss' )
 			);
 		}
 
@@ -133,7 +133,7 @@ class ReplaceBlockTool extends MCP_Tool_Base {
 			'old_block'   => $old_block['blockName'] ?? 'unknown',
 			'new_block'   => $parsed_new_block[0]['blockName'] ?? 'unknown',
 			'block_count' => count( $existing_blocks ),
-			'message'     => __( 'Block replaced successfully', 'wyvern-ai-styling' ),
+			'message'     => __( 'Block replaced successfully', 'wyverncss' ),
 		);
 	}
 }

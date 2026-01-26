@@ -109,7 +109,7 @@ trait Controller_Helpers {
 		if ( (int) $conversation['user_id'] !== $user_id ) {
 			return new WP_Error(
 				'permission_denied',
-				__( 'You do not have permission to access this conversation', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to access this conversation', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -156,7 +156,7 @@ trait Controller_Helpers {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			$message = ! empty( $error_message )
 				? $error_message
-				: __( 'You do not have permission to perform this action.', 'wyvern-ai-styling' );
+				: __( 'You do not have permission to perform this action.', 'wyverncss' );
 
 			return new WP_Error(
 				'rest_forbidden',
@@ -169,7 +169,7 @@ trait Controller_Helpers {
 		if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'Invalid security token.', 'wyvern-ai-styling' ),
+				__( 'Invalid security token.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -197,7 +197,7 @@ trait Controller_Helpers {
 				'invalid_message',
 				sprintf(
 					/* translators: %1$d: minimum length, %2$d: maximum length */
-					__( 'Message must be between %1$d and %2$d characters', 'wyvern-ai-styling' ),
+					__( 'Message must be between %1$d and %2$d characters', 'wyverncss' ),
 					$min_length,
 					$max_length
 				),

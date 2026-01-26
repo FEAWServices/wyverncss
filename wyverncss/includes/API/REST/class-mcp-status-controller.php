@@ -38,7 +38,7 @@ class MCP_Status_Controller extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyvernpress/v1';
+	protected $namespace = 'wyverncss/v1';
 
 	/**
 	 * REST API base route.
@@ -163,29 +163,29 @@ class MCP_Status_Controller extends WP_REST_Controller {
 	 */
 	private function get_status_message( bool $is_online, string $source, int $tools_count ): string {
 		if ( ! $is_online ) {
-			return __( 'MCP server is offline. No tools available.', 'wyvern-ai-styling' );
+			return __( 'MCP server is offline. No tools available.', 'wyverncss' );
 		}
 
 		switch ( $source ) {
 			case 'hybrid':
 				return sprintf(
 					/* translators: %d: number of tools */
-					__( 'MCP server is online with %d built-in tools. External service available for advanced features.', 'wyvern-ai-styling' ),
+					__( 'MCP server is online with %d built-in tools. External service available for advanced features.', 'wyverncss' ),
 					$tools_count
 				);
 
 			case 'builtin':
 				return sprintf(
 					/* translators: %d: number of tools */
-					__( 'MCP server is online with %d built-in tools.', 'wyvern-ai-styling' ),
+					__( 'MCP server is online with %d built-in tools.', 'wyverncss' ),
 					$tools_count
 				);
 
 			case 'external':
-				return __( 'MCP server is online via external service.', 'wyvern-ai-styling' );
+				return __( 'MCP server is online via external service.', 'wyverncss' );
 
 			default:
-				return __( 'MCP server status unknown.', 'wyvern-ai-styling' );
+				return __( 'MCP server status unknown.', 'wyverncss' );
 		}
 	}
 }

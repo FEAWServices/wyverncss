@@ -30,7 +30,7 @@ class UpdatePostMetaTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_update_post_meta';
-		$this->description = __( 'Update post metadata (custom fields). Can update featured image, custom fields, and other post meta.', 'wyvern-ai-styling' );
+		$this->description = __( 'Update post metadata (custom fields). Can update featured image, custom fields, and other post meta.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -40,16 +40,16 @@ class UpdatePostMetaTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id'    => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'meta_key'   => array(
 					'type'        => 'string',
-					'description' => __( 'Meta key to update (e.g., "_thumbnail_id" for featured image)', 'wyvern-ai-styling' ),
+					'description' => __( 'Meta key to update (e.g., "_thumbnail_id" for featured image)', 'wyverncss' ),
 				),
 				'meta_value' => array(
 					'type'        => 'string',
-					'description' => __( 'Meta value to set', 'wyvern-ai-styling' ),
+					'description' => __( 'Meta value to set', 'wyverncss' ),
 				),
 			),
 			'required'   => array( 'post_id', 'meta_key', 'meta_value' ),
@@ -91,7 +91,7 @@ class UpdatePostMetaTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -101,7 +101,7 @@ class UpdatePostMetaTool extends MCP_Tool_Base {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to edit this post', 'wyvern-ai-styling' )
+				__( 'You do not have permission to edit this post', 'wyverncss' )
 			);
 		}
 
@@ -121,7 +121,7 @@ class UpdatePostMetaTool extends MCP_Tool_Base {
 			'old_value' => $old_value,
 			'new_value' => $meta_value,
 			'updated'   => (bool) $result,
-			'message'   => __( 'Post meta updated successfully', 'wyvern-ai-styling' ),
+			'message'   => __( 'Post meta updated successfully', 'wyverncss' ),
 		);
 	}
 }

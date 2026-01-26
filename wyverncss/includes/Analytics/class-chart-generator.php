@@ -64,7 +64,7 @@ class ChartGenerator {
 	private function create_pattern_ai_datasets( array $pattern_data, array $ai_data, bool $fill = true ): array {
 		return array(
 			array(
-				'label'           => __( 'Pattern Matches', 'wyvern-ai-styling' ),
+				'label'           => __( 'Pattern Matches', 'wyverncss' ),
 				'data'            => $pattern_data,
 				'backgroundColor' => 'rgba(34, 139, 230, 0.2)',
 				'borderColor'     => 'rgba(34, 139, 230, 1)',
@@ -72,7 +72,7 @@ class ChartGenerator {
 				'fill'            => $fill,
 			),
 			array(
-				'label'           => __( 'AI Requests', 'wyvern-ai-styling' ),
+				'label'           => __( 'AI Requests', 'wyverncss' ),
 				'data'            => $ai_data,
 				'backgroundColor' => 'rgba(236, 72, 153, 0.2)',
 				'borderColor'     => 'rgba(236, 72, 153, 1)',
@@ -264,7 +264,7 @@ class ChartGenerator {
 			'labels'   => $labels,
 			'datasets' => array(
 				array(
-					'label'           => __( 'Requests by Model', 'wyvern-ai-styling' ),
+					'label'           => __( 'Requests by Model', 'wyverncss' ),
 					'data'            => $data,
 					'backgroundColor' => array_slice( $colors, 0, count( $data ) ),
 					'borderWidth'     => 2,
@@ -313,7 +313,7 @@ class ChartGenerator {
 			'labels'   => $labels,
 			'datasets' => array(
 				array(
-					'label'           => __( 'Cost by Model ($)', 'wyvern-ai-styling' ),
+					'label'           => __( 'Cost by Model ($)', 'wyverncss' ),
 					'data'            => $data,
 					'backgroundColor' => 'rgba(245, 158, 11, 0.5)',
 					'borderColor'     => 'rgba(245, 158, 11, 1)',

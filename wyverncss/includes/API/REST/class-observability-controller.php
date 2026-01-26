@@ -34,7 +34,7 @@ class Observability_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * MCP Service base URL
@@ -336,7 +336,7 @@ class Observability_Controller extends WP_REST_Controller {
 				'service_unavailable',
 				sprintf(
 					/* translators: %s: Error message */
-					__( 'Failed to connect to observability service: %s', 'wyvern-ai-styling' ),
+					__( 'Failed to connect to observability service: %s', 'wyverncss' ),
 					$response->get_error_message()
 				),
 				array( 'status' => 503 )
@@ -351,7 +351,7 @@ class Observability_Controller extends WP_REST_Controller {
 		if ( null === $data ) {
 			return new WP_Error(
 				'invalid_response',
-				__( 'Invalid response from observability service', 'wyvern-ai-styling' ),
+				__( 'Invalid response from observability service', 'wyverncss' ),
 				array( 'status' => 500 )
 			);
 		}

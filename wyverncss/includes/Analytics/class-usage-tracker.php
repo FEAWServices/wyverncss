@@ -94,7 +94,7 @@ class UsageTracker {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to track request', 'wyvern-ai-styling' ),
+				__( 'Failed to track request', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}
@@ -268,7 +268,7 @@ class UsageTracker {
 		if ( false === $result ) {
 			return new WP_Error(
 				'database_error',
-				__( 'Failed to clear old records', 'wyvern-ai-styling' ),
+				__( 'Failed to clear old records', 'wyverncss' ),
 				array( 'db_error' => $wpdb->last_error )
 			);
 		}

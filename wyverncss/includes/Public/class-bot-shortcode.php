@@ -69,7 +69,7 @@ class Bot_Shortcode {
 
 		// Render container div with data attributes.
 		return sprintf(
-			'<div class="wyvernpress-bot-widget" data-bot-id="%s" data-position="%s" data-theme="%s" data-width="%s" data-height="%s"></div>',
+			'<div class="wyverncss-bot-widget" data-bot-id="%s" data-position="%s" data-theme="%s" data-width="%s" data-height="%s"></div>',
 			esc_attr( $atts['id'] ),
 			esc_attr( $atts['position'] ),
 			esc_attr( $atts['theme'] ),
@@ -90,7 +90,7 @@ class Bot_Shortcode {
 		}
 
 		wp_enqueue_script(
-			'wyvernpress-chat-widget',
+			'wyverncss-chat-widget',
 			WYVERNCSS_PLUGIN_URL . 'assets/dist/public.js',
 			array( 'wp-element', 'wp-i18n' ),
 			WYVERNCSS_VERSION,
@@ -98,7 +98,7 @@ class Bot_Shortcode {
 		);
 
 		wp_enqueue_style(
-			'wyvernpress-chat-widget',
+			'wyverncss-chat-widget',
 			WYVERNCSS_PLUGIN_URL . 'assets/dist/public.css',
 			array(),
 			WYVERNCSS_VERSION
@@ -106,10 +106,10 @@ class Bot_Shortcode {
 
 		// Pass configuration to JavaScript.
 		wp_localize_script(
-			'wyvernpress-chat-widget',
+			'wyverncss-chat-widget',
 			'wyvernPressBotConfig',
 			array(
-				'apiUrl'  => rest_url( 'wyvernpress/v1/public/chat' ),
+				'apiUrl'  => rest_url( 'wyverncss/v1/public/chat' ),
 				'nonce'   => wp_create_nonce( 'wp_rest' ),
 				'siteUrl' => site_url(),
 			)

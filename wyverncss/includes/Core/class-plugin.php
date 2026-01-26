@@ -58,7 +58,7 @@ class Plugin {
 	 */
 	public function __construct() {
 		$this->version     = defined( 'WYVERNCSS_VERSION' ) ? WYVERNCSS_VERSION : '1.0.0';
-		$this->text_domain = 'wyvern-ai-styling';
+		$this->text_domain = 'wyverncss';
 
 		$this->load_dependencies();
 		$this->define_hooks();
@@ -229,7 +229,7 @@ class Plugin {
 	 * @return void */
 	public function enqueue_admin_assets( string $hook_suffix ): void {
 		// Only load on WyvernCSS admin pages.
-		if ( strpos( $hook_suffix, 'wyvern-ai-styling' ) === false ) {
+		if ( strpos( $hook_suffix, 'wyverncss' ) === false ) {
 			return;
 		}
 
@@ -246,8 +246,8 @@ class Plugin {
 	public function add_action_links( array $links ): array {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( admin_url( 'admin.php?page=wyvernpress' ) ),
-			esc_html__( 'Settings', 'wyvern-ai-styling' )
+			esc_url( admin_url( 'admin.php?page=wyverncss' ) ),
+			esc_html__( 'Settings', 'wyverncss' )
 		);
 
 		array_unshift( $links, $settings_link );

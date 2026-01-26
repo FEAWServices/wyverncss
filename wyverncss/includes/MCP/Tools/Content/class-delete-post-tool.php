@@ -30,7 +30,7 @@ class DeletePostTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_delete_post';
-		$this->description = __( 'Delete or trash a WordPress post. Requires delete permissions for the post.', 'wyvern-ai-styling' );
+		$this->description = __( 'Delete or trash a WordPress post. Requires delete permissions for the post.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutation operations.
 
 		$this->required_capabilities = array( 'delete_posts' );
@@ -40,12 +40,12 @@ class DeletePostTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id'      => array(
 					'type'        => 'integer',
-					'description' => __( 'ID of the post to delete', 'wyvern-ai-styling' ),
+					'description' => __( 'ID of the post to delete', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'force_delete' => array(
 					'type'        => 'boolean',
-					'description' => __( 'Whether to permanently delete (true) or move to trash (false)', 'wyvern-ai-styling' ),
+					'description' => __( 'Whether to permanently delete (true) or move to trash (false)', 'wyverncss' ),
 					'default'     => false,
 				),
 			),
@@ -70,7 +70,7 @@ class DeletePostTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -80,7 +80,7 @@ class DeletePostTool extends MCP_Tool_Base {
 		if ( ! current_user_can( 'delete_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to delete this post', 'wyvern-ai-styling' )
+				__( 'You do not have permission to delete this post', 'wyverncss' )
 			);
 		}
 
@@ -94,7 +94,7 @@ class DeletePostTool extends MCP_Tool_Base {
 		if ( ! $result ) {
 			return new WP_Error(
 				'post_deletion_failed',
-				__( 'Failed to delete post', 'wyvern-ai-styling' )
+				__( 'Failed to delete post', 'wyverncss' )
 			);
 		}
 
@@ -105,8 +105,8 @@ class DeletePostTool extends MCP_Tool_Base {
 			'force_delete' => $force_delete,
 			'status'       => $force_delete ? 'permanently_deleted' : 'moved_to_trash',
 			'message'      => $force_delete
-				? __( 'Post permanently deleted', 'wyvern-ai-styling' )
-				: __( 'Post moved to trash', 'wyvern-ai-styling' ),
+				? __( 'Post permanently deleted', 'wyverncss' )
+				: __( 'Post moved to trash', 'wyverncss' ),
 		);
 	}
 }

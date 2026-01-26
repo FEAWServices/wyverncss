@@ -96,7 +96,7 @@ class CSSGenerator {
 	 *
 	 * @var string
 	 */
-	private const PROXY_URL = 'https://wyvernpress-proxy.feaw-account.workers.dev/v1/generate';
+	private const PROXY_URL = 'https://wyverncss-proxy.feaw-account.workers.dev/v1/generate';
 
 	/**
 	 * Constructor
@@ -218,7 +218,7 @@ class CSSGenerator {
 		if ( false === $encoded_body ) {
 			return new WP_Error(
 				'json_encode_error',
-				__( 'Failed to encode request.', 'wyvern-ai-styling' )
+				__( 'Failed to encode request.', 'wyverncss' )
 			);
 		}
 
@@ -240,7 +240,7 @@ class CSSGenerator {
 				'proxy_connection_failed',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'Could not connect to AI service: %s', 'wyvern-ai-styling' ),
+					__( 'Could not connect to AI service: %s', 'wyverncss' ),
 					$response->get_error_message()
 				),
 				array( 'status' => 503 )
@@ -254,7 +254,7 @@ class CSSGenerator {
 		if ( 429 === $status_code ) {
 			return new WP_Error(
 				'quota_exceeded',
-				__( 'Daily AI request limit reached. Try again tomorrow! Premium plans coming soon.', 'wyvern-ai-styling' ),
+				__( 'Daily AI request limit reached. Try again tomorrow! Premium plans coming soon.', 'wyverncss' ),
 				array(
 					'status' => 429,
 					'tier'   => $user_tier,
@@ -267,7 +267,7 @@ class CSSGenerator {
 			$error_data = json_decode( $body, true );
 			return new WP_Error(
 				'proxy_error',
-				$error_data['message'] ?? __( 'AI service error. Please try again.', 'wyvern-ai-styling' ),
+				$error_data['message'] ?? __( 'AI service error. Please try again.', 'wyverncss' ),
 				array( 'status' => $status_code )
 			);
 		}
@@ -278,7 +278,7 @@ class CSSGenerator {
 		if ( JSON_ERROR_NONE !== json_last_error() || ! isset( $data['css'] ) ) {
 			return new WP_Error(
 				'invalid_response',
-				__( 'Invalid response from AI service.', 'wyvern-ai-styling' )
+				__( 'Invalid response from AI service.', 'wyverncss' )
 			);
 		}
 
@@ -298,7 +298,7 @@ class CSSGenerator {
 		if ( ! is_array( $css ) || empty( $css ) ) {
 			return new WP_Error(
 				'invalid_css_format',
-				__( 'AI returned invalid CSS format.', 'wyvern-ai-styling' )
+				__( 'AI returned invalid CSS format.', 'wyverncss' )
 			);
 		}
 
@@ -308,7 +308,7 @@ class CSSGenerator {
 		if ( empty( $css ) ) {
 			return new WP_Error(
 				'no_css_after_filter',
-				__( 'No valid CSS properties for your request.', 'wyvern-ai-styling' )
+				__( 'No valid CSS properties for your request.', 'wyverncss' )
 			);
 		}
 

@@ -189,7 +189,7 @@ class BlockGenerator {
 						'attributes' => array(
 							'content' => sprintf(
 								/* translators: %d: column number */
-								__( 'Column %d content', 'wyvern-ai-styling' ),
+								__( 'Column %d content', 'wyverncss' ),
 								$i + 1
 							),
 						),
@@ -215,7 +215,7 @@ class BlockGenerator {
 	 * @return array{name: string, attributes: array<string, mixed>}
 	 */
 	private function generate_button( array $params ): array {
-		$text = $params['text'] ?? __( 'Click me', 'wyvern-ai-styling' );
+		$text = $params['text'] ?? __( 'Click me', 'wyverncss' );
 
 		return array(
 			'name'       => 'core/button',
@@ -240,13 +240,13 @@ class BlockGenerator {
 				array(
 					'name'       => 'core/button',
 					'attributes' => array(
-						'text' => __( 'Button 1', 'wyvern-ai-styling' ),
+						'text' => __( 'Button 1', 'wyverncss' ),
 					),
 				),
 				array(
 					'name'       => 'core/button',
 					'attributes' => array(
-						'text' => __( 'Button 2', 'wyvern-ai-styling' ),
+						'text' => __( 'Button 2', 'wyverncss' ),
 					),
 				),
 			),
@@ -264,7 +264,7 @@ class BlockGenerator {
 		return array(
 			'name'        => 'core/group',
 			'attributes'  => array(
-				'className' => 'wyvernpress-callout',
+				'className' => 'wyverncss-callout',
 				'style'     => array(
 					'border'  => array(
 						'width' => '2px',
@@ -288,7 +288,7 @@ class BlockGenerator {
 				array(
 					'name'       => 'core/paragraph',
 					'attributes' => array(
-						'content'  => __( 'Your callout message here.', 'wyvern-ai-styling' ),
+						'content'  => __( 'Your callout message here.', 'wyverncss' ),
 						'fontSize' => 'medium',
 					),
 				),
@@ -304,12 +304,12 @@ class BlockGenerator {
 	 * @return array{name: string, attributes: array<string, mixed>, innerBlocks: array<int, array<string, mixed>>}
 	 */
 	private function generate_card( array $params ): array {
-		$title = $params['title'] ?? __( 'Card Title', 'wyvern-ai-styling' );
+		$title = $params['title'] ?? __( 'Card Title', 'wyverncss' );
 
 		return array(
 			'name'        => 'core/group',
 			'attributes'  => array(
-				'className' => 'wyvernpress-card',
+				'className' => 'wyverncss-card',
 				'style'     => array(
 					'border'  => array(
 						'width'  => '1px',
@@ -339,7 +339,7 @@ class BlockGenerator {
 				array(
 					'name'       => 'core/paragraph',
 					'attributes' => array(
-						'content' => __( 'Card description goes here. Add your content to describe this card.', 'wyvern-ai-styling' ),
+						'content' => __( 'Card description goes here. Add your content to describe this card.', 'wyverncss' ),
 					),
 				),
 			),
@@ -357,8 +357,8 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/quote',
 			'attributes' => array(
-				'value'    => '<p>' . __( 'Your quote text here.', 'wyvern-ai-styling' ) . '</p>',
-				'citation' => __( '— Citation', 'wyvern-ai-styling' ),
+				'value'    => '<p>' . __( 'Your quote text here.', 'wyverncss' ) . '</p>',
+				'citation' => __( '— Citation', 'wyverncss' ),
 			),
 		);
 	}
@@ -374,8 +374,8 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/pullquote',
 			'attributes' => array(
-				'value'    => '<p>' . __( 'Your pullquote text here.', 'wyvern-ai-styling' ) . '</p>',
-				'citation' => __( '— Citation', 'wyvern-ai-styling' ),
+				'value'    => '<p>' . __( 'Your pullquote text here.', 'wyverncss' ) . '</p>',
+				'citation' => __( '— Citation', 'wyverncss' ),
 			),
 		);
 	}
@@ -391,8 +391,8 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/image',
 			'attributes' => array(
-				'alt'     => __( 'Placeholder image', 'wyvern-ai-styling' ),
-				'caption' => __( 'Image caption', 'wyvern-ai-styling' ),
+				'alt'     => __( 'Placeholder image', 'wyverncss' ),
+				'caption' => __( 'Image caption', 'wyverncss' ),
 			),
 		);
 	}
@@ -428,7 +428,7 @@ class BlockGenerator {
 			'name'       => 'core/heading',
 			'attributes' => array(
 				'level'   => $level,
-				'content' => __( 'Heading text', 'wyvern-ai-styling' ),
+				'content' => __( 'Heading text', 'wyverncss' ),
 			),
 		);
 	}
@@ -462,7 +462,7 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/code',
 			'attributes' => array(
-				'content' => '// ' . __( 'Your code here', 'wyvern-ai-styling' ),
+				'content' => '// ' . __( 'Your code here', 'wyverncss' ),
 			),
 		);
 	}
@@ -478,7 +478,7 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/preformatted',
 			'attributes' => array(
-				'content' => __( 'Preformatted text here', 'wyvern-ai-styling' ),
+				'content' => __( 'Preformatted text here', 'wyverncss' ),
 			),
 		);
 	}
@@ -504,7 +504,7 @@ class BlockGenerator {
 				array(
 					'name'       => 'core/heading',
 					'attributes' => array(
-						'content'   => __( 'Cover Title', 'wyvern-ai-styling' ),
+						'content'   => __( 'Cover Title', 'wyverncss' ),
 						'level'     => 2,
 						'textAlign' => 'center',
 					),
@@ -512,7 +512,7 @@ class BlockGenerator {
 				array(
 					'name'       => 'core/paragraph',
 					'attributes' => array(
-						'content' => __( 'Your cover text here.', 'wyvern-ai-styling' ),
+						'content' => __( 'Your cover text here.', 'wyverncss' ),
 						'align'   => 'center',
 					),
 				),
@@ -538,14 +538,14 @@ class BlockGenerator {
 				array(
 					'name'       => 'core/heading',
 					'attributes' => array(
-						'content' => __( 'Media & Text Title', 'wyvern-ai-styling' ),
+						'content' => __( 'Media & Text Title', 'wyverncss' ),
 						'level'   => 3,
 					),
 				),
 				array(
 					'name'       => 'core/paragraph',
 					'attributes' => array(
-						'content' => __( 'Add your text content here beside the media.', 'wyvern-ai-styling' ),
+						'content' => __( 'Add your text content here beside the media.', 'wyverncss' ),
 					),
 				),
 			),
@@ -648,8 +648,8 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/search',
 			'attributes' => array(
-				'label'      => __( 'Search', 'wyvern-ai-styling' ),
-				'buttonText' => __( 'Search', 'wyvern-ai-styling' ),
+				'label'      => __( 'Search', 'wyverncss' ),
+				'buttonText' => __( 'Search', 'wyverncss' ),
 				'showLabel'  => false,
 			),
 		);
@@ -696,7 +696,7 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/more',
 			'attributes' => array(
-				'customText' => __( 'Read more', 'wyvern-ai-styling' ),
+				'customText' => __( 'Read more', 'wyverncss' ),
 			),
 		);
 	}
@@ -712,13 +712,13 @@ class BlockGenerator {
 		return array(
 			'name'        => 'core/details',
 			'attributes'  => array(
-				'summary' => __( 'Click to expand', 'wyvern-ai-styling' ),
+				'summary' => __( 'Click to expand', 'wyverncss' ),
 			),
 			'innerBlocks' => array(
 				array(
 					'name'       => 'core/paragraph',
 					'attributes' => array(
-						'content' => __( 'Hidden content goes here.', 'wyvern-ai-styling' ),
+						'content' => __( 'Hidden content goes here.', 'wyverncss' ),
 					),
 				),
 			),
@@ -780,7 +780,7 @@ class BlockGenerator {
 		return array(
 			'name'       => 'core/verse',
 			'attributes' => array(
-				'content' => __( 'Write poetry here...', 'wyvern-ai-styling' ),
+				'content' => __( 'Write poetry here...', 'wyverncss' ),
 			),
 		);
 	}

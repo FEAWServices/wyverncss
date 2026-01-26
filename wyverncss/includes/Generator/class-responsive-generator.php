@@ -153,14 +153,14 @@ class ResponsiveGenerator {
 		if ( empty( $selector ) ) {
 			return new WP_Error(
 				'invalid_selector',
-				__( 'CSS selector cannot be empty.', 'wyvern-ai-styling' )
+				__( 'CSS selector cannot be empty.', 'wyverncss' )
 			);
 		}
 
 		if ( empty( $base_css ) ) {
 			return new WP_Error(
 				'empty_css',
-				__( 'Base CSS properties cannot be empty.', 'wyvern-ai-styling' )
+				__( 'Base CSS properties cannot be empty.', 'wyverncss' )
 			);
 		}
 
@@ -496,7 +496,7 @@ class ResponsiveGenerator {
 			default:
 				return new WP_Error(
 					'invalid_pattern',
-					__( 'Invalid layout pattern.', 'wyvern-ai-styling' )
+					__( 'Invalid layout pattern.', 'wyverncss' )
 				);
 		}
 	}

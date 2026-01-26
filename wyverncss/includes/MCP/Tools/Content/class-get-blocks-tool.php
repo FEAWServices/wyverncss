@@ -32,7 +32,7 @@ class GetBlocksTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_get_blocks';
-		$this->description = __( 'Get Gutenberg block structure from a post. Returns parsed blocks with content, attributes, and hierarchy for AI-powered editing.', 'wyvern-ai-styling' );
+		$this->description = __( 'Get Gutenberg block structure from a post. Returns parsed blocks with content, attributes, and hierarchy for AI-powered editing.', 'wyverncss' );
 		$this->cache_ttl   = 60; // 1 minute cache.
 
 		$this->required_capabilities = array( 'read' );
@@ -42,7 +42,7 @@ class GetBlocksTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id' => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post to get blocks from', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post to get blocks from', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 			),
@@ -67,7 +67,7 @@ class GetBlocksTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -77,7 +77,7 @@ class GetBlocksTool extends MCP_Tool_Base {
 		if ( 'publish' !== $post->post_status && ! current_user_can( 'read_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to read this post', 'wyvern-ai-styling' )
+				__( 'You do not have permission to read this post', 'wyverncss' )
 			);
 		}
 

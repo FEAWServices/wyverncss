@@ -30,7 +30,7 @@ class GetMediaTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_get_media';
-		$this->description = __( 'Query WordPress media library. Returns attachments matching the specified criteria with URLs and metadata.', 'wyvern-ai-styling' );
+		$this->description = __( 'Query WordPress media library. Returns attachments matching the specified criteria with URLs and metadata.', 'wyverncss' );
 		$this->cache_ttl   = 300; // 5 minutes cache.
 
 		$this->required_capabilities = array( 'upload_files' );
@@ -40,26 +40,26 @@ class GetMediaTool extends MCP_Tool_Base {
 			'properties' => array(
 				'media_type'     => array(
 					'type'        => 'string',
-					'description' => __( 'Type of media to query (image, video, audio, application)', 'wyvern-ai-styling' ),
+					'description' => __( 'Type of media to query (image, video, audio, application)', 'wyverncss' ),
 					'enum'        => array( 'image', 'video', 'audio', 'application', 'all' ),
 					'default'     => 'image',
 				),
 				'posts_per_page' => array(
 					'type'        => 'integer',
-					'description' => __( 'Number of items to return', 'wyvern-ai-styling' ),
+					'description' => __( 'Number of items to return', 'wyverncss' ),
 					'default'     => 20,
 					'minimum'     => 1,
 					'maximum'     => 100,
 				),
 				'paged'          => array(
 					'type'        => 'integer',
-					'description' => __( 'Page number for pagination', 'wyvern-ai-styling' ),
+					'description' => __( 'Page number for pagination', 'wyverncss' ),
 					'default'     => 1,
 					'minimum'     => 1,
 				),
 				's'              => array(
 					'type'        => 'string',
-					'description' => __( 'Search query string', 'wyvern-ai-styling' ),
+					'description' => __( 'Search query string', 'wyverncss' ),
 				),
 			),
 			'required'   => array(),

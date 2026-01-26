@@ -108,7 +108,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 		if ( empty( $schema ) ) {
 			return new WP_Error(
 				'invalid_tool_schema',
-				__( 'Tool schema is not defined', 'wyvern-ai-styling' )
+				__( 'Tool schema is not defined', 'wyverncss' )
 			);
 		}
 
@@ -120,7 +120,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 						'missing_required_field',
 						sprintf(
 							/* translators: %s: field name */
-							__( 'Required field "%s" is missing', 'wyvern-ai-styling' ),
+							__( 'Required field "%s" is missing', 'wyverncss' ),
 							$required_field
 						),
 						array( 'field' => $required_field )
@@ -137,7 +137,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 						'unknown_parameter',
 						sprintf(
 							/* translators: %s: field name */
-							__( 'Unknown parameter "%s"', 'wyvern-ai-styling' ),
+							__( 'Unknown parameter "%s"', 'wyverncss' ),
 							$field
 						),
 						array( 'field' => $field )
@@ -183,7 +183,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'invalid_type',
 					sprintf(
 						/* translators: 1: field name, 2: expected type */
-						__( 'Field "%1$s" must be of type %2$s', 'wyvern-ai-styling' ),
+						__( 'Field "%1$s" must be of type %2$s', 'wyverncss' ),
 						$field_name,
 						$type
 					),
@@ -201,7 +201,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'invalid_enum_value',
 					sprintf(
 						/* translators: 1: field name, 2: allowed values */
-						__( 'Field "%1$s" must be one of: %2$s', 'wyvern-ai-styling' ),
+						__( 'Field "%1$s" must be one of: %2$s', 'wyverncss' ),
 						$field_name,
 						implode( ', ', $schema['enum'] )
 					),
@@ -219,7 +219,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'string_too_short',
 					sprintf(
 						/* translators: 1: field name, 2: minimum length */
-						__( 'Field "%1$s" must be at least %2$d characters', 'wyvern-ai-styling' ),
+						__( 'Field "%1$s" must be at least %2$d characters', 'wyverncss' ),
 						$field_name,
 						(int) $schema['minLength']
 					),
@@ -232,7 +232,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'string_too_long',
 					sprintf(
 						/* translators: 1: field name, 2: max length */
-						__( 'Field "%1$s" must be no more than %2$d characters', 'wyvern-ai-styling' ),
+						__( 'Field "%1$s" must be no more than %2$d characters', 'wyverncss' ),
 						$field_name,
 						(int) $schema['maxLength']
 					),
@@ -245,7 +245,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'pattern_mismatch',
 					sprintf(
 						/* translators: %s: field name */
-						__( 'Field "%s" does not match required pattern', 'wyvern-ai-styling' ),
+						__( 'Field "%s" does not match required pattern', 'wyverncss' ),
 						$field_name
 					),
 					array( 'field' => $field_name )
@@ -259,7 +259,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'value_too_small',
 					sprintf(
 						/* translators: 1: field name, 2: minimum value */
-						__( 'Field "%1$s" must be at least %2$s', 'wyvern-ai-styling' ),
+						__( 'Field "%1$s" must be at least %2$s', 'wyverncss' ),
 						$field_name,
 						$schema['minimum']
 					),
@@ -272,7 +272,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'value_too_large',
 					sprintf(
 						/* translators: 1: field name, 2: maximum value */
-						__( 'Field "%1$s" must be no more than %2$s', 'wyvern-ai-styling' ),
+						__( 'Field "%1$s" must be no more than %2$s', 'wyverncss' ),
 						$field_name,
 						$schema['maximum']
 					),
@@ -302,7 +302,7 @@ abstract class MCP_Tool_Base implements MCP_Tool_Interface {
 					'insufficient_permissions',
 					sprintf(
 						/* translators: %s: capability name */
-						__( 'You do not have permission to perform this action. Required capability: %s', 'wyvern-ai-styling' ),
+						__( 'You do not have permission to perform this action. Required capability: %s', 'wyverncss' ),
 						$capability
 					),
 					array( 'required_capability' => $capability )

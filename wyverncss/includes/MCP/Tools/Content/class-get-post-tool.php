@@ -31,7 +31,7 @@ class GetPostTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_get_post';
-		$this->description = __( 'Get a single WordPress post by ID. Returns full post details including content, metadata, and author information.', 'wyvern-ai-styling' );
+		$this->description = __( 'Get a single WordPress post by ID. Returns full post details including content, metadata, and author information.', 'wyverncss' );
 		$this->cache_ttl   = 300; // 5 minutes cache.
 
 		$this->required_capabilities = array( 'read' );
@@ -41,7 +41,7 @@ class GetPostTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id' => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post to retrieve', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post to retrieve', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 			),
@@ -66,7 +66,7 @@ class GetPostTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				),
 				array( 'post_id' => $post_id )
@@ -77,7 +77,7 @@ class GetPostTool extends MCP_Tool_Base {
 		if ( 'publish' !== $post->post_status && ! current_user_can( 'read_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to read this post', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to read this post', 'wyverncss' ),
 				array( 'post_id' => $post_id )
 			);
 		}

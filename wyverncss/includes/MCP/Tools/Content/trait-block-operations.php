@@ -42,7 +42,7 @@ trait BlockOperationsTrait {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -53,14 +53,14 @@ trait BlockOperationsTrait {
 			if ( ! current_user_can( 'edit_post', $post_id ) ) {
 				return new WP_Error(
 					'insufficient_permissions',
-					__( 'You do not have permission to edit this post', 'wyvern-ai-styling' )
+					__( 'You do not have permission to edit this post', 'wyverncss' )
 				);
 			}
 		} elseif ( 'read' === $capability ) {
 			if ( 'publish' !== $post->post_status && ! current_user_can( 'read_post', $post_id ) ) {
 				return new WP_Error(
 					'insufficient_permissions',
-					__( 'You do not have permission to read this post', 'wyvern-ai-styling' )
+					__( 'You do not have permission to read this post', 'wyverncss' )
 				);
 			}
 		}
@@ -107,7 +107,7 @@ trait BlockOperationsTrait {
 				'invalid_index',
 				sprintf(
 					/* translators: 1: index, 2: block count */
-					__( 'Block index %1$d does not exist. Post has %2$d blocks.', 'wyvern-ai-styling' ),
+					__( 'Block index %1$d does not exist. Post has %2$d blocks.', 'wyverncss' ),
 					$index,
 					count( $existing_blocks )
 				)

@@ -26,7 +26,7 @@ class Admin_Page {
 	/**
 	 * Page slug
 	 */
-	private const PAGE_SLUG = 'wyvern-ai-styling';
+	private const PAGE_SLUG = 'wyverncss';
 
 	/**
 	 * Register admin page hooks
@@ -43,8 +43,8 @@ class Admin_Page {
 	 * @return void */
 	public function register_menu_page(): void {
 		add_menu_page(
-			__( 'WyvernCSS AI', 'wyvern-ai-styling' ),
-			__( 'WyvernCSS AI', 'wyvern-ai-styling' ),
+			__( 'WyvernCSS AI', 'wyverncss' ),
+			__( 'WyvernCSS AI', 'wyverncss' ),
 			'edit_posts',
 			self::PAGE_SLUG,
 			array( $this, 'render' ),
@@ -59,12 +59,12 @@ class Admin_Page {
 	 * @return void */
 	public function render(): void {
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'wyvern-ai-styling' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'wyverncss' ) );
 		}
 
 		?>
 		<div class="wrap">
-			<div id="wyvernpress-admin-root"></div>
+			<div id="wyverncss-admin-root"></div>
 		</div>
 		<?php
 	}
@@ -105,7 +105,7 @@ class Admin_Page {
 							echo wp_kses_post(
 								sprintf(
 									/* translators: %s: build command */
-									__( 'WyvernCSS AI Console assets are not built. Please run: <code>%s</code>', 'wyvern-ai-styling' ),
+									__( 'WyvernCSS AI Console assets are not built. Please run: <code>%s</code>', 'wyverncss' ),
 									'cd assets && npm run build'
 								)
 							);
@@ -122,7 +122,7 @@ class Admin_Page {
 
 		// Enqueue JavaScript.
 		wp_enqueue_script(
-			'wyvernpress-ai-console',
+			'wyverncss-ai-console',
 			WYVERNCSS_PLUGIN_URL . 'assets/build/ai-console.js',
 			$asset['dependencies'] ?? array( 'wp-element', 'wp-components', 'wp-api-fetch' ),
 			$asset['version'] ?? WYVERNCSS_VERSION,
@@ -133,7 +133,7 @@ class Admin_Page {
 		$css_file = WYVERNCSS_PLUGIN_DIR . 'assets/build/ai-console.css';
 		if ( file_exists( $css_file ) ) {
 			wp_enqueue_style(
-				'wyvernpress-ai-console',
+				'wyverncss-ai-console',
 				WYVERNCSS_PLUGIN_URL . 'assets/build/ai-console.css',
 				array( 'wp-components' ),
 				$asset['version'] ?? WYVERNCSS_VERSION
@@ -149,10 +149,10 @@ class Admin_Page {
 		$user_id = get_current_user_id();
 
 		wp_localize_script(
-			'wyvernpress-ai-console',
+			'wyverncss-ai-console',
 			'wyvernPressAI',
 			array(
-				'apiUrl'        => esc_url_raw( rest_url( 'wyvernpress/v1' ) ),
+				'apiUrl'        => esc_url_raw( rest_url( 'wyverncss/v1' ) ),
 				'nonce'         => wp_create_nonce( 'wp_rest' ),
 				'userId'        => $user_id,
 				'userCan'       => array(

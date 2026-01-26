@@ -191,7 +191,7 @@ class CSS_Optimizer_Controller extends RESTController {
 		if ( ! $this->freemius->is_premium() && ! $this->freemius->is_trial() ) {
 			return new WP_Error(
 				'premium_required',
-				esc_html__( 'Advanced CSS optimization is a premium feature. Upgrade to access this functionality.', 'wyvern-ai-styling' ),
+				esc_html__( 'Advanced CSS optimization is a premium feature. Upgrade to access this functionality.', 'wyverncss' ),
 				array(
 					'status'      => 403,
 					'upgrade_url' => $this->freemius->get_upgrade_url(),
@@ -246,7 +246,7 @@ class CSS_Optimizer_Controller extends RESTController {
 				'css_too_large',
 				sprintf(
 					/* translators: 1: CSS size, 2: max size */
-					esc_html__( 'CSS is too large (%1$s). Maximum allowed is %2$s.', 'wyvern-ai-styling' ),
+					esc_html__( 'CSS is too large (%1$s). Maximum allowed is %2$s.', 'wyverncss' ),
 					size_format( $css_size ),
 					size_format( $max_size )
 				),

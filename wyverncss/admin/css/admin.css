@@ -8,26 +8,26 @@
  */
 
 /* Settings Page */
-.wyvernpress-settings .form-table th {
+.wyverncss-settings .form-table th {
 	padding: 20px 10px 20px 0;
 	vertical-align: top;
 }
 
-.wyvernpress-settings .form-table td {
+.wyverncss-settings .form-table td {
 	padding: 15px 10px;
 }
 
-.wyvernpress-settings .required {
+.wyverncss-settings .required {
 	color: #d63638;
 	margin-left: 4px;
 }
 
-.wyvernpress-settings .description {
+.wyverncss-settings .description {
 	margin-top: 8px;
 	color: #646970;
 }
 
-.wyvernpress-settings h2 {
+.wyverncss-settings h2 {
 	margin-top: 40px;
 	margin-bottom: 20px;
 	padding-bottom: 10px;
@@ -35,24 +35,24 @@
 }
 
 /* Settings Form Elements */
-.wyvernpress-settings input[type="password"],
-.wyvernpress-settings input[type="text"],
-.wyvernpress-settings input[type="number"],
-.wyvernpress-settings select {
+.wyverncss-settings input[type="password"],
+.wyverncss-settings input[type="text"],
+.wyverncss-settings input[type="number"],
+.wyverncss-settings select {
 	padding: 8px 12px;
 	border-radius: 4px;
 }
 
-.wyvernpress-settings input[type="checkbox"] {
+.wyverncss-settings input[type="checkbox"] {
 	margin-right: 8px;
 }
 
 /* Quick Actions */
-.wyvernpress-settings .button-secondary {
+.wyverncss-settings .button-secondary {
 	margin-right: 10px;
 }
 
 /* Notice Styling */
-.wyvernpress-settings .notice {
+.wyverncss-settings .notice {
 	margin-top: 20px;
 }

@@ -30,7 +30,7 @@ class UpdatePostTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_update_post';
-		$this->description = __( 'Update an existing WordPress post. Requires edit permissions for the post.', 'wyvern-ai-styling' );
+		$this->description = __( 'Update an existing WordPress post. Requires edit permissions for the post.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutation operations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -40,24 +40,24 @@ class UpdatePostTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id' => array(
 					'type'        => 'integer',
-					'description' => __( 'ID of the post to update', 'wyvern-ai-styling' ),
+					'description' => __( 'ID of the post to update', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'title'   => array(
 					'type'        => 'string',
-					'description' => __( 'New post title', 'wyvern-ai-styling' ),
+					'description' => __( 'New post title', 'wyverncss' ),
 				),
 				'content' => array(
 					'type'        => 'string',
-					'description' => __( 'New post content (HTML allowed)', 'wyvern-ai-styling' ),
+					'description' => __( 'New post content (HTML allowed)', 'wyverncss' ),
 				),
 				'excerpt' => array(
 					'type'        => 'string',
-					'description' => __( 'New post excerpt', 'wyvern-ai-styling' ),
+					'description' => __( 'New post excerpt', 'wyverncss' ),
 				),
 				'status'  => array(
 					'type'        => 'string',
-					'description' => __( 'New post status', 'wyvern-ai-styling' ),
+					'description' => __( 'New post status', 'wyverncss' ),
 					'enum'        => array( 'publish', 'draft', 'pending', 'private' ),
 				),
 			),
@@ -81,7 +81,7 @@ class UpdatePostTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -91,7 +91,7 @@ class UpdatePostTool extends MCP_Tool_Base {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to edit this post', 'wyvern-ai-styling' )
+				__( 'You do not have permission to edit this post', 'wyverncss' )
 			);
 		}
 
@@ -117,7 +117,7 @@ class UpdatePostTool extends MCP_Tool_Base {
 			if ( 'publish' === $new_status && 'publish' !== $post->post_status && ! current_user_can( 'publish_posts' ) ) {
 				return new WP_Error(
 					'insufficient_permissions',
-					__( 'You do not have permission to publish posts', 'wyvern-ai-styling' )
+					__( 'You do not have permission to publish posts', 'wyverncss' )
 				);
 			}
 
@@ -132,7 +132,7 @@ class UpdatePostTool extends MCP_Tool_Base {
 				'post_update_failed',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'Failed to update post: %s', 'wyvern-ai-styling' ),
+					__( 'Failed to update post: %s', 'wyverncss' ),
 					$result->get_error_message()
 				)
 			);
@@ -148,7 +148,7 @@ class UpdatePostTool extends MCP_Tool_Base {
 			'post_modified' => $updated_post ? $updated_post->post_modified : '',
 			'permalink'     => get_permalink( $post_id ),
 			'edit_link'     => get_edit_post_link( $post_id, 'raw' ),
-			'message'       => __( 'Post updated successfully', 'wyvern-ai-styling' ),
+			'message'       => __( 'Post updated successfully', 'wyverncss' ),
 		);
 	}
 }

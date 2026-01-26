@@ -338,7 +338,7 @@ class Style_Memory {
 				'success' => false,
 				'error'   => sprintf(
 					/* translators: %d: maximum number of patterns allowed */
-					__( 'Maximum of %d custom patterns reached. Delete some patterns first.', 'wyvern-ai-styling' ),
+					__( 'Maximum of %d custom patterns reached. Delete some patterns first.', 'wyverncss' ),
 					self::MAX_CUSTOM_PATTERNS
 				),
 			);
@@ -350,7 +350,7 @@ class Style_Memory {
 		// Sanitize name.
 		$name = sanitize_text_field( $name );
 		if ( empty( $name ) ) {
-			$name = __( 'Untitled Pattern', 'wyvern-ai-styling' );
+			$name = __( 'Untitled Pattern', 'wyverncss' );
 		}
 
 		// Build pattern entry.
@@ -376,7 +376,7 @@ class Style_Memory {
 
 		return array(
 			'success' => false,
-			'error'   => __( 'Failed to save pattern.', 'wyvern-ai-styling' ),
+			'error'   => __( 'Failed to save pattern.', 'wyverncss' ),
 		);
 	}
 

@@ -715,7 +715,7 @@ class ContentDetector {
 			$current_type = $this->get_block_friendly_name( $block_context['blockName'] );
 			return sprintf(
 				/* translators: 1: description of new content, 2: current block type */
-				__( 'This will replace the selected %2$s with %1$s', 'wyvern-ai-styling' ),
+				__( 'This will replace the selected %2$s with %1$s', 'wyverncss' ),
 				$description,
 				$current_type
 			);
@@ -723,7 +723,7 @@ class ContentDetector {
 
 		return sprintf(
 			/* translators: %s: description of content to be inserted */
-			__( 'This will insert %s after the current selection', 'wyvern-ai-styling' ),
+			__( 'This will insert %s after the current selection', 'wyverncss' ),
 			$description
 		);
 	}
@@ -748,7 +748,7 @@ class ContentDetector {
 						'This will add %d column to the table',
 						'This will add %d columns to the table',
 						$count,
-						'wyvern-ai-styling'
+						'wyverncss'
 					),
 					$count
 				);
@@ -759,7 +759,7 @@ class ContentDetector {
 						'This will remove %d column from the table',
 						'This will remove %d columns from the table',
 						$count,
-						'wyvern-ai-styling'
+						'wyverncss'
 					),
 					$count
 				);
@@ -770,7 +770,7 @@ class ContentDetector {
 						'This will add %d row to the table',
 						'This will add %d rows to the table',
 						$count,
-						'wyvern-ai-styling'
+						'wyverncss'
 					),
 					$count
 				);
@@ -781,7 +781,7 @@ class ContentDetector {
 						'This will remove %d row from the table',
 						'This will remove %d rows from the table',
 						$count,
-						'wyvern-ai-styling'
+						'wyverncss'
 					),
 					$count
 				);
@@ -792,7 +792,7 @@ class ContentDetector {
 						'This will add %d item to the list',
 						'This will add %d items to the list',
 						$count,
-						'wyvern-ai-styling'
+						'wyverncss'
 					),
 					$count
 				);
@@ -803,16 +803,16 @@ class ContentDetector {
 						'This will remove %d item from the list',
 						'This will remove %d items from the list',
 						$count,
-						'wyvern-ai-styling'
+						'wyverncss'
 					),
 					$count
 				);
 			case 'add_column':
-				return __( 'This will add a column to the layout', 'wyvern-ai-styling' );
+				return __( 'This will add a column to the layout', 'wyverncss' );
 			case 'remove_column':
-				return __( 'This will remove a column from the layout', 'wyvern-ai-styling' );
+				return __( 'This will remove a column from the layout', 'wyverncss' );
 			default:
-				return __( 'This will modify the selected block', 'wyvern-ai-styling' );
+				return __( 'This will modify the selected block', 'wyverncss' );
 		}
 	}
 
@@ -831,7 +831,7 @@ class ContentDetector {
 				$rows = $params['rows'] ?? 3;
 				return sprintf(
 					/* translators: 1: number of columns, 2: number of rows */
-					__( 'a table with %1$d columns and %2$d rows', 'wyvern-ai-styling' ),
+					__( 'a table with %1$d columns and %2$d rows', 'wyverncss' ),
 					$cols,
 					$rows
 				);
@@ -841,31 +841,31 @@ class ContentDetector {
 				if ( count( $headers ) > 0 ) {
 					return sprintf(
 						/* translators: 1: header names, 2: number of rows */
-						__( 'a table with headers "%1$s" and %2$d rows', 'wyvern-ai-styling' ),
+						__( 'a table with headers "%1$s" and %2$d rows', 'wyverncss' ),
 						implode( '", "', $headers ),
 						$rows
 					);
 				}
-				return __( 'a table with headers', 'wyvern-ai-styling' );
+				return __( 'a table with headers', 'wyverncss' );
 			case 'list_unordered':
 				$items = $params['items'] ?? 3;
 				return sprintf(
 					/* translators: %d: number of items */
-					__( 'a bulleted list with %d items', 'wyvern-ai-styling' ),
+					__( 'a bulleted list with %d items', 'wyverncss' ),
 					$items
 				);
 			case 'list_ordered':
 				$items = $params['items'] ?? 3;
 				return sprintf(
 					/* translators: %d: number of items */
-					__( 'a numbered list with %d items', 'wyvern-ai-styling' ),
+					__( 'a numbered list with %d items', 'wyverncss' ),
 					$items
 				);
 			case 'columns':
 				$count = $params['count'] ?? 2;
 				return sprintf(
 					/* translators: %d: number of columns */
-					__( 'a %d-column layout', 'wyvern-ai-styling' ),
+					__( 'a %d-column layout', 'wyverncss' ),
 					$count
 				);
 			case 'button':
@@ -873,65 +873,65 @@ class ContentDetector {
 				if ( ! empty( $text ) ) {
 					return sprintf(
 						/* translators: %s: button text */
-						__( 'a button with text "%s"', 'wyvern-ai-styling' ),
+						__( 'a button with text "%s"', 'wyverncss' ),
 						$text
 					);
 				}
-				return __( 'a button', 'wyvern-ai-styling' );
+				return __( 'a button', 'wyverncss' );
 			case 'callout':
-				return __( 'a callout/notice block', 'wyvern-ai-styling' );
+				return __( 'a callout/notice block', 'wyverncss' );
 			case 'card':
 				$title = $params['title'] ?? '';
 				if ( ! empty( $title ) ) {
 					return sprintf(
 						/* translators: %s: card title */
-						__( 'a card titled "%s"', 'wyvern-ai-styling' ),
+						__( 'a card titled "%s"', 'wyverncss' ),
 						$title
 					);
 				}
-				return __( 'a card block', 'wyvern-ai-styling' );
+				return __( 'a card block', 'wyverncss' );
 			case 'quote':
-				return __( 'a quote block', 'wyvern-ai-styling' );
+				return __( 'a quote block', 'wyverncss' );
 			case 'image':
-				return __( 'an image placeholder', 'wyvern-ai-styling' );
+				return __( 'an image placeholder', 'wyverncss' );
 			case 'separator':
-				return __( 'a separator/divider', 'wyvern-ai-styling' );
+				return __( 'a separator/divider', 'wyverncss' );
 			case 'heading':
 				$level = $params['level'] ?? $params['level_alt'] ?? 2;
 				return sprintf(
 					/* translators: %d: heading level */
-					__( 'an h%d heading', 'wyvern-ai-styling' ),
+					__( 'an h%d heading', 'wyverncss' ),
 					$level
 				);
 			case 'spacer':
 				$height = $params['height'] ?? 100;
 				return sprintf(
 					/* translators: %d: spacer height in pixels */
-					__( 'a spacer (%dpx)', 'wyvern-ai-styling' ),
+					__( 'a spacer (%dpx)', 'wyverncss' ),
 					$height
 				);
 			case 'code':
-				return __( 'a code block', 'wyvern-ai-styling' );
+				return __( 'a code block', 'wyverncss' );
 			case 'cover':
-				return __( 'a cover/hero block', 'wyvern-ai-styling' );
+				return __( 'a cover/hero block', 'wyverncss' );
 			case 'media_text':
-				return __( 'a media & text block', 'wyvern-ai-styling' );
+				return __( 'a media & text block', 'wyverncss' );
 			case 'gallery':
-				return __( 'an image gallery', 'wyvern-ai-styling' );
+				return __( 'an image gallery', 'wyverncss' );
 			case 'details':
-				return __( 'a details/accordion block', 'wyvern-ai-styling' );
+				return __( 'a details/accordion block', 'wyverncss' );
 			case 'search':
-				return __( 'a search box', 'wyvern-ai-styling' );
+				return __( 'a search box', 'wyverncss' );
 			case 'navigation':
-				return __( 'a navigation menu', 'wyvern-ai-styling' );
+				return __( 'a navigation menu', 'wyverncss' );
 			case 'social_links':
-				return __( 'a social links block', 'wyvern-ai-styling' );
+				return __( 'a social links block', 'wyverncss' );
 			case 'buttons':
-				return __( 'a buttons group', 'wyvern-ai-styling' );
+				return __( 'a buttons group', 'wyverncss' );
 			default:
 				return sprintf(
 					/* translators: %s: block type */
-					__( 'a %s block', 'wyvern-ai-styling' ),
+					__( 'a %s block', 'wyverncss' ),
 					str_replace( '_', ' ', $type )
 				);
 		}
@@ -946,27 +946,27 @@ class ContentDetector {
 	 */
 	private function get_block_friendly_name( string $block_name ): string {
 		$names = array(
-			'core/paragraph'    => __( 'paragraph', 'wyvern-ai-styling' ),
-			'core/heading'      => __( 'heading', 'wyvern-ai-styling' ),
-			'core/table'        => __( 'table', 'wyvern-ai-styling' ),
-			'core/list'         => __( 'list', 'wyvern-ai-styling' ),
-			'core/image'        => __( 'image', 'wyvern-ai-styling' ),
-			'core/button'       => __( 'button', 'wyvern-ai-styling' ),
-			'core/buttons'      => __( 'buttons group', 'wyvern-ai-styling' ),
-			'core/columns'      => __( 'column layout', 'wyvern-ai-styling' ),
-			'core/group'        => __( 'group', 'wyvern-ai-styling' ),
-			'core/cover'        => __( 'cover', 'wyvern-ai-styling' ),
-			'core/quote'        => __( 'quote', 'wyvern-ai-styling' ),
-			'core/code'         => __( 'code block', 'wyvern-ai-styling' ),
-			'core/separator'    => __( 'separator', 'wyvern-ai-styling' ),
-			'core/spacer'       => __( 'spacer', 'wyvern-ai-styling' ),
-			'core/media-text'   => __( 'media & text', 'wyvern-ai-styling' ),
-			'core/gallery'      => __( 'gallery', 'wyvern-ai-styling' ),
-			'core/navigation'   => __( 'navigation', 'wyvern-ai-styling' ),
-			'core/search'       => __( 'search', 'wyvern-ai-styling' ),
-			'core/details'      => __( 'details', 'wyvern-ai-styling' ),
-			'core/pullquote'    => __( 'pullquote', 'wyvern-ai-styling' ),
-			'core/preformatted' => __( 'preformatted text', 'wyvern-ai-styling' ),
+			'core/paragraph'    => __( 'paragraph', 'wyverncss' ),
+			'core/heading'      => __( 'heading', 'wyverncss' ),
+			'core/table'        => __( 'table', 'wyverncss' ),
+			'core/list'         => __( 'list', 'wyverncss' ),
+			'core/image'        => __( 'image', 'wyverncss' ),
+			'core/button'       => __( 'button', 'wyverncss' ),
+			'core/buttons'      => __( 'buttons group', 'wyverncss' ),
+			'core/columns'      => __( 'column layout', 'wyverncss' ),
+			'core/group'        => __( 'group', 'wyverncss' ),
+			'core/cover'        => __( 'cover', 'wyverncss' ),
+			'core/quote'        => __( 'quote', 'wyverncss' ),
+			'core/code'         => __( 'code block', 'wyverncss' ),
+			'core/separator'    => __( 'separator', 'wyverncss' ),
+			'core/spacer'       => __( 'spacer', 'wyverncss' ),
+			'core/media-text'   => __( 'media & text', 'wyverncss' ),
+			'core/gallery'      => __( 'gallery', 'wyverncss' ),
+			'core/navigation'   => __( 'navigation', 'wyverncss' ),
+			'core/search'       => __( 'search', 'wyverncss' ),
+			'core/details'      => __( 'details', 'wyverncss' ),
+			'core/pullquote'    => __( 'pullquote', 'wyverncss' ),
+			'core/preformatted' => __( 'preformatted text', 'wyverncss' ),
 		);
 
 		return $names[ $block_name ] ?? str_replace( array( 'core/', '-' ), array( '', ' ' ), $block_name );

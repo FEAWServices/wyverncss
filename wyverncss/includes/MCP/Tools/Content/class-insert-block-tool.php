@@ -32,7 +32,7 @@ class InsertBlockTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_insert_block';
-		$this->description = __( 'Insert a new Gutenberg block at a specific position in a post. Position can be "start", "end", or a numeric index.', 'wyvern-ai-styling' );
+		$this->description = __( 'Insert a new Gutenberg block at a specific position in a post. Position can be "start", "end", or a numeric index.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -42,17 +42,17 @@ class InsertBlockTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id'  => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'position' => array(
 					'type'        => 'string',
-					'description' => __( 'Where to insert: "start", "end", or numeric index (e.g., "2")', 'wyvern-ai-styling' ),
+					'description' => __( 'Where to insert: "start", "end", or numeric index (e.g., "2")', 'wyverncss' ),
 					'default'     => 'end',
 				),
 				'block'    => array(
 					'type'        => 'string',
-					'description' => __( 'Serialized block content to insert', 'wyvern-ai-styling' ),
+					'description' => __( 'Serialized block content to insert', 'wyverncss' ),
 				),
 			),
 			'required'   => array( 'post_id', 'block' ),
@@ -77,7 +77,7 @@ class InsertBlockTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -87,7 +87,7 @@ class InsertBlockTool extends MCP_Tool_Base {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to edit this post', 'wyvern-ai-styling' )
+				__( 'You do not have permission to edit this post', 'wyverncss' )
 			);
 		}
 
@@ -115,7 +115,7 @@ class InsertBlockTool extends MCP_Tool_Base {
 		if ( empty( $new_block ) ) {
 			return new WP_Error(
 				'invalid_block',
-				__( 'Invalid block content provided', 'wyvern-ai-styling' )
+				__( 'Invalid block content provided', 'wyverncss' )
 			);
 		}
 
@@ -130,7 +130,7 @@ class InsertBlockTool extends MCP_Tool_Base {
 		} else {
 			return new WP_Error(
 				'invalid_position',
-				__( 'Position must be "start", "end", or a numeric index', 'wyvern-ai-styling' )
+				__( 'Position must be "start", "end", or a numeric index', 'wyverncss' )
 			);
 		}
 
@@ -155,7 +155,7 @@ class InsertBlockTool extends MCP_Tool_Base {
 			'inserted'    => true,
 			'position'    => $position,
 			'block_count' => count( $existing_blocks ),
-			'message'     => __( 'Block inserted successfully', 'wyvern-ai-styling' ),
+			'message'     => __( 'Block inserted successfully', 'wyverncss' ),
 		);
 	}
 }

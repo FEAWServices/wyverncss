@@ -149,14 +149,14 @@ class DarkModeGenerator {
 		if ( empty( $selector ) ) {
 			return new WP_Error(
 				'invalid_selector',
-				__( 'CSS selector cannot be empty.', 'wyvern-ai-styling' )
+				__( 'CSS selector cannot be empty.', 'wyverncss' )
 			);
 		}
 
 		if ( empty( $light_css ) ) {
 			return new WP_Error(
 				'empty_css',
-				__( 'CSS properties cannot be empty.', 'wyvern-ai-styling' )
+				__( 'CSS properties cannot be empty.', 'wyverncss' )
 			);
 		}
 
@@ -610,10 +610,10 @@ class DarkModeGenerator {
 	 */
 	public function get_strategies(): array {
 		return array(
-			self::STRATEGY_INVERT     => __( 'Invert colors (RGB inversion)', 'wyvern-ai-styling' ),
-			self::STRATEGY_LIGHTEN    => __( 'Adjust lightness (HSL-based)', 'wyvern-ai-styling' ),
-			self::STRATEGY_COMPLEMENT => __( 'Complementary colors (Hue rotation)', 'wyvern-ai-styling' ),
-			self::STRATEGY_CUSTOM     => __( 'Custom color mappings', 'wyvern-ai-styling' ),
+			self::STRATEGY_INVERT     => __( 'Invert colors (RGB inversion)', 'wyverncss' ),
+			self::STRATEGY_LIGHTEN    => __( 'Adjust lightness (HSL-based)', 'wyverncss' ),
+			self::STRATEGY_COMPLEMENT => __( 'Complementary colors (Hue rotation)', 'wyverncss' ),
+			self::STRATEGY_CUSTOM     => __( 'Custom color mappings', 'wyverncss' ),
 		);
 	}
 

@@ -288,7 +288,7 @@ class CSS_Validator {
 		if ( ! empty( $this->errors ) ) {
 			return new WP_Error(
 				'css_validation_failed',
-				__( 'CSS validation failed: dangerous patterns detected', 'wyvern-ai-styling' ),
+				__( 'CSS validation failed: dangerous patterns detected', 'wyverncss' ),
 				array(
 					'errors'   => $this->errors,
 					'warnings' => $this->warnings,
@@ -304,7 +304,7 @@ class CSS_Validator {
 			if ( ! $this->is_property_allowed( $sanitized_property ) ) {
 				$this->errors[] = sprintf(
 					/* translators: %s: CSS property name */
-					__( 'Property not allowed: %s', 'wyvern-ai-styling' ),
+					__( 'Property not allowed: %s', 'wyverncss' ),
 					esc_html( $property )
 				);
 				continue;
@@ -324,7 +324,7 @@ class CSS_Validator {
 		if ( ! empty( $this->errors ) || ( $strict && ! empty( $this->warnings ) ) ) {
 			return new WP_Error(
 				'css_validation_failed',
-				__( 'CSS validation failed', 'wyvern-ai-styling' ),
+				__( 'CSS validation failed', 'wyverncss' ),
 				array(
 					'errors'   => $this->errors,
 					'warnings' => $this->warnings,
@@ -352,7 +352,7 @@ class CSS_Validator {
 
 			// Check if property itself is dangerous (e.g., 'behavior').
 			if ( 'behavior' === $property_lower ) {
-				$this->errors[] = __( 'Dangerous pattern detected: behavior:', 'wyvern-ai-styling' );
+				$this->errors[] = __( 'Dangerous pattern detected: behavior:', 'wyverncss' );
 			}
 
 			// Check for dangerous patterns in values.
@@ -360,7 +360,7 @@ class CSS_Validator {
 				if ( str_contains( $value_lower, strtolower( $pattern ) ) ) {
 					$this->errors[] = sprintf(
 						/* translators: %s: dangerous pattern */
-						__( 'Dangerous pattern detected: %s', 'wyvern-ai-styling' ),
+						__( 'Dangerous pattern detected: %s', 'wyverncss' ),
 						esc_html( $pattern )
 					);
 				}
@@ -431,7 +431,7 @@ class CSS_Validator {
 				'empty_value',
 				sprintf(
 					/* translators: %s: CSS property name */
-					__( 'Empty value for property: %s', 'wyvern-ai-styling' ),
+					__( 'Empty value for property: %s', 'wyverncss' ),
 					esc_html( $property )
 				)
 			);
@@ -441,7 +441,7 @@ class CSS_Validator {
 		if ( preg_match( '/url\s*\(/i', $value ) ) {
 			return new WP_Error(
 				'url_not_allowed',
-				__( 'URL values are not allowed for security reasons', 'wyvern-ai-styling' )
+				__( 'URL values are not allowed for security reasons', 'wyverncss' )
 			);
 		}
 
@@ -479,7 +479,7 @@ class CSS_Validator {
 		// If we can't validate it, add a warning but allow it.
 		$this->warnings[] = sprintf(
 			/* translators: 1: CSS property name, 2: CSS value */
-			__( 'Could not fully validate %1$s: %2$s', 'wyvern-ai-styling' ),
+			__( 'Could not fully validate %1$s: %2$s', 'wyverncss' ),
 			esc_html( $property ),
 			esc_html( $value )
 		);
@@ -560,7 +560,7 @@ class CSS_Validator {
 			'invalid_color',
 			sprintf(
 				/* translators: %s: color value */
-				__( 'Invalid color value: %s', 'wyvern-ai-styling' ),
+				__( 'Invalid color value: %s', 'wyverncss' ),
 				esc_html( $value )
 			)
 		);
@@ -584,7 +584,7 @@ class CSS_Validator {
 				'value_too_large',
 				sprintf(
 					/* translators: %d: maximum allowed value */
-					__( 'Numeric value exceeds maximum allowed (%d)', 'wyvern-ai-styling' ),
+					__( 'Numeric value exceeds maximum allowed (%d)', 'wyverncss' ),
 					self::MAX_NUMERIC_VALUE
 				)
 			);
@@ -596,7 +596,7 @@ class CSS_Validator {
 				'invalid_unit',
 				sprintf(
 					/* translators: %s: CSS unit */
-					__( 'Invalid CSS unit: %s', 'wyvern-ai-styling' ),
+					__( 'Invalid CSS unit: %s', 'wyverncss' ),
 					esc_html( $unit )
 				)
 			);
@@ -621,7 +621,7 @@ class CSS_Validator {
 				'invalid_keyword',
 				sprintf(
 					/* translators: 1: CSS value, 2: CSS property name */
-					__( 'Invalid keyword "%1$s" for property %2$s', 'wyvern-ai-styling' ),
+					__( 'Invalid keyword "%1$s" for property %2$s', 'wyverncss' ),
 					esc_html( $value ),
 					esc_html( $property )
 				)
@@ -645,7 +645,7 @@ class CSS_Validator {
 				'invalid_function',
 				sprintf(
 					/* translators: %s: CSS function name */
-					__( 'CSS function not allowed: %s', 'wyvern-ai-styling' ),
+					__( 'CSS function not allowed: %s', 'wyverncss' ),
 					esc_html( $function_name )
 				)
 			);
@@ -655,7 +655,7 @@ class CSS_Validator {
 		if ( substr_count( $full_value, '(' ) !== substr_count( $full_value, ')' ) ) {
 			return new WP_Error(
 				'malformed_function',
-				__( 'Malformed CSS function (mismatched parentheses)', 'wyvern-ai-styling' )
+				__( 'Malformed CSS function (mismatched parentheses)', 'wyverncss' )
 			);
 		}
 

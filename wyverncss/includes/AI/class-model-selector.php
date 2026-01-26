@@ -121,7 +121,7 @@ class ModelSelector {
 		if ( ! isset( self::COMPLEXITY_SCORES[ $complexity ] ) ) {
 			return new WP_Error(
 				'invalid_complexity',
-				__( 'Invalid complexity level', 'wyvern-ai-styling' ),
+				__( 'Invalid complexity level', 'wyverncss' ),
 				array( 'complexity' => $complexity )
 			);
 		}
@@ -129,7 +129,7 @@ class ModelSelector {
 		if ( ! isset( self::TIER_MODELS[ $user_tier ] ) ) {
 			return new WP_Error(
 				'invalid_tier',
-				__( 'Invalid user tier', 'wyvern-ai-styling' ),
+				__( 'Invalid user tier', 'wyverncss' ),
 				array( 'tier' => $user_tier )
 			);
 		}
@@ -140,7 +140,7 @@ class ModelSelector {
 		if ( empty( $available_models ) ) {
 			return new WP_Error(
 				'no_models_available',
-				__( 'No models available for your tier', 'wyvern-ai-styling' )
+				__( 'No models available for your tier', 'wyverncss' )
 			);
 		}
 
@@ -165,7 +165,7 @@ class ModelSelector {
 		if ( empty( $selected ) ) {
 			return new WP_Error(
 				'no_suitable_model',
-				__( 'No suitable model found for your requirements', 'wyvern-ai-styling' )
+				__( 'No suitable model found for your requirements', 'wyverncss' )
 			);
 		}
 
@@ -246,7 +246,7 @@ class ModelSelector {
 		if ( empty( $available_models ) ) {
 			return new WP_Error(
 				'no_fallback_available',
-				__( 'No fallback model available', 'wyvern-ai-styling' )
+				__( 'No fallback model available', 'wyverncss' )
 			);
 		}
 

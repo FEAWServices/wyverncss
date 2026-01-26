@@ -172,7 +172,7 @@ class CSS_Debug_Controller extends RESTController {
 		if ( ! $this->freemius->is_premium() && ! $this->freemius->is_trial() ) {
 			return new WP_Error(
 				'premium_required',
-				esc_html__( 'CSS auto-fix is a premium feature. Upgrade to access this functionality.', 'wyvern-ai-styling' ),
+				esc_html__( 'CSS auto-fix is a premium feature. Upgrade to access this functionality.', 'wyverncss' ),
 				array(
 					'status'      => 403,
 					'upgrade_url' => $this->freemius->get_upgrade_url(),
@@ -225,7 +225,7 @@ class CSS_Debug_Controller extends RESTController {
 				'css_too_long',
 				sprintf(
 					/* translators: 1: CSS length, 2: max length */
-					esc_html__( 'CSS is too long (%1$d characters). Maximum allowed is %2$d characters.', 'wyvern-ai-styling' ),
+					esc_html__( 'CSS is too long (%1$d characters). Maximum allowed is %2$d characters.', 'wyverncss' ),
 					$css_length,
 					$max_length
 				),

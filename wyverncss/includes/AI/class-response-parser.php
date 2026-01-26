@@ -112,7 +112,7 @@ class ResponseParser {
 		if ( empty( $response['choices'] ) || ! is_array( $response['choices'] ) ) {
 			return new WP_Error(
 				'invalid_response_structure',
-				__( 'Invalid API response structure', 'wyvern-ai-styling' ),
+				__( 'Invalid API response structure', 'wyverncss' ),
 				array( 'response' => $response )
 			);
 		}
@@ -122,7 +122,7 @@ class ResponseParser {
 		if ( empty( $choice ) || empty( $choice['message']['content'] ) ) {
 			return new WP_Error(
 				'empty_response',
-				__( 'Empty response from API', 'wyvern-ai-styling' ),
+				__( 'Empty response from API', 'wyverncss' ),
 				array( 'choice' => $choice )
 			);
 		}
@@ -179,7 +179,7 @@ class ResponseParser {
 
 		return new WP_Error(
 			'json_parse_error',
-			__( 'Failed to parse JSON from response', 'wyvern-ai-styling' ),
+			__( 'Failed to parse JSON from response', 'wyverncss' ),
 			array(
 				'content'    => $content,
 				'json_error' => json_last_error_msg(),
@@ -198,7 +198,7 @@ class ResponseParser {
 		if ( empty( $css ) ) {
 			return new WP_Error(
 				'empty_css',
-				__( 'No CSS properties found in response', 'wyvern-ai-styling' )
+				__( 'No CSS properties found in response', 'wyverncss' )
 			);
 		}
 
@@ -215,7 +215,7 @@ class ResponseParser {
 					} else {
 						$errors[] = sprintf(
 							/* translators: %s: Media query */
-							__( 'Invalid nested CSS in %s', 'wyvern-ai-styling' ),
+							__( 'Invalid nested CSS in %s', 'wyverncss' ),
 							$property
 						);
 					}
@@ -227,7 +227,7 @@ class ResponseParser {
 			if ( ! $this->is_valid_property( $property ) ) {
 				$errors[] = sprintf(
 					/* translators: %s: Property name */
-					__( 'Invalid CSS property: %s', 'wyvern-ai-styling' ),
+					__( 'Invalid CSS property: %s', 'wyverncss' ),
 					$property
 				);
 				continue;
@@ -237,7 +237,7 @@ class ResponseParser {
 			if ( ! is_string( $value ) && ! is_numeric( $value ) ) {
 				$errors[] = sprintf(
 					/* translators: %s: Property name */
-					__( 'Invalid value type for property: %s', 'wyvern-ai-styling' ),
+					__( 'Invalid value type for property: %s', 'wyverncss' ),
 					$property
 				);
 				continue;
@@ -254,7 +254,7 @@ class ResponseParser {
 		if ( count( $errors ) > count( $css ) / 2 ) {
 			return new WP_Error(
 				'validation_failed',
-				__( 'Too many invalid CSS properties', 'wyvern-ai-styling' ),
+				__( 'Too many invalid CSS properties', 'wyverncss' ),
 				array( 'errors' => $errors )
 			);
 		}

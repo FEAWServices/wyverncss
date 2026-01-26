@@ -37,7 +37,7 @@ class Conversations_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace.
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * REST base path.
@@ -95,7 +95,7 @@ class Conversations_Controller extends WP_REST_Controller {
 				'permission_callback' => array( $this, 'check_permission' ),
 				'args'                => array(
 					'id' => array(
-						'description'       => __( 'Conversation ID', 'wyvern-ai-styling' ),
+						'description'       => __( 'Conversation ID', 'wyverncss' ),
 						'type'              => 'integer',
 						'required'          => true,
 						'sanitize_callback' => 'absint',
@@ -150,7 +150,7 @@ class Conversations_Controller extends WP_REST_Controller {
 				'permission_callback' => array( $this, 'check_permission' ),
 				'args'                => array(
 					'id' => array(
-						'description'       => __( 'Conversation ID', 'wyvern-ai-styling' ),
+						'description'       => __( 'Conversation ID', 'wyverncss' ),
 						'type'              => 'integer',
 						'required'          => true,
 						'sanitize_callback' => 'absint',
@@ -328,7 +328,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		if ( empty( $messages ) ) {
 			return new WP_Error(
 				'no_messages',
-				__( 'No messages to summarize', 'wyvern-ai-styling' ),
+				__( 'No messages to summarize', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -353,7 +353,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		if ( empty( $license_key ) ) {
 			return new WP_Error(
 				'license_required',
-				__( 'License key required for conversation summarization', 'wyvern-ai-styling' ),
+				__( 'License key required for conversation summarization', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -405,7 +405,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		}
 
 		// Use relevant history endpoint to get optimized context.
-		$history_request = new WP_REST_Request( 'GET', sprintf( '/wyvernpress/v1/conversations/%d/relevant-history', $conversation_id ) );
+		$history_request = new WP_REST_Request( 'GET', sprintf( '/wyverncss/v1/conversations/%d/relevant-history', $conversation_id ) );
 		$history_request->set_param( 'id', $conversation_id );
 		$history_request->set_param( 'query', $current_query );
 		$history_request->set_param( 'max_messages', $max_messages );
@@ -451,7 +451,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		if ( ! $deleted ) {
 			return new WP_Error(
 				'delete_failed',
-				__( 'Failed to delete conversation', 'wyvern-ai-styling' ),
+				__( 'Failed to delete conversation', 'wyverncss' ),
 				array( 'status' => 500 )
 			);
 		}
@@ -459,7 +459,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'message' => __( 'Conversation deleted successfully', 'wyvern-ai-styling' ),
+				'message' => __( 'Conversation deleted successfully', 'wyverncss' ),
 			),
 			200
 		);
@@ -482,7 +482,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		if ( ! $conversation ) {
 			return new WP_Error(
 				'conversation_not_found',
-				__( 'Conversation not found', 'wyvern-ai-styling' ),
+				__( 'Conversation not found', 'wyverncss' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -491,7 +491,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		if ( (int) $conversation['user_id'] !== $user_id && ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'forbidden',
-				__( 'You do not have permission to access this conversation', 'wyvern-ai-styling' ),
+				__( 'You do not have permission to access this conversation', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -507,19 +507,19 @@ class Conversations_Controller extends WP_REST_Controller {
 	private function get_collection_args(): array {
 		return array(
 			'bot_slug' => array(
-				'description'       => __( 'Filter by bot slug', 'wyvern-ai-styling' ),
+				'description'       => __( 'Filter by bot slug', 'wyverncss' ),
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'limit'    => array(
-				'description' => __( 'Maximum conversations to return', 'wyvern-ai-styling' ),
+				'description' => __( 'Maximum conversations to return', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 20,
 				'minimum'     => 1,
 				'maximum'     => 100,
 			),
 			'offset'   => array(
-				'description' => __( 'Offset for pagination', 'wyvern-ai-styling' ),
+				'description' => __( 'Offset for pagination', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 0,
 				'minimum'     => 0,
@@ -535,19 +535,19 @@ class Conversations_Controller extends WP_REST_Controller {
 	private function get_relevant_history_args(): array {
 		return array(
 			'id'           => array(
-				'description'       => __( 'Conversation ID', 'wyvern-ai-styling' ),
+				'description'       => __( 'Conversation ID', 'wyverncss' ),
 				'type'              => 'integer',
 				'required'          => true,
 				'sanitize_callback' => 'absint',
 			),
 			'query'        => array(
-				'description'       => __( 'Current query for context relevance', 'wyvern-ai-styling' ),
+				'description'       => __( 'Current query for context relevance', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'max_messages' => array(
-				'description' => __( 'Maximum messages to return', 'wyvern-ai-styling' ),
+				'description' => __( 'Maximum messages to return', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 10,
 				'minimum'     => 1,
@@ -564,13 +564,13 @@ class Conversations_Controller extends WP_REST_Controller {
 	private function get_summarize_args(): array {
 		return array(
 			'id'         => array(
-				'description'       => __( 'Conversation ID', 'wyvern-ai-styling' ),
+				'description'       => __( 'Conversation ID', 'wyverncss' ),
 				'type'              => 'integer',
 				'required'          => true,
 				'sanitize_callback' => 'absint',
 			),
 			'max_length' => array(
-				'description' => __( 'Maximum summary length in words', 'wyvern-ai-styling' ),
+				'description' => __( 'Maximum summary length in words', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 500,
 				'minimum'     => 50,
@@ -587,19 +587,19 @@ class Conversations_Controller extends WP_REST_Controller {
 	private function get_optimize_context_args(): array {
 		return array(
 			'id'            => array(
-				'description'       => __( 'Conversation ID', 'wyvern-ai-styling' ),
+				'description'       => __( 'Conversation ID', 'wyverncss' ),
 				'type'              => 'integer',
 				'required'          => true,
 				'sanitize_callback' => 'absint',
 			),
 			'current_query' => array(
-				'description'       => __( 'Current user query', 'wyvern-ai-styling' ),
+				'description'       => __( 'Current user query', 'wyverncss' ),
 				'type'              => 'string',
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 			),
 			'max_messages'  => array(
-				'description' => __( 'Maximum messages in optimized context', 'wyvern-ai-styling' ),
+				'description' => __( 'Maximum messages in optimized context', 'wyverncss' ),
 				'type'        => 'integer',
 				'default'     => 5,
 				'minimum'     => 1,
@@ -618,7 +618,7 @@ class Conversations_Controller extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You must be logged in to access conversations.', 'wyvern-ai-styling' ),
+				__( 'You must be logged in to access conversations.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}

@@ -127,7 +127,7 @@ class Admin_AI_Handler {
 				'unknown_command',
 				sprintf(
 					/* translators: %s: the command that was not understood */
-					esc_html__( 'Unable to understand command: "%s". Please try rephrasing.', 'wyvern-ai-styling' ),
+					esc_html__( 'Unable to understand command: "%s". Please try rephrasing.', 'wyverncss' ),
 					esc_html( $command )
 				),
 				array( 'status' => 400 )
@@ -226,7 +226,7 @@ class Admin_AI_Handler {
 
 		return new WP_Error(
 			'invalid_operation',
-			esc_html__( 'Invalid operation type.', 'wyvern-ai-styling' ),
+			esc_html__( 'Invalid operation type.', 'wyverncss' ),
 			array( 'status' => 400 )
 		);
 	}
@@ -269,7 +269,7 @@ class Admin_AI_Handler {
 			default:
 				return new WP_Error(
 					'unknown_operation',
-					esc_html__( 'Unknown post operation.', 'wyvern-ai-styling' ),
+					esc_html__( 'Unknown post operation.', 'wyverncss' ),
 					array( 'status' => 400 )
 				);
 		}
@@ -300,7 +300,7 @@ class Admin_AI_Handler {
 			default:
 				return new WP_Error(
 					'unknown_operation',
-					esc_html__( 'Unknown media operation.', 'wyvern-ai-styling' ),
+					esc_html__( 'Unknown media operation.', 'wyverncss' ),
 					array( 'status' => 400 )
 				);
 		}
@@ -328,7 +328,7 @@ class Admin_AI_Handler {
 				if ( ! is_string( $recommendation_id ) || empty( $recommendation_id ) ) {
 					return new WP_Error(
 						'missing_recommendation_id',
-						esc_html__( 'Recommendation ID is required.', 'wyvern-ai-styling' ),
+						esc_html__( 'Recommendation ID is required.', 'wyverncss' ),
 						array( 'status' => 400 )
 					);
 				}
@@ -337,7 +337,7 @@ class Admin_AI_Handler {
 			default:
 				return new WP_Error(
 					'unknown_operation',
-					esc_html__( 'Unknown settings operation.', 'wyvern-ai-styling' ),
+					esc_html__( 'Unknown settings operation.', 'wyverncss' ),
 					array( 'status' => 400 )
 				);
 		}
@@ -367,12 +367,12 @@ class Admin_AI_Handler {
 	 */
 	private function get_confirmation_message( string $operation ): string {
 		$messages = array(
-			'post_bulk_unpublish_posts'    => esc_html__( 'This will unpublish posts and make them drafts. This action can be undone by republishing.', 'wyvern-ai-styling' ),
-			'post_delete_old_drafts'       => esc_html__( 'This will permanently delete old draft posts. This action cannot be undone.', 'wyvern-ai-styling' ),
-			'media_organize_media_by_date' => esc_html__( 'This will reorganize your media files by date. Existing URLs will be affected.', 'wyvern-ai-styling' ),
+			'post_bulk_unpublish_posts'    => esc_html__( 'This will unpublish posts and make them drafts. This action can be undone by republishing.', 'wyverncss' ),
+			'post_delete_old_drafts'       => esc_html__( 'This will permanently delete old draft posts. This action cannot be undone.', 'wyverncss' ),
+			'media_organize_media_by_date' => esc_html__( 'This will reorganize your media files by date. Existing URLs will be affected.', 'wyverncss' ),
 		);
 
-		return $messages[ $operation ] ?? esc_html__( 'This action requires confirmation.', 'wyvern-ai-styling' );
+		return $messages[ $operation ] ?? esc_html__( 'This action requires confirmation.', 'wyverncss' );
 	}
 
 	/**
@@ -385,6 +385,6 @@ class Admin_AI_Handler {
 		// All operations use same confirmation prompt for now.
 		// $operation parameter reserved for future operation-specific prompts.
 		unset( $operation );
-		return esc_html__( 'Are you sure you want to proceed?', 'wyvern-ai-styling' );
+		return esc_html__( 'Are you sure you want to proceed?', 'wyverncss' );
 	}
 }

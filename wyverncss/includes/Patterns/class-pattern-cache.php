@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * - Primary: Redis (if available)
  * - Fallback: WordPress transients
  * - TTL: 1 hour (3600 seconds)
- * - Key format: wyvernpress:pattern:{hash}
+ * - Key format: wyverncss:pattern:{hash}
  *
  * @since 1.0.0
  */

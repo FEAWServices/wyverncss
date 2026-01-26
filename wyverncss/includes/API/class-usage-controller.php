@@ -24,7 +24,7 @@ use WyvernCSS\Config\Tier_Config;
 /**
  * Usage Controller Class
  *
- * Handles GET /wyvernpress/v1/usage endpoint.
+ * Handles GET /wyverncss/v1/usage endpoint.
  *
  * Features:
  * - Current usage statistics per user
@@ -209,7 +209,7 @@ class UsageController extends RESTController {
 		}
 
 		// Pattern library optimization (always show).
-		$recommendations[] = __( 'WyvernCSS uses pattern matching first to minimize API costs. Use common styling requests for best efficiency.', 'wyvern-ai-styling' );
+		$recommendations[] = __( 'WyvernCSS uses pattern matching first to minimize API costs. Use common styling requests for best efficiency.', 'wyverncss' );
 
 		return $recommendations;
 	}
@@ -224,7 +224,7 @@ class UsageController extends RESTController {
 	private function get_endpoint_args(): array {
 		return array(
 			'period' => array(
-				'description'       => __( 'Period for historical data (current, last3, last6, last12).', 'wyvern-ai-styling' ),
+				'description'       => __( 'Period for historical data (current, last3, last6, last12).', 'wyverncss' ),
 				'type'              => 'string',
 				'default'           => 'current',
 				'enum'              => array( 'current', 'last3', 'last6', 'last12' ),
@@ -250,13 +250,13 @@ class UsageController extends RESTController {
 			'type'       => 'object',
 			'properties' => array(
 				'tier'            => array(
-					'description' => __( 'Subscription tier.', 'wyvern-ai-styling' ),
+					'description' => __( 'Subscription tier.', 'wyverncss' ),
 					'type'        => 'string',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'current_period'  => array(
-					'description' => __( 'Current period usage statistics.', 'wyvern-ai-styling' ),
+					'description' => __( 'Current period usage statistics.', 'wyverncss' ),
 					'type'        => 'object',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
@@ -280,7 +280,7 @@ class UsageController extends RESTController {
 					),
 				),
 				'historical'      => array(
-					'description' => __( 'Historical usage data.', 'wyvern-ai-styling' ),
+					'description' => __( 'Historical usage data.', 'wyverncss' ),
 					'type'        => 'array',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
@@ -300,14 +300,14 @@ class UsageController extends RESTController {
 					),
 				),
 				'status'          => array(
-					'description' => __( 'Usage status indicator.', 'wyvern-ai-styling' ),
+					'description' => __( 'Usage status indicator.', 'wyverncss' ),
 					'type'        => 'string',
 					'enum'        => array( 'healthy', 'warning', 'critical', 'unlimited' ),
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'recommendations' => array(
-					'description' => __( 'Usage recommendations.', 'wyvern-ai-styling' ),
+					'description' => __( 'Usage recommendations.', 'wyverncss' ),
 					'type'        => 'array',
 					'context'     => array( 'view' ),
 					'readonly'    => true,

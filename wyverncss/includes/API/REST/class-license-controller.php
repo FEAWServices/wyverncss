@@ -33,7 +33,7 @@ class License_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * Freemius integration instance
@@ -136,7 +136,7 @@ class License_Controller extends WP_REST_Controller {
 		if ( isset( $license_data['is_offline'] ) && $license_data['is_offline'] ) {
 			return new WP_Error(
 				'refresh_failed',
-				__( 'Unable to refresh license. Please check your internet connection and try again.', 'wyvern-ai-styling' ),
+				__( 'Unable to refresh license. Please check your internet connection and try again.', 'wyverncss' ),
 				array( 'status' => 503 )
 			);
 		}
@@ -147,7 +147,7 @@ class License_Controller extends WP_REST_Controller {
 		// Build response.
 		$response = array(
 			'success'               => true,
-			'message'               => __( 'License refreshed successfully', 'wyvern-ai-styling' ),
+			'message'               => __( 'License refreshed successfully', 'wyverncss' ),
 			'status'                => $license_data['status'] ?? 'free',
 			'tier'                  => $plan,
 			'features'              => $features,

@@ -30,7 +30,7 @@ class CreatePostTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_create_post';
-		$this->description = __( 'Create a new WordPress post or page. Requires publish permissions for the specified post type.', 'wyvern-ai-styling' );
+		$this->description = __( 'Create a new WordPress post or page. Requires publish permissions for the specified post type.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutation operations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -40,38 +40,38 @@ class CreatePostTool extends MCP_Tool_Base {
 			'properties' => array(
 				'title'      => array(
 					'type'        => 'string',
-					'description' => __( 'Post title', 'wyvern-ai-styling' ),
+					'description' => __( 'Post title', 'wyverncss' ),
 					'minLength'   => 1,
 				),
 				'content'    => array(
 					'type'        => 'string',
-					'description' => __( 'Post content (HTML allowed)', 'wyvern-ai-styling' ),
+					'description' => __( 'Post content (HTML allowed)', 'wyverncss' ),
 					'default'     => '',
 				),
 				'excerpt'    => array(
 					'type'        => 'string',
-					'description' => __( 'Post excerpt', 'wyvern-ai-styling' ),
+					'description' => __( 'Post excerpt', 'wyverncss' ),
 					'default'     => '',
 				),
 				'status'     => array(
 					'type'        => 'string',
-					'description' => __( 'Post status', 'wyvern-ai-styling' ),
+					'description' => __( 'Post status', 'wyverncss' ),
 					'default'     => 'draft',
 					'enum'        => array( 'publish', 'draft', 'pending', 'private' ),
 				),
 				'post_type'  => array(
 					'type'        => 'string',
-					'description' => __( 'Post type (post, page, or custom post type)', 'wyvern-ai-styling' ),
+					'description' => __( 'Post type (post, page, or custom post type)', 'wyverncss' ),
 					'default'     => 'post',
 				),
 				'categories' => array(
 					'type'        => 'array',
-					'description' => __( 'Array of category IDs', 'wyvern-ai-styling' ),
+					'description' => __( 'Array of category IDs', 'wyverncss' ),
 					'items'       => array( 'type' => 'integer' ),
 				),
 				'tags'       => array(
 					'type'        => 'array',
-					'description' => __( 'Array of tag names or IDs', 'wyvern-ai-styling' ),
+					'description' => __( 'Array of tag names or IDs', 'wyverncss' ),
 					'items'       => array( 'type' => 'string' ),
 				),
 			),
@@ -91,7 +91,7 @@ class CreatePostTool extends MCP_Tool_Base {
 		if ( 'publish' === $status && ! current_user_can( 'publish_posts' ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to publish posts', 'wyvern-ai-styling' )
+				__( 'You do not have permission to publish posts', 'wyverncss' )
 			);
 		}
 
@@ -118,7 +118,7 @@ class CreatePostTool extends MCP_Tool_Base {
 				'post_creation_failed',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'Failed to create post: %s', 'wyvern-ai-styling' ),
+					__( 'Failed to create post: %s', 'wyverncss' ),
 					$post_id->get_error_message()
 				)
 			);
@@ -145,7 +145,7 @@ class CreatePostTool extends MCP_Tool_Base {
 			'post_type'   => $post ? $post->post_type : $post_type,
 			'permalink'   => get_permalink( $post_id ),
 			'edit_link'   => get_edit_post_link( $post_id, 'raw' ),
-			'message'     => __( 'Post created successfully', 'wyvern-ai-styling' ),
+			'message'     => __( 'Post created successfully', 'wyverncss' ),
 		);
 	}
 }

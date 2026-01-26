@@ -23,7 +23,7 @@ use WP_Error;
 /**
  * Validation Controller Class
  *
- * Handles POST /wyvernpress/v1/validate endpoint.
+ * Handles POST /wyverncss/v1/validate endpoint.
  *
  * Features:
  * - CSS property whitelist validation
@@ -148,7 +148,7 @@ class ValidationController extends RESTController {
 		if ( ! is_array( $css ) || empty( $css ) ) {
 			return $this->error_response(
 				'invalid_css',
-				esc_html__( 'CSS must be provided as a non-empty object.', 'wyvern-ai-styling' ),
+				esc_html__( 'CSS must be provided as a non-empty object.', 'wyverncss' ),
 				400
 			);
 		}
@@ -169,7 +169,7 @@ class ValidationController extends RESTController {
 				$is_valid = false;
 				$errors[] = sprintf(
 					/* translators: %s: CSS property name */
-					__( 'Property "%s" is not in the allowed whitelist.', 'wyvern-ai-styling' ),
+					__( 'Property "%s" is not in the allowed whitelist.', 'wyverncss' ),
 					$property
 				);
 				continue;
@@ -180,7 +180,7 @@ class ValidationController extends RESTController {
 				$is_valid = false;
 				$errors[] = sprintf(
 					/* translators: %s: CSS property name */
-					__( 'Property "%s" contains potentially dangerous content.', 'wyvern-ai-styling' ),
+					__( 'Property "%s" contains potentially dangerous content.', 'wyverncss' ),
 					$property
 				);
 				continue;
@@ -218,7 +218,7 @@ class ValidationController extends RESTController {
 		if ( ! $is_valid ) {
 			return $this->error_response(
 				'validation_failed',
-				esc_html__( 'CSS validation failed. See errors for details.', 'wyvern-ai-styling' ),
+				esc_html__( 'CSS validation failed. See errors for details.', 'wyverncss' ),
 				400,
 				$response_data
 			);
@@ -274,7 +274,7 @@ class ValidationController extends RESTController {
 			if ( 'px' === $unit && $size < 12 ) {
 				return sprintf(
 					/* translators: %s: font size value */
-					__( 'Font size "%s" is very small and may cause accessibility issues. Minimum recommended is 12px.', 'wyvern-ai-styling' ),
+					__( 'Font size "%s" is very small and may cause accessibility issues. Minimum recommended is 12px.', 'wyverncss' ),
 					$value
 				);
 			}
@@ -282,7 +282,7 @@ class ValidationController extends RESTController {
 			if ( 'rem' === $unit && $size < 0.75 ) {
 				return sprintf(
 					/* translators: %s: font size value */
-					__( 'Font size "%s" is very small and may cause accessibility issues. Minimum recommended is 0.75rem.', 'wyvern-ai-styling' ),
+					__( 'Font size "%s" is very small and may cause accessibility issues. Minimum recommended is 0.75rem.', 'wyverncss' ),
 					$value
 				);
 			}
@@ -303,7 +303,7 @@ class ValidationController extends RESTController {
 			if ( $luminance < 0.1 || $luminance > 0.9 ) {
 				return sprintf(
 					/* translators: %s: color value */
-					__( 'Color "%s" may have contrast issues. Ensure sufficient contrast with background.', 'wyvern-ai-styling' ),
+					__( 'Color "%s" may have contrast issues. Ensure sufficient contrast with background.', 'wyverncss' ),
 					$value
 				);
 			}
@@ -330,7 +330,7 @@ class ValidationController extends RESTController {
 			if ( $complexity > 5 ) {
 				return sprintf(
 					/* translators: %1$s: CSS property, %2$s: value */
-					__( 'Property "%1$s" with complex value "%2$s" may impact performance. Consider simplifying.', 'wyvern-ai-styling' ),
+					__( 'Property "%1$s" with complex value "%2$s" may impact performance. Consider simplifying.', 'wyverncss' ),
 					$property,
 					$value
 				);
@@ -349,7 +349,7 @@ class ValidationController extends RESTController {
 	private function get_endpoint_args(): array {
 		return array(
 			'css' => array(
-				'description' => __( 'CSS properties to validate as object.', 'wyvern-ai-styling' ),
+				'description' => __( 'CSS properties to validate as object.', 'wyverncss' ),
 				'type'        => 'object',
 				'required'    => true,
 			),
@@ -373,19 +373,19 @@ class ValidationController extends RESTController {
 			'type'       => 'object',
 			'properties' => array(
 				'is_valid'   => array(
-					'description' => __( 'Whether CSS is valid.', 'wyvern-ai-styling' ),
+					'description' => __( 'Whether CSS is valid.', 'wyverncss' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'css'        => array(
-					'description' => __( 'Sanitized and validated CSS properties.', 'wyvern-ai-styling' ),
+					'description' => __( 'Sanitized and validated CSS properties.', 'wyverncss' ),
 					'type'        => 'object',
 					'context'     => array( 'view' ),
 					'readonly'    => true,
 				),
 				'errors'     => array(
-					'description' => __( 'Validation errors.', 'wyvern-ai-styling' ),
+					'description' => __( 'Validation errors.', 'wyverncss' ),
 					'type'        => 'array',
 					'items'       => array(
 						'type' => 'string',
@@ -394,7 +394,7 @@ class ValidationController extends RESTController {
 					'readonly'    => true,
 				),
 				'warnings'   => array(
-					'description' => __( 'Validation warnings.', 'wyvern-ai-styling' ),
+					'description' => __( 'Validation warnings.', 'wyverncss' ),
 					'type'        => 'array',
 					'items'       => array(
 						'type' => 'string',
@@ -403,7 +403,7 @@ class ValidationController extends RESTController {
 					'readonly'    => true,
 				),
 				'properties' => array(
-					'description' => __( 'Property validation summary.', 'wyvern-ai-styling' ),
+					'description' => __( 'Property validation summary.', 'wyverncss' ),
 					'type'        => 'object',
 					'context'     => array( 'view' ),
 					'readonly'    => true,

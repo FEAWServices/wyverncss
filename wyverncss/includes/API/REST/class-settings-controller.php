@@ -32,7 +32,7 @@ class Settings_Controller extends WP_REST_Controller {
 	/**
 	 * API namespace
 	 */
-	private const NAMESPACE = 'wyvernpress/v1';
+	private const NAMESPACE = 'wyverncss/v1';
 
 	/**
 	 * Settings service instance
@@ -226,7 +226,7 @@ class Settings_Controller extends WP_REST_Controller {
 			if ( $max_context < 5 || $max_context > 50 ) {
 				return new WP_Error(
 					'invalid_parameter',
-					__( 'max_context_messages must be between 5 and 50', 'wyvern-ai-styling' ),
+					__( 'max_context_messages must be between 5 and 50', 'wyverncss' ),
 					array( 'status' => 400 )
 				);
 			}
@@ -242,7 +242,7 @@ class Settings_Controller extends WP_REST_Controller {
 		if ( ! $result ) {
 			return new WP_Error(
 				'save_failed',
-				__( 'Failed to save preferences', 'wyvern-ai-styling' ),
+				__( 'Failed to save preferences', 'wyverncss' ),
 				array( 'status' => 500 )
 			);
 		}
@@ -415,7 +415,7 @@ class Settings_Controller extends WP_REST_Controller {
 		return new WP_REST_Response(
 			array(
 				'success'       => true,
-				'message'       => __( 'Cache cleared successfully', 'wyvern-ai-styling' ),
+				'message'       => __( 'Cache cleared successfully', 'wyverncss' ),
 				'items_deleted' => $deleted,
 			),
 			200
@@ -490,7 +490,7 @@ class Settings_Controller extends WP_REST_Controller {
 			return new WP_REST_Response(
 				array(
 					'success' => true,
-					'message' => __( 'Logs cleared successfully', 'wyvern-ai-styling' ),
+					'message' => __( 'Logs cleared successfully', 'wyverncss' ),
 				),
 				200
 			);
@@ -498,7 +498,7 @@ class Settings_Controller extends WP_REST_Controller {
 
 		return new WP_Error(
 			'clear_failed',
-			__( 'Unable to clear logs. File may not exist or is not writable.', 'wyvern-ai-styling' ),
+			__( 'Unable to clear logs. File may not exist or is not writable.', 'wyverncss' ),
 			array( 'status' => 500 )
 		);
 	}
@@ -543,7 +543,7 @@ class Settings_Controller extends WP_REST_Controller {
 		if ( ! is_array( $settings ) ) {
 			return new WP_Error(
 				'invalid_data',
-				__( 'Invalid settings data', 'wyvern-ai-styling' ),
+				__( 'Invalid settings data', 'wyverncss' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -556,7 +556,7 @@ class Settings_Controller extends WP_REST_Controller {
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'message' => __( 'Settings imported successfully', 'wyvern-ai-styling' ),
+				'message' => __( 'Settings imported successfully', 'wyverncss' ),
 			),
 			200
 		);

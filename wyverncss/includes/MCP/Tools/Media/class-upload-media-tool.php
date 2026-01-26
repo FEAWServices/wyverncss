@@ -30,7 +30,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_upload_media';
-		$this->description = __( 'Upload a file to WordPress media library. Requires upload permissions. Accepts base64 encoded file data or URL.', 'wyvern-ai-styling' );
+		$this->description = __( 'Upload a file to WordPress media library. Requires upload permissions. Accepts base64 encoded file data or URL.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutation operations.
 
 		$this->required_capabilities = array( 'upload_files' );
@@ -40,33 +40,33 @@ class UploadMediaTool extends MCP_Tool_Base {
 			'properties' => array(
 				'filename'    => array(
 					'type'        => 'string',
-					'description' => __( 'Name of the file including extension', 'wyvern-ai-styling' ),
+					'description' => __( 'Name of the file including extension', 'wyverncss' ),
 					'pattern'     => '^[a-zA-Z0-9_\-\.]+$',
 				),
 				'file_data'   => array(
 					'type'        => 'string',
-					'description' => __( 'Base64 encoded file data', 'wyvern-ai-styling' ),
+					'description' => __( 'Base64 encoded file data', 'wyverncss' ),
 				),
 				'file_url'    => array(
 					'type'        => 'string',
-					'description' => __( 'URL of the file to download and upload (alternative to file_data)', 'wyvern-ai-styling' ),
+					'description' => __( 'URL of the file to download and upload (alternative to file_data)', 'wyverncss' ),
 					'format'      => 'uri',
 				),
 				'title'       => array(
 					'type'        => 'string',
-					'description' => __( 'Media title', 'wyvern-ai-styling' ),
+					'description' => __( 'Media title', 'wyverncss' ),
 				),
 				'caption'     => array(
 					'type'        => 'string',
-					'description' => __( 'Media caption', 'wyvern-ai-styling' ),
+					'description' => __( 'Media caption', 'wyverncss' ),
 				),
 				'description' => array(
 					'type'        => 'string',
-					'description' => __( 'Media description', 'wyvern-ai-styling' ),
+					'description' => __( 'Media description', 'wyverncss' ),
 				),
 				'alt_text'    => array(
 					'type'        => 'string',
-					'description' => __( 'Alt text for images (accessibility)', 'wyvern-ai-styling' ),
+					'description' => __( 'Alt text for images (accessibility)', 'wyverncss' ),
 				),
 			),
 			'required'   => array( 'filename' ),
@@ -84,7 +84,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 		if ( empty( $params['file_data'] ) && empty( $params['file_url'] ) ) {
 			return new WP_Error(
 				'missing_file_source',
-				__( 'Either file_data or file_url must be provided', 'wyvern-ai-styling' )
+				__( 'Either file_data or file_url must be provided', 'wyverncss' )
 			);
 		}
 
@@ -94,7 +94,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 		if ( empty( $filename ) ) {
 			return new WP_Error(
 				'invalid_filename',
-				__( 'Invalid filename provided', 'wyvern-ai-styling' )
+				__( 'Invalid filename provided', 'wyverncss' )
 			);
 		}
 
@@ -157,7 +157,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 			'file_size'     => $metadata['filesize'] ?? null,
 			'width'         => $metadata['width'] ?? null,
 			'height'        => $metadata['height'] ?? null,
-			'message'       => __( 'Media uploaded successfully', 'wyvern-ai-styling' ),
+			'message'       => __( 'Media uploaded successfully', 'wyverncss' ),
 		);
 	}
 
@@ -178,7 +178,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 			unlink( $file_path );
 			return new WP_Error(
 				'invalid_file_type',
-				__( 'File type is not allowed', 'wyvern-ai-styling' )
+				__( 'File type is not allowed', 'wyverncss' )
 			);
 		}
 
@@ -212,7 +212,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 			}
 			return new WP_Error(
 				'attachment_creation_failed',
-				__( 'Failed to create attachment', 'wyvern-ai-styling' )
+				__( 'Failed to create attachment', 'wyverncss' )
 			);
 		}
 
@@ -238,7 +238,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 		if ( false === $decoded ) {
 			return new WP_Error(
 				'invalid_base64',
-				__( 'Invalid base64 encoded data', 'wyvern-ai-styling' )
+				__( 'Invalid base64 encoded data', 'wyverncss' )
 			);
 		}
 
@@ -251,7 +251,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 		if ( false === file_put_contents( $temp_file, $decoded ) ) {
 			return new WP_Error(
 				'file_write_failed',
-				__( 'Failed to write file to disk', 'wyvern-ai-styling' )
+				__( 'Failed to write file to disk', 'wyverncss' )
 			);
 		}
 
@@ -270,7 +270,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 		if ( ! filter_var( $file_url, FILTER_VALIDATE_URL ) ) {
 			return new WP_Error(
 				'invalid_url',
-				__( 'Invalid URL provided', 'wyvern-ai-styling' )
+				__( 'Invalid URL provided', 'wyverncss' )
 			);
 		}
 
@@ -282,7 +282,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 				'download_failed',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'Failed to download file: %s', 'wyvern-ai-styling' ),
+					__( 'Failed to download file: %s', 'wyverncss' ),
 					$temp_file->get_error_message()
 				)
 			);
@@ -298,7 +298,7 @@ class UploadMediaTool extends MCP_Tool_Base {
 			unlink( $temp_file );
 			return new WP_Error(
 				'file_move_failed',
-				__( 'Failed to move uploaded file', 'wyvern-ai-styling' )
+				__( 'Failed to move uploaded file', 'wyverncss' )
 			);
 		}
 

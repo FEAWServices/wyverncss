@@ -39,7 +39,7 @@ abstract class RESTController extends WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'wyvernpress/v1';
+	protected $namespace = 'wyverncss/v1';
 
 	/**
 	 * Get tier configuration instance.
@@ -84,7 +84,7 @@ abstract class RESTController extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_forbidden',
-				esc_html__( 'You must be logged in to access this endpoint.', 'wyvern-ai-styling' ),
+				esc_html__( 'You must be logged in to access this endpoint.', 'wyverncss' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -93,7 +93,7 @@ abstract class RESTController extends WP_REST_Controller {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				esc_html__( 'You do not have permission to access this endpoint.', 'wyvern-ai-styling' ),
+				esc_html__( 'You do not have permission to access this endpoint.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -114,7 +114,7 @@ abstract class RESTController extends WP_REST_Controller {
 		if ( ! $user_id ) {
 			return new WP_Error(
 				'rest_forbidden',
-				esc_html__( 'User not found.', 'wyvern-ai-styling' ),
+				esc_html__( 'User not found.', 'wyverncss' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -143,7 +143,7 @@ abstract class RESTController extends WP_REST_Controller {
 				'rate_limit_exceeded',
 				sprintf(
 					/* translators: %1$d: current usage, %2$d: rate limit, %3$s: time period (today/this month) */
-					esc_html__( 'Rate limit exceeded. You have used %1$d of %2$d requests %3$s.', 'wyvern-ai-styling' ),
+					esc_html__( 'Rate limit exceeded. You have used %1$d of %2$d requests %3$s.', 'wyverncss' ),
 					$usage,
 					$limit,
 					$period

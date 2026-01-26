@@ -31,7 +31,7 @@ class UpdateBlocksTool extends MCP_Tool_Base {
 	 */
 	public function __construct() {
 		$this->name        = 'wp_update_blocks';
-		$this->description = __( 'Update Gutenberg blocks in a post. Provide serialized block content to replace the entire post content, enabling natural language editing.', 'wyvern-ai-styling' );
+		$this->description = __( 'Update Gutenberg blocks in a post. Provide serialized block content to replace the entire post content, enabling natural language editing.', 'wyverncss' );
 		$this->cache_ttl   = 0; // No caching for mutations.
 
 		$this->required_capabilities = array( 'edit_posts' );
@@ -41,12 +41,12 @@ class UpdateBlocksTool extends MCP_Tool_Base {
 			'properties' => array(
 				'post_id' => array(
 					'type'        => 'integer',
-					'description' => __( 'The ID of the post to update', 'wyvern-ai-styling' ),
+					'description' => __( 'The ID of the post to update', 'wyverncss' ),
 					'minimum'     => 1,
 				),
 				'blocks'  => array(
 					'type'        => 'string',
-					'description' => __( 'Serialized block content (HTML block comments format)', 'wyvern-ai-styling' ),
+					'description' => __( 'Serialized block content (HTML block comments format)', 'wyverncss' ),
 				),
 			),
 			'required'   => array( 'post_id', 'blocks' ),
@@ -70,7 +70,7 @@ class UpdateBlocksTool extends MCP_Tool_Base {
 				'post_not_found',
 				sprintf(
 					/* translators: %d: post ID */
-					__( 'Post with ID %d not found', 'wyvern-ai-styling' ),
+					__( 'Post with ID %d not found', 'wyverncss' ),
 					$post_id
 				)
 			);
@@ -80,7 +80,7 @@ class UpdateBlocksTool extends MCP_Tool_Base {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return new WP_Error(
 				'insufficient_permissions',
-				__( 'You do not have permission to edit this post', 'wyvern-ai-styling' )
+				__( 'You do not have permission to edit this post', 'wyverncss' )
 			);
 		}
 
@@ -98,7 +98,7 @@ class UpdateBlocksTool extends MCP_Tool_Base {
 				'update_failed',
 				sprintf(
 					/* translators: %s: error message */
-					__( 'Failed to update blocks: %s', 'wyvern-ai-styling' ),
+					__( 'Failed to update blocks: %s', 'wyverncss' ),
 					$result->get_error_message()
 				)
 			);
@@ -119,7 +119,7 @@ class UpdateBlocksTool extends MCP_Tool_Base {
 			'post_id'     => $post_id,
 			'updated'     => true,
 			'block_count' => count( $parsed_blocks ),
-			'message'     => __( 'Blocks updated successfully', 'wyvern-ai-styling' ),
+			'message'     => __( 'Blocks updated successfully', 'wyverncss' ),
 		);
 	}
 }
